@@ -1,9 +1,9 @@
-Topic: Visualization Of Code Convention and Various Quality Metrics of a
-Repository
+# Visualization Of Code Convention and Various Quality Metrics of a Repository
 
 Team 6 Members: folia, rshah25, umisra
 
-Problem**:**
+
+## Problem:
 
 In large projects there are a number of developers, sometimes in
 different locations, working on the same codebase. This makes the system
@@ -17,8 +17,7 @@ to collaborate with each other. Additionally, with increase in
 complexity of the project there would be a steep learning curve involved
 for any new member of the team.
 
-Solution Description:
-=====================
+## Solution Description:
 
 The analytical portal proposed would present a dashboard which includes
 the visualization of a number of different code convention and quality
@@ -66,12 +65,10 @@ The tools we are going to use for this project: Beautiful Soup (for Web
 Scraping), Python (to process data), Tableau (to visualize), HTML/CSS
 (for Portal front-end).
 
-\
-Use Cases:
-==========
 
-Use-Case 1: Initialize environment
-==================================
+## Use Cases:
+
+### Use-Case 1: Initialize environment
 
 1.  **Preconditions :** It must have a valid address to the particular
     repository. The repository must exist at the provided URL. If the
@@ -98,11 +95,11 @@ Use-Case 1: Initialize environment
 > \[S4\] Visualization is shown to the user by embedding the
 > graph/visual in our portal.
 
-1.  **Alternate Flows**: If the repository doesn’t exist or it’s private
+4.  **Alternate Flows**: If the repository doesn’t exist or it’s private
     without correct access token, the web scraper would return 404 Not
     Found and prompt the user to enter again.
 
-Use-Case 2: Choose a Metric
+### Use-Case 2: Choose a Metric
 
 1.  **Preconditions:** The web scraping from use case 1 is successfully
     done.
@@ -122,11 +119,10 @@ Use-Case 2: Choose a Metric
 > \[S3\] The corresponding graph and/or description is shown to the
 > user.
 
-1.  **Alternate Flows:** If the user does not select any option for the
+4.  **Alternate Flows:** If the user does not select any option for the
     metric and submit, then alert user.
 
-Use-Case 3: Evaluate Complexity of the Code
-===========================================
+### Use-Case 3: Evaluate Complexity of the Code
 
 1.  **Preconditions:** The web scraping from use case 1 is successfully
     done.
@@ -153,7 +149,13 @@ Use-Case 3: Evaluate Complexity of the Code
 > \[S4\] The sections of the code would be indicated which contributes
 > most to each of these metrics’ complexity.
 
-1.  **Alternative Flow**: The user doesn’t select the option and nothing
+4.  **Alternative Flow**: The user doesn’t select the option and nothing
     happens.
+
+## Design Sketches:
+
+### Wireframes
+![Wireframe 1](/images/wireframe-1.png)
+
 
 
