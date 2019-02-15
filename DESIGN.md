@@ -1,6 +1,6 @@
-# Visualization Of Code Convention and Various Quality Metrics of a Repository
+# Milestone 1: Design
+**Project: Visualization Of Code Convention and Various Quality Metrics of a Repository**
 
-Team 6 Members: folia, rshah25, umisra
 
 
 ## Problem:
