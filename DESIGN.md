@@ -5,17 +5,9 @@ Team 6 Members: folia, rshah25, umisra
 
 ## Problem:
 
-In large projects there are a number of developers, sometimes in
-different locations, working on the same codebase. This makes the system
-highly complex and it becomes difficult to monitor convention and code
-quality. It’s also challenging to get a higher level view of the entire
-codebase and understand its structure.
+In large projects there are a number of developers, sometimes in different locations, working on the same codebase. This makes the system highly complex and it becomes difficult to monitor complexity and code quality. It’s also challenging to get a high-level view of the entire codebase and understand its structure. If complexity and quality aren’t regularly maintained the project can face losses in terms of productivity of the developers and their ability to collaborate with each other. Additionally, with increase in complexity of the project there would be a steep learning curve involved for any new member of the team. 
 
-If convention and quality aren’t regularly maintained the project can
-face losses in terms of productivity of the developers and their ability
-to collaborate with each other. Additionally, with increase in
-complexity of the project there would be a steep learning curve involved
-for any new member of the team.
+To take care of these factors, a manager may wish to oversee all the files involved in the project and monitor their complexity. Additionally, a new member of the team would like to view the hierarchy of the classes and object dependencies. Also, developers that require assistance with a particular file would need to find a colleague experienced enough with the file to help them. Thus, an analytical portal visualizing such metrics would prove to be useful to monitor and visualize the code. 
 
 ## Solution Description:
 
@@ -45,59 +37,30 @@ metrics such as:
 -   **Number of Collaborators for a file:** number of developers that
     have worked or are working on a particular file.
 
-The user will provide the link for the repository to assess and an
-access token if it is private. We will then mine the repository for code
-using web scraping tools and evaluate the aforementioned metrics. The
-user can then choose which metrics he wants to see, which will be
-displayed on the Portal by embedding the corresponding metric visualized
-in Tableau.
+The user will interact with an HTML/CSS front end and provide a link for the repository to process and an access token if it is private. We will then mine the repository for code using Beautiful Soup library for web scraping and evaluate the aforementioned metrics using Python. The user can then choose which metrics he wants to see, which will be displayed on the Portal by embedding the corresponding metric visualized in Tableau. 
 
-The members of the team would have access to this portal and would be
-able to view visualizations of the different metrics and observe if any
-particular area of the codebase is not efficiently maintained. There’s
-also information regarding which developers work on each file and thus
-enables accountability and promotes following of convention.
-Furthermore, there are metrics tracking the structure of the project and
-thus it is easier for new members and managers to understand the code
-and workflow.
-
-The tools we are going to use for this project: Beautiful Soup (for Web
-Scraping), Python (to process data), Tableau (to visualize), HTML/CSS
-(for Portal front-end).
+The members of the team would have access to this portal and would be able to view visualizations of the different metrics and observe if any particular area of the codebase is not efficiently maintained. There’s also information regarding which developers work on each file and thus enables accountability and promotes following of convention. Furthermore, there are metrics tracking the structure of the project and thus it is easier for new members and managers to understand the code and workflow. 
 
 
 ## Use Cases:
 
-### Use-Case 1: Initialize environment
+### Use-Case 1: User's First Visit
 
-1.  **Preconditions :** It must have a valid address to the particular
-    repository. The repository must exist at the provided URL. If the
-    repository is private, the user must also provide an access token.
+1.  **Preconditions :** The user provides a valid address to an existing repository. If the repository is private, the user must also provide an access token.
 
-2.  **Main Flow:**
-
-> A valid address to the repository will be provided and then that
-> particular repository would be scraped and our given metrics would be
-> applied on it. Further the visualization of the metrics would be done
-> in Tableau or Power BI and shown to the user by embedding it in our
-> Portal.
+2.  **Main Flow:** The user provides a valid address to the repository and then the system will assess the provided repository by scraping the repository for code and applying the quality metrics on the data. Further the visualization of the metrics would be done in Tableau or Power BI and shown to the user by embedding it in the Portal.  
 
 1.  **Subflows**:
 
-> \[S1\] User provides a valid repository address
->
-> \[S2\] Repository is scraped for its code from that address and
-> Analysis is further done to measure our code quality metrics.
->
-> \[S3\] Visualization would be done in Tableau or Power BI for the
-> analysis.
->
-> \[S4\] Visualization is shown to the user by embedding the
-> graph/visual in our portal.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S1\] User provides a valid repository address
 
-4.  **Alternate Flows**: If the repository doesn’t exist or it’s private
-    without correct access token, the web scraper would return 404 Not
-    Found and prompt the user to enter again.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S2\] Repository is scraped for its code from that address and analysis is further done to measure our code quality metrics.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S3\] Visualization would be done in Tableau or Power BI for the analysis.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S4\] Visualization is shown to the user by embedding the graph/visual in our portal.
+
+4.  **Alternate Flows**: At any moment of analysis, if the system is not able to get the data, get the access to the resources or any tool fails while assessing which would be required for the analysis, an alert specifying the error would be shown to the user.
 
 ### Use-Case 2: Choose a Metric
 
@@ -111,16 +74,13 @@ Scraping), Python (to process data), Tableau (to visualize), HTML/CSS
 
 3.  **Subflows:**
 
-> \[S1\] A menu of available Code Quality Metrics is shown to the user
-> to pick from and evaluate the code.
->
-> \[S2\] The user picks an option.
->
-> \[S3\] The corresponding graph and/or description is shown to the
-> user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S1\] A menu of available Code Quality Metrics is shown to the user to pick from and evaluate the code.
 
-4.  **Alternate Flows:** If the user does not select any option for the
-    metric and submit, then alert user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S2\] The user picks an option.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S3\] The corresponding graph and/or description is shown to the user.
+
+4.  **Alternate Flows:** If the web scraping or the processing of metric fails completely or partially then alert the user.
 
 ### Use-Case 3: Evaluate Complexity of the Code
 
@@ -137,17 +97,13 @@ Scraping), Python (to process data), Tableau (to visualize), HTML/CSS
 
 3.  **Subflows:**
 
-> \[S1\] Option would be given for the user to check the complexity of
-> the code
->
-> \[S2\] User selects the option
->
-> \[S3\] Complexity of the code would be provided by visualizing the
-> complexity metrics Cyclomatic Complexity, Line of code and Class
-> hierarchy Level.
->
-> \[S4\] The sections of the code would be indicated which contributes
-> most to each of these metrics’ complexity.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S1\] Option would be given for the user to check the complexity of the code
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S2\] User selects the option
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S3\] Complexity of the code would be provided by visualizing the complexity metrics Cyclomatic Complexity, Lines of Code and Class Hierarchy Level.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S4\] The sections of the code would be indicated which contributes most to each of these metrics’ complexity.
 
 4.  **Alternative Flow**: The user doesn’t select the option and nothing
     happens.
