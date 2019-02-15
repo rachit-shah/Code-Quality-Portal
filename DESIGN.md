@@ -200,59 +200,7 @@ The MySQL database schema is tentatively planned as shown in Table 1 and 2, just
 
 Table 1 (Metrics by Files) 
 
-Column Name 
-
-Data Type 
-
-Description 
-
-ID 
-
-Integer 
-
-Primary Key 
-
-Time Stamp 
-
-Time 
-
-Date the row is added 
-
-Class Name 
-
-Varchar 
-
-Name of class whose data is in the row 
-
-Number of Methods 
-
-Integer 
-
-Number of methods in class 
-
-File Name 
-
-Varchar 
-
-File name in which class is present 
-
-Children 
-
-Varchar 
-
-List of child classes 
-
-Coupling 
-
-Integer 
-
-List of classes whose objects are used without inheritance 
-
-Line of Code 
-
-Integer 
-
-Number of lines of code in class 
+<img src="/images/MetricByFiles.png" alt="drawing" width="600"/>
 
  
 
@@ -260,35 +208,7 @@ Number of lines of code in class
 
 Table 2 (Metrics by Project)  
 
-Column Name 
-
-Data Type 
-
-Description 
-
-ID 
-
-Integer 
-
-Primary Key 
-
-Time Stamp 
-
-Time 
-
-Date the row is added 
-
-Cyclomatic Complexity 
-
-Integer 
-
-Number of linearly independent paths in the code 
-
-Fault Detection Per Test 
-
-Integer 
-
-Number of faults detected per test run of the code 
+<img src="/images/MetricByProject.png" alt="drawing" width="600"/>
 
  
 
