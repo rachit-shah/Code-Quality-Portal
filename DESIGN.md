@@ -159,6 +159,8 @@ Scraping), Python (to process data), Tableau (to visualize), HTML/CSS
 <img src="/images/wireframe-2.png" alt="drawing" width="500"/>
 <img src="/images/wireframe-3.png" alt="drawing" width="500"/>
 
+### Storyboard
+<img src="/images/storyboard.png" alt="drawing" width="500"/>
 
  
 
@@ -173,7 +175,7 @@ Scraping), Python (to process data), Tableau (to visualize), HTML/CSS
 Architectural Diagram 
 
  
-
+<img src="/images/block_diagram.png" alt="drawing" width="500"/>
  
 
 HTML/CSS Frontend: 
@@ -303,14 +305,14 @@ Tableau is a business intelligence tool that helps visually analyze data. It cre
  
 
 A detailed description of the interaction between the components can be seen the diagrams below 
-
+<img src="/images/activity-1.png" alt="drawing" width="500"/>
  
 
 The home screen of the application appears as soon as user opens it. From there user has to provide the repository address and token to access it. The token should be legit and the repository address should be correct, else the error would be shown. After successfully getting the repository, it is fully scraped and then stored in the Database. After successfully stored in the database, success response is returned to the application and then the browser shows the next page to the user. From the next page the user selects the metrics and submit that form. 
 
  
 
- 
+ <img src="/images/activity-2.png" alt="drawing" width="500"/>
 
 After the Initialization phase, the user is shown a new page to choose all the metrics he want to visualize it. User selects the metric and submit it to the browser. The python application fetches data from database and request Tableau for the visualization of the metrics. The visualized data is then forwarded to the browser from where user can see and further visualize it. 
 
