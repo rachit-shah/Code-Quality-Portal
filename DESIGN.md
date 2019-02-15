@@ -121,7 +121,7 @@ The members of the team would have access to this portal and would be able to vi
 ### Storyboard
 <img src="/images/storyboard.png" alt="drawing" width="500"/>
 
-## Architectural Diagram 
+## Architectural Diagrams 
 ### Block Diagram
 <img src="/images/block_diagram.png" alt="drawing" width="500"/>
 ### Components of Block Diagram
@@ -155,8 +155,8 @@ This component represents the repositories on Github that the user wishes to obt
 #### Tableau (Data visualization): 
 Tableau is a business intelligence tool that helps visually analyze data. It creates interactive visualizations that users can. When the user requires data of certain metrics the data processing component uses this tool to generate the desired graphs and charts. Then this is embedded into the HTML/CSS frontend and the user is able to interact with the Tableau visualizations within the frontend itself. 
 
-### Sequence Diagram
-A detailed description of the interaction between the components can be seen the diagrams below 
+### Sequence Diagrams
+A detailed description of the interaction between the components of the block diagram can be seen in the sequence diagrams below: 
 <img src="/images/activity-1.png" alt="drawing" width="500"/>
 
 The home screen of the application appears as soon as user opens it. From there user has to provide the repository address and token to access it. The token should be legit and the repository address should be correct, else the error would be shown. After successfully getting the repository, it is fully scraped and then stored in the Database. After successfully stored in the database, success response is returned to the application and then the browser shows the next page to the user. From the next page the user selects the metrics and submit that form. 
