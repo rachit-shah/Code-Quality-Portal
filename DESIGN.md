@@ -155,11 +155,10 @@ Scraping), Python (to process data), Tableau (to visualize), HTML/CSS
 ## Design Sketches:
 
 ### Wireframes
-![Wireframe 1](/images/wireframe-1.png)
+<img src="/images/wireframe-1.png" alt="drawing" width="500"/>
+<img src="/images/wireframe-2.png" alt="drawing" width="500"/>
+<img src="/images/wireframe-3.png" alt="drawing" width="500"/>
 
-Design Sketches 
-
-Wireframes: 
 
  
 
