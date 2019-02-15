@@ -179,10 +179,12 @@ Additionally, when the user wants to view information on particular metrics then
 #### Database Component: 
 The MySQL database schema is tentatively planned as shown in Table 1 and 2, just to show an idea about how we are going to store the metrics data in a database and consequently use them for Tableau visualization. The first table consists of columns corresponding to each metric which relate to a particular class and file, while the second table consists of metrics which relate to the project as a whole. The first table will store metrics such as number of methods, list of children (to visualize class hierarchy level), coupling (to visualize number of non-inherited classes) and lines of code for each class name and their corresponding file name with timestamps. We can then visualize these metrics in Tableau by grouping on class name, file name or timestamps to the user. The second table consists of metrics like cyclomatic complexity and average number of faults over test runs with timestamps which correspond to the whole project. We can visualize how these metrics have changed over time in Tableau using timestamps.  
 
-Table 1 (Metrics by Files) 
+**Table 1 (Metrics by Files)**
+
 <img src="/images/MetricByFiles.png" alt="drawing" width="600"/>
 
-Table 2 (Metrics by Project)  
+**Table 2 (Metrics by Project)**
+
 <img src="/images/MetricByProject.png" alt="drawing" width="600"/>
 
 #### Github Repositories: 
