@@ -157,5 +157,163 @@ Scraping), Python (to process data), Tableau (to visualize), HTML/CSS
 ### Wireframes
 ![Wireframe 1](/images/wireframe-1.png)
 
+Design Sketches 
+
+Wireframes: 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Architectural Diagram 
+
+ 
+
+ 
+
+HTML/CSS Frontend: 
+This component is the frontend of the Portal that the user will interact with. The user will provide repository details to this component and after the metrics data is collected, the visualizations are displayed on the frontend and the user can view and interact with it 
+
+Python Application: 
+This has two main components: 
+1) Beautifulsoup Library:  
+This library is used for web scraping (web data extracting or web data harvesting) from websites. Once the application receives the repository link, it uses this library to scrape the given Github repository. It extracts the code present in the repository and passes it on to the data processing component. 
+2) Data Processing:  
+When data is returned form the Beautifulsoup library it needs to be further processed. The library will simply return the code from the repositories, then the data processing component parses the code files and extracts the required data to generate the metrics. It stores this data in the MySQL database. 
+Additionally, when the user wants to view information on particular metrics then the data processing component extracts the required data from the database and uses the Tableau tool to generate visualizations on the data and returns it to the fronted for the user to view. 
+
+Database Component: 
+The MySQL database schema is tentatively planned as shown in Table 1 and 2, just to show an idea about how we are going to store the metrics data in a database and consequently use them for Tableau visualization. The first table consists of columns corresponding to each metric which relate to a particular class and file, while the second table consists of metrics which relate to the project as a whole. The first table will store metrics such as number of methods, list of children (to visualize class hierarchy level), coupling (to visualize number of non-inherited classes) and lines of code for each class name and their corresponding file name with timestamps. We can then visualize these metrics in Tableau by grouping on class name, file name or timestamps to the user. The second table consists of metrics like cyclomatic complexity and average number of faults over test runs with timestamps which correspond to the whole project. We can visualize how these metrics have changed over time in Tableau using timestamps.  
+
+ 
+
+ 
+
+ 
+
+Table 1 (Metrics by Files) 
+
+Column Name 
+
+Data Type 
+
+Description 
+
+ID 
+
+Integer 
+
+Primary Key 
+
+Time Stamp 
+
+Time 
+
+Date the row is added 
+
+Class Name 
+
+Varchar 
+
+Name of class whose data is in the row 
+
+Number of Methods 
+
+Integer 
+
+Number of methods in class 
+
+File Name 
+
+Varchar 
+
+File name in which class is present 
+
+Children 
+
+Varchar 
+
+List of child classes 
+
+Coupling 
+
+Integer 
+
+List of classes whose objects are used without inheritance 
+
+Line of Code 
+
+Integer 
+
+Number of lines of code in class 
+
+ 
+
+ 
+
+Table 2 (Metrics by Project)  
+
+Column Name 
+
+Data Type 
+
+Description 
+
+ID 
+
+Integer 
+
+Primary Key 
+
+Time Stamp 
+
+Time 
+
+Date the row is added 
+
+Cyclomatic Complexity 
+
+Integer 
+
+Number of linearly independent paths in the code 
+
+Fault Detection Per Test 
+
+Integer 
+
+Number of faults detected per test run of the code 
+
+ 
+
+ 
+
+Github Repositories: 
+This component represents the repositories on Github that the user wishes to obtain metrics about. The Beautifulsoup library will extract data from the desired Github repository present in this component 
+
+ 
+
+Tableau (Data visualization): 
+Tableau is a business intelligence tool that helps visually analyze data. It creates interactive visualizations that users can. When the user requires data of certain metrics the data processing component uses this tool to generate the desired graphs and charts. Then this is embedded into the HTML/CSS frontend and the user is able to interact with the Tableau visualizations within the frontend itself. 
+
+ 
+
+A detailed description of the interaction between the components can be seen the diagrams below 
+
+ 
+
+The home screen of the application appears as soon as user opens it. From there user has to provide the repository address and token to access it. The token should be legit and the repository address should be correct, else the error would be shown. After successfully getting the repository, it is fully scraped and then stored in the Database. After successfully stored in the database, success response is returned to the application and then the browser shows the next page to the user. From the next page the user selects the metrics and submit that form. 
+
+ 
+
+ 
+
+After the Initialization phase, the user is shown a new page to choose all the metrics he want to visualize it. User selects the metric and submit it to the browser. The python application fetches data from database and request Tableau for the visualization of the metrics. The visualized data is then forwarded to the browser from where user can see and further visualize it. 
+
 
 
