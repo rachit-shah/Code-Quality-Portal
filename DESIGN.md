@@ -111,16 +111,20 @@ The members of the team would have access to this portal and would be able to vi
 ## Design Sketches:
 
 ### Wireframes
+#### First Page (Home Page)
 <img src="/images/wireframe-1.png" alt="drawing" width="500"/>
+#### Second Page (Choose Metrics)
 <img src="/images/wireframe-2.png" alt="drawing" width="500"/>
+#### Third Page (View Visualizations)
 <img src="/images/wireframe-3.png" alt="drawing" width="500"/>
 
 ### Storyboard
 <img src="/images/storyboard.png" alt="drawing" width="500"/>
 
-### Architectural Diagram 
+## Architectural Diagram 
+### Block Diagram
 <img src="/images/block_diagram.png" alt="drawing" width="500"/>
- 
+### Components of Block Diagram
 #### HTML/CSS Frontend: 
 This component is the frontend of the Portal that the user will interact with. The user will provide repository details to this component and after the metrics data is collected, the visualizations are displayed on the frontend and the user can view and interact with it 
 
@@ -151,6 +155,7 @@ This component represents the repositories on Github that the user wishes to obt
 #### Tableau (Data visualization): 
 Tableau is a business intelligence tool that helps visually analyze data. It creates interactive visualizations that users can. When the user requires data of certain metrics the data processing component uses this tool to generate the desired graphs and charts. Then this is embedded into the HTML/CSS frontend and the user is able to interact with the Tableau visualizations within the frontend itself. 
 
+### Sequence Diagram
 A detailed description of the interaction between the components can be seen the diagrams below 
 <img src="/images/activity-1.png" alt="drawing" width="500"/>
 
