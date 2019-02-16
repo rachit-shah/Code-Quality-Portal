@@ -183,3 +183,6 @@ The home screen of the application appears as soon as user opens it. From there 
  <img src="/images/activity-2.png" alt="drawing" width="500"/>
  
 After the Initialization phase, the user is shown a new page to choose all the metrics he want to visualize it. User selects the metric and submit it to the browser. The python application fetches data from database and request Tableau for the visualization of the metrics. The visualized data is then forwarded to the browser from where user can see and further visualize it. 
+
+### Constraints
+The user must provide a valid link to an existing repository and an access token if it's private. The repository must be on GitHub and not any of its counterparts. The language of the repository must also be either Python or Java as the metric evaluation will be different for each language. The portal will refresh its data only once per day. 
