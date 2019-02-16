@@ -131,7 +131,7 @@ The members of the team would have access to this portal and would be able to vi
 
 ### Block Diagram
 
-<img src="/images/block_diagram.png" alt="drawing" width="500"/>
+<img src="/images/block_diagram.png" alt="drawing" width="700"/>
 
 ### Components of Block Diagram
 
