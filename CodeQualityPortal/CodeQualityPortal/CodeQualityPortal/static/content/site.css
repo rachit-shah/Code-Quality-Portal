@@ -40,3 +40,8 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.portal-title-text {
+    text-align: center;
+    font-size: large;
+}

@@ -3,17 +3,27 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from flask import render_template
+from flask import render_template, redirect
+from CodeQualityPortal.forms import SubmitRepositoryForm
 from CodeQualityPortal import app
+import logging
 
-@app.route('/')
-@app.route('/home')
-def home():
+logger = logging.getLogger(__name__)
+
+
+@app.route('/', methods=['GET','POST'])
+def index():
     """Renders the home page."""
+    form = SubmitRepositoryForm()
+    if form.validate_on_submit():
+       return redirect('/contact')
+
+    print(form.errors.items())
     return render_template(
         'index.html',
         title='Home Page',
         year=datetime.now().year,
+        form=form
     )
 
 @app.route('/contact')

@@ -1,33 +1,53 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
-<div class="jumbotron">
-    <h1>Flask</h1>
-    <p class="lead">Flask is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            Flask gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://flask.pocoo.org/docs/">Learn more &raquo;</a></p>
+    <div class="col-md-offset-2 col-md-8">
+        <form action="{{ url_for('index') }}" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="form-group {% if form.repo_url.errors %} has-error {% endif %} row">
+                <label class="col-md-2 col-form-label col-form-label-lg" for="{{ form.repo_url.id_for_label }}">
+                    Repository URL
+                </label>
+                <div class="col-md-10">
+                    {{ form.repo_url(class_="form-control form-control-lg") }}
+                    {% for error in form.repo_url.errors %}
+                        <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10">
+                  <div class="form-check">
+                    {{ form.private(class_="form-check-input") }}
+                    <label class="form-check-label" for="{{ form.private.id_for_label }}">
+                      Private?
+                    </label>
+                  </div>
+                </div>
+            </div>
+            <div id="access-token-div" class="form-group {% if form.access_token.errors %} has-error {% endif %} row">
+                <label class="col-md-2 col-form-label col-form-label-lg" for="{{ form.access_token.id_for_label }}">
+                    Access Token
+                </label>
+                <div class="col-md-10">
+                    {{ form.access_token(class_="form-control form-control-lg") }}
+                    {% for error in form.access_token.errors %}
+                        <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                  {{ form.submit(class_="btn btn-primary") }}
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.python.org/pypi">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Microsoft Azure</h2>
-        <p>You can easily publish to Microsoft Azure using Visual Studio. Find out how you can host your application using a free trial today.</p>
-        <p><a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></p>
-    </div>
-</div>
 
+
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/index.js') }}"></script>
 {% endblock %}
