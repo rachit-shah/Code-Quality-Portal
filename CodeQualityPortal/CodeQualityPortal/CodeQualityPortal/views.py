@@ -3,7 +3,7 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from flask import render_template, redirect, request
+from flask import render_template, redirect, request, url_for
 from CodeQualityPortal.forms import SubmitRepositoryForm, ChooseMetricsForm
 from CodeQualityPortal import app
 import logging
@@ -34,28 +34,23 @@ def choose_metric():
             metrics = []
             print(request.form)
             if 'class_hierarchy_level' in request.form:
-                metrics.append('class_hierarchy_level')
+                metrics.append('Class Hierarchy Level')
             if 'no_of_methods_per_class' in request.form:
-                metrics.append('no_of_methods_per_class')
+                metrics.append('No. of Methods per Class')
             if 'cyclomatic_complexity' in request.form:
-                metrics.append('cyclomatic_complexity')
+                metrics.append('Cyclomatic Complexity')
             if 'coupling_between_objects' in request.form:
-                metrics.append('coupling_between_objects')
+                metrics.append('Coupling between Objects')
             if 'comments_or_documentation' in request.form:
-                metrics.append('comments_or_documentation')
+                metrics.append('Comments or Documentation')
             if 'lines_of_code' in request.form:
-                metrics.append('lines_of_code')
+                metrics.append('Lines of Code')
             if 'avg_faults' in request.form:
-                metrics.append('avg_faults')
+                metrics.append('Averge Faults')
             if 'no_of_collaborators_per_file' in request.form:
-                metrics.append('no_of_collaborators_per_file')
+                metrics.append('No. of Collaborators per File')
 
-            metrics = json.dumps(metrics)
-            print(metrics)
-            return render_template('visualisations.html',
-                                   title='About',
-                                   year=datetime.now().year,
-                                   message=metrics)
+            return redirect(url_for('visualisations', metrics=metrics))
 
     return render_template(
         'choose-metric.html',
@@ -65,9 +60,9 @@ def choose_metric():
 @app.route('/visualisations', methods=['GET', 'POST'])
 def visualisations():
     """Renders the about page."""
+    metrics = request.args.getlist('metrics')
+    print(metrics)
     return render_template(
         'visualisations.html',
-        title='About',
-        year=datetime.now().year,
-        message='Your application description page.'
+        metrics=metrics
     )

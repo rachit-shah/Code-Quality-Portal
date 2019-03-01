@@ -45,3 +45,9 @@ input[type="checkbox"].input-validation-error {
     text-align: center;
     font-size: large;
 }
+
+.graph-image {
+    width: 250px;
+    height: 250px;
+    border: 2px black;
+}

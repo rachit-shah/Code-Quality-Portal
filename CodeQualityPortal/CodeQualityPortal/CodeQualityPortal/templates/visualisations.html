@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
-<h2>{{ title }}.</h2>
-<h3>{{ message }}</h3>
-
-<p>Use this area to provide additional information.</p>
-
+    {% for metric in metrics %}
+        <div class="col-md-offset-2 col-md-10">
+            <h1>{{ metric }}</h1>
+            <img src="{{ url_for('static', filename='graph.jpg') }}">
+        </div>
+    {% endfor %}
 {% endblock %}
