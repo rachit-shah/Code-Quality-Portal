@@ -4,7 +4,7 @@
     {% for metric in metrics %}
         <div class="col-md-offset-2 col-md-10">
             <h1>{{ metric }}</h1>
-            <img src="{{ url_for('static', filename='graph.jpg') }}">
+            <img class="graph-image" src="{{ url_for('static', filename='graph.jpg') }}">
         </div>
     {% endfor %}
 {% endblock %}

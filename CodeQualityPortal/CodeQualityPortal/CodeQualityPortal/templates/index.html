@@ -1,23 +1,22 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <div class="col-md-offset-2 col-md-8">
-        <form action="{{ url_for('index') }}" method="post" novalidate>
+    <div class="col-md-offset-2 col-md-8 form-div">
+        <form action="{{ url_for('index') }}" method="post" class="repo-form" novalidate>
             {{ form.hidden_tag() }}
             <div class="form-group {% if form.repo_url.errors %} has-error {% endif %} row">
-                <label class="col-md-2 col-form-label col-form-label-lg" for="{{ form.repo_url.id_for_label }}">
-                    Repository URL
+                <label class="col-md-3 col-form-label col-form-label-lg" for="{{ form.repo_url.id_for_label }}">
+                    Repository URL:
                 </label>
-                <div class="col-md-10">
-                    {{ form.repo_url(class_="form-control form-control-lg") }}
+                <div class="col-md-9">
+                    {{ form.repo_url(class_="form-control form-control-lg", style="max-width:100%") }}
                     {% for error in form.repo_url.errors %}
                         <span class="help-block">{{ error }}</span>
                     {% endfor %}
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-10">
+                <div class="col-md-offset-3 col-md-9">
                   <div class="form-check">
                     {{ form.private(class_="form-check-input") }}
                     <label class="form-check-label" for="{{ form.private.id_for_label }}">
@@ -27,19 +26,19 @@
                 </div>
             </div>
             <div id="access-token-div" class="form-group {% if form.access_token.errors %} has-error {% endif %} row">
-                <label class="col-md-2 col-form-label col-form-label-lg" for="{{ form.access_token.id_for_label }}">
+                <label class="col-md-3 col-form-label col-form-label-lg" for="{{ form.access_token.id_for_label }}">
                     Access Token
                 </label>
-                <div class="col-md-10">
-                    {{ form.access_token(class_="form-control form-control-lg") }}
+                <div class="col-md-9">
+                    {{ form.access_token(class_="form-control form-control-lg",  style=" max-width:100%") }}
                     {% for error in form.access_token.errors %}
                         <span class="help-block">{{ error }}</span>
                     {% endfor %}
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-10">
-                  {{ form.submit(class_="btn btn-primary") }}
+                <div class="col-md-offset-3 col-md-6" style="margin-top: 25px;">
+                  {{ form.submit(class_="btn btn-info", style="display:block; width:100%") }}
                 </div>
             </div>
         </form>
