@@ -6,7 +6,7 @@
             {{ form.hidden_tag() }}
             <div class="form-group {% if form.repo_url.errors %} has-error {% endif %} row">
                 <label class="col-md-3 col-form-label col-form-label-lg" for="{{ form.repo_url.id_for_label }}">
-                    Repository URL:
+                    Repo URL:
                 </label>
                 <div class="col-md-9">
                     {{ form.repo_url(class_="form-control form-control-lg", style="max-width:100%") }}
@@ -27,7 +27,7 @@
             </div>
             <div id="access-token-div" class="form-group {% if form.access_token.errors %} has-error {% endif %} row">
                 <label class="col-md-3 col-form-label col-form-label-lg" for="{{ form.access_token.id_for_label }}">
-                    Access Token
+                    Access Token:
                 </label>
                 <div class="col-md-9">
                     {{ form.access_token(class_="form-control form-control-lg",  style=" max-width:100%") }}

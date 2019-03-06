@@ -1,10 +1,13 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    {% for metric in metrics %}
-        <div class="col-md-offset-2 col-md-10">
-            <h1>{{ metric }}</h1>
-            <img class="graph-image" src="{{ url_for('static', filename='graph.jpg') }}">
-        </div>
-    {% endfor %}
+    <div class="col-md-offset-2 col-md-8">
+        {% for metric in metrics %}
+            <div class="col-md-offset-2 col-md-8" style="text-align: center; margin-bottom: 20px">
+                <h1>{{ metric }}</h1>
+                <img class="graph-image" src="{{ url_for('static', filename='graph.jpg') }}">
+            </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}

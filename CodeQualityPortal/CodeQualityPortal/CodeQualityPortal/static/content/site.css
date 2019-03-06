@@ -6,7 +6,7 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color:  #5bc0de;
+    background-color:  #2d5986;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: medium;
 }
@@ -49,6 +49,20 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
+.btn.btn-info{
+    color: #ffffff;
+    background-color: #3973ac;
+    border-color: #264d73;
+}
+.btn.btn-info:hover,
+.btn.btn-info:focus,
+.btn.btn-info:active,
+.btn.btn-info.active {
+  color: #ffffff;
+  background-color: #2d5986;
+  border-color: #264d73;
+}
+
 .portal-title {
     font-family: Ikaros, sans-serif;
     font-weight: bold;
@@ -71,7 +85,7 @@ input[type="checkbox"].input-validation-error {
 }
 
 .graph-image {
-    width: 250px;
-    height: 250px;
+    width: 100%;
+    height: 500px;
     border: 2px black;
 }
