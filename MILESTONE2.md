@@ -4,15 +4,15 @@
 
 1.  **Preconditions :** The user provides a valid address to an existing repository. 
 
-2.  **Main Flow:** The user provides a valid address to the repository and then the system will assess the provided repository by scraping the repository for code and applying the quality metrics on the data. Further the visualization of the metrics would be done in Tableau or Power BI and shown to the user by embedding it in the Portal.  
+2.  **Main Flow:** The user provides a valid address to the repository[S1] and then the system will assess the provided repository by using[S2] Github REST API to fetch the code and applying the quality metrics on the data. Further the visualization of the metrics would be done in Tableau or Power BI[S3] and shown to the user by embedding it in the Portal[S4].  
 
 1.  **Subflows**:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S1\] User will give a link to an existing Github repository. If the repository is private, the user must provide an access token.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S2\] The Github repository is scraped for its code from that address and analysis is further done to measure our code quality metrics.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S2\] The Github REST API is used to get code from that address and analysis is further done to measure our code quality metrics.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S3\] The data screaped from the repository is used to generate visualizations which would be done in Tableau or Power BI for the user's analysis.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S3\] The data received is used to generate visualizations which would be done in Tableau or Power BI for the user's analysis.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S4\] The visualizations are prepared to be shown to the user by embedding the graph/visual in our portal.
 
@@ -20,13 +20,13 @@
 
 ### Use-Case 2: Choose a Metric
 
-1.  **Preconditions:** The web scraping from use case 1 is successfully
-    done.
+1.  **Preconditions:** The code from the REST API is successfully
+    received.
 
-2.  **Main Flow**: After the successful scraping of the repository, user
-    would be allowed to choose an option from the given set of choices
-    that are the different metrics of the available to evaluate the
-    code.
+2.  **Main Flow**: After the successful getting of the repository, user
+    would be allowed to choose an option[S2] from the given set of choices[S1],
+    that are the different metrics available to evaluate the
+    code. After selecting the options the corresponding visualizations would be shown[S3].
 
 3.  **Subflows:**
 
@@ -40,15 +40,15 @@
 
 ### Use-Case 3: Evaluate Complexity of the Code **
 
-1.  **Preconditions:** The web scraping from use case 1 is successfully
-    done. The user has selected to view data on cyclomatic complexity, number of lines of code and class
+1.  **Preconditions:** The Repository from the REST API from is successfully
+    received. The user has selected to view data on cyclomatic complexity, number of lines of code and class
     hierarchy level.
 
-2.  **Main Flow:** After successfully scraping the repository, user
+2.  **Main Flow:** After successfully getting the repository, user
     would be able to check the complexity of the code by evaluating the
     graphs of cyclomatic complexity, number of lines of code and class
-    hierarchy level. The portal will also provide sections of code which
-    contribute most to each of these metrics for the Project Manager to
+    hierarchy level[S1][S3] by selecting the suitable options[S2]. The portal will also provide sections of code which
+    contribute most to each of these metrics[S4] for the Project Manager to
     evaluate which parts of code needs to be simplified for a new user
     to understand.
 
