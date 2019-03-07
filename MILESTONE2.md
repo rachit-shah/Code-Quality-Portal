@@ -84,6 +84,7 @@ The Second table consists of metrics which relate to the project as a whole. It 
 
 <img src="/images/MetricByProject.png" alt="drawing" width="600"/>
 
+Now for mocking the data, we used python to connect with MYSQL. We wrote down the scripts in python to insert data into MYSQL Database. We first connceted the SQL server using connector. We created tables and inserted that data using python scripts. The file namely sql_db.py is used for it and its also pushed in our github repository.
 
 # Bot/Portal Implementation
 
