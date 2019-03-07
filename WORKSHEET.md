@@ -2,11 +2,11 @@
 
 |  Deliverable | Item/Status  |  Issues/Tasks | 
 |---|---|---|
-| Use Case  |  User's First Visit |   |
-| Subflow  | 1  | [1](https://github.ncsu.edu/umisra/csc510-project/projects/1#card-7206)  |
-| Subflow  |  2 |   |
-| Subflow  |  3 |   |
-
+| Use Case 1 |  User's First Visit |   |
+| Subflow  |  1  | [1](https://github.ncsu.edu/umisra/csc510-project/projects/1#card-7206)  [2](https://github.ncsu.edu/umisra/csc510-project/projects/1#card-7208)  [3]()  |
+| Use Case Refinement | Incomplete  | [Use Case](https://github.ncsu.edu/umisra/csc510-project/projects/1#card-7202)  |
+| DataBase Schema in MongoDB | In Process  | [Schema](https://github.ncsu.edu/umisra/csc510-project/projects/1#card-7205)  |
+|   |   |   |
 ## WEEK 2
 
 |  Deliverable | Item/Status  |  Issues/Tasks | 
