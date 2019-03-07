@@ -35,3 +35,4 @@
 | Subflow  |  3 | [10](https://github.ncsu.edu/umisra/csc510-project/projects/1#card-7760) [11](https://github.ncsu.edu/umisra/csc510-project/projects/1#card-7761)  |
 | Database Schema change | Resolved |[Issue Created](https://github.ncsu.edu/umisra/csc510-project/issues/2#issue-69497)|
 | Recursive CTE Function | Resolved |[Issue Created](https://github.ncsu.edu/umisra/csc510-project/issues/3#issue-69673)|
+| Last Page Showing all the graphs| Created| [14](https://github.ncsu.edu/umisra/csc510-project/projects/1#card-7214)|
