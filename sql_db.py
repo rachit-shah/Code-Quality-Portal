@@ -12,22 +12,22 @@ x=str(datetime.now())
 mycursor = mydb.cursor()
 
 # mycursor.execute("CREATE DATABASE Github_Mining")
-mycursor.execute("CREATE TABLE IF NOT EXISTS File_Records (ID INT AUTO_INCREMENT PRIMARY KEY, TimeStamp  DATETIME,Repo_Name VARCHAR(255),File_Name Varchar(255), Total_Methods INT,Class_Name VARCHAR(255),Parent VARCHAR(255), Coupling INT, LOC INT)")
+mycursor.execute("CREATE TABLE IF NOT EXISTS File_Records (ID INT AUTO_INCREMENT PRIMARY KEY, TimeStamp  DATETIME,Repo_Name VARCHAR(255),File_Name Varchar(255), Total_Methods INT,Class_Name VARCHAR(255),Parent VARCHAR(255), Coupling INT, LOC INT,Total_Collaborator INT,Major_Collaborator Varchar(255))")
 
 mycursor.execute("CREATE TABLE IF NOT EXISTS Project_Records (ID INT AUTO_INCREMENT PRIMARY KEY, TimeStamp DATETIME, CyclomaticComplexity INT, FraudDetection INT)")
 
-sql = "INSERT INTO File_Records (TimeStamp,Repo_Name,Total_Methods,File_Name,Class_Name,Parent,Coupling,LOC) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+sql = "INSERT INTO File_Records (TimeStamp,Repo_Name,Total_Methods,File_Name,Class_Name,Parent,Coupling,LOC,Total_Collaborator,Major_Collaborator) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 val=[
-(x,'Bank Account',10,'File1',"Account",None,5,200),
-(x,'Bank Account',20,'File1',"Fixed",'Account',0,800),
-(x,'Bank Account',15,'File1',"Current",'Account',0,1000),
-(x,'Bank Account',20,'File1',"Saving",'Account',1,500),
-(x,'Bank Account',12,'File1',"Reserve",'Account',6,2000),
-(x,'Animals',7,'File2',"Animal Groups",None,3,100),
-(x,'Animals',12,'File2',"Mammals","Animal Groups",2,300),
-(x,'Animals',10,'File2',"Verteberates","Animal Groups",2,400),
-(x,'Animals',9,'File2',"Insects","Animal Groups",2,450),
-(x,'Animals',15,'File2',"Reptiles","Animal Groups",2,350)
+(x,'Bank Account',10,'File1',"Account",None,5,200,5,"niks"),
+(x,'Bank Account',20,'File1',"Fixed",'Account',0,800,8,"niks"),
+(x,'Bank Account',15,'File1',"Current",'Account',0,1000,6,"louis"),
+(x,'Bank Account',20,'File1',"Saving",'Account',1,500,4,"faz"),
+(x,'Bank Account',12,'File1',"Reserve",'Account',6,2000,3,'rish'),
+(x,'Animals',7,'File2',"Animal Groups",None,3,100,2,'manp'),
+(x,'Animals',12,'File2',"Mammals","Animal Groups",2,300,1,'prak'),
+(x,'Animals',10,'File2',"Verteberates","Animal Groups",2,400,1,'rsha'),
+(x,'Animals',9,'File2',"Insects","Animal Groups",2,450,2,'prak'),
+(x,'Animals',15,'File2',"Reptiles","Animal Groups",2,350,1,'prak')
 ]
 mycursor.executemany(sql, val)
 mydb.commit()
