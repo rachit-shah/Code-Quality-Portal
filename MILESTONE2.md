@@ -76,6 +76,14 @@ The first table consists of columns corresponding to each metric which relate to
 
 The Second table consists of metrics which relate to the project as a whole. It will have metrics like cyclomatic complexity and average number of faults over test runs with timestamps which correspond to the whole project. We can visualize how these metrics have changed over time in Tableau using timestamps. 
 
+**Table 1 (Metrics by Files)**
+
+<img src="/images/MetricByFiles.png" alt="drawing" width="600"/>
+
+**Table 2 (Metrics by Project)**
+
+<img src="/images/MetricByProject.png" alt="drawing" width="600"/>
+
 
 # Bot/Portal Implementation
 
