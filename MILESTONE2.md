@@ -68,6 +68,15 @@
 
 # Mocking
 
+First of all we are using MYSQL for out database. The Database will have 2 tables:
+1.  Metric by Files
+2.  Metric by Project
+
+The first table consists of columns corresponding to each metric which relate to a particular class and file. It will store metrics such as number of methods, parent (to visualize class hierarchy level), coupling (to visualize number of non-inherited classes) and lines of code for each class name and their corresponding file name with timestamps. We can then visualize these metrics in Tableau by grouping on class name, file name or timestamps to the user.
+
+The Second table consists of metrics which relate to the project as a whole. It will have metrics like cyclomatic complexity and average number of faults over test runs with timestamps which correspond to the whole project. We can visualize how these metrics have changed over time in Tableau using timestamps. 
+
+
 # Bot/Portal Implementation
 
 # Task Tracking
