@@ -82,7 +82,7 @@ The Second table consists of metrics which relate to the project as a whole. It 
 
 <img src="/images/MetricByProject.png" alt="drawing" width="600"/>
 
-Now for mocking the data, we used python to connect with MySQL. We wrote down the scripts in python to insert data into MySQL Database. We first connected the SQL server using connector. We created tables and inserted that data using python scripts. The file namely sql_db.py is used for it and its also pushed in our github repository. Actually we took an object oriented use case for our data of Bank. We took total of 5 different timestamps to store. There were total of 170 rows of data that was added finally after taking all those 5 timestamps.
+Now for mocking the data, we used python to connect with MySQL. We wrote down the scripts in python to insert data into MySQL Database. We first connected the SQL server using connector. We created tables and inserted that data using python scripts. The file namely sql_db.py is used for it and its also pushed in our github repository. Actually we took an object oriented use case for our data of Bank. It had total of 4 different files and 24 different classes. We took total of 5 different timestamps to store. There were total of 170 rows of data that was added finally after taking all those 5 timestamps. We used different timestamps to help us visualize how different metrics would go along with the time proceeding. The time stamp chosen was half yearly(1/2 year). 
 
 # Bot/Portal Implementation
 
