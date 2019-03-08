@@ -6,6 +6,7 @@ from datetime import datetime
 from flask import render_template, redirect, request, url_for
 from CodeQualityPortal.forms import SubmitRepositoryForm, ChooseMetricsForm
 from CodeQualityPortal import app
+from CodeQualityPortal import sql_db
 import logging
 import json
 
@@ -18,6 +19,7 @@ def index():
     form = SubmitRepositoryForm()
     if request.method == "POST":
         if form.validate_on_submit():
+            sql_db.mock_database_generator()
             return redirect('/choose-metric')
 
     return render_template(
