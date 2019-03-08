@@ -12,7 +12,7 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S2\] The Github REST API is used to get code from that address and analysis is further done to measure our code quality metrics.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S3\] The data received is used to generate visualizations which would be done in Tableau or Power BI for the user's analysis.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S3\] The data returned is processed and stored in a database and used to generate visualizations which would be done in Tableau or Power BI for the user's analysis.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S4\] The visualizations are prepared to be shown to the user by embedding the graph/visual in our portal.
 
@@ -40,7 +40,7 @@
 
 ### Use-Case 3: Evaluate Complexity of the Code **
 
-1.  **Preconditions:** The Repository from the REST API from is successfully
+1.  **Preconditions:** The Repository data from the Github API is successfully
     received. The user has selected to view data on cyclomatic complexity, number of lines of code and class
     hierarchy level.
 
@@ -54,13 +54,11 @@
 
 3.  **Subflows:**
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S1\] Option would be given for the user to check the complexity of the code
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S1\] User selects the options they need for checking the complexity of the code.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S2\] User selects the option
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S2\] in this case user chooses cyclomatic complexity, number of lines of code and class hierarchy level as the metrics they want to visualise.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S3\] Complexity of the code would be provided by visualizing the complexity metrics Cyclomatic Complexity, Lines of Code and Class Hierarchy Level.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S4\] The sections of the code would be indicated which contributes most to each of these metrics’ complexity.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S3\] The user can then view the visualisations of these parameters with respect to the repository code received from Github.
 
 4.  **Alternative Flow**: The user doesn’t select the option and nothing
     happens.
