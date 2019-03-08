@@ -97,6 +97,6 @@ In order to visualise the code quality metrics that we have assessed from the co
 
 # Screencast
 
-[Project ScreenCast](csc510-project/screencast.mp4)
-
-[ScreenCast Video](https://drive.google.com/open?id=14GGw0kaulehem9Zq_Z-SG6WvORE2AU8f)
+[Project ScreenCast - GitHub Link](csc510-project/screencast.mp4)
+OR
+[Project ScreenCase - Google Drive Link](https://drive.google.com/open?id=14GGw0kaulehem9Zq_Z-SG6WvORE2AU8f)
