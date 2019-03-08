@@ -4,29 +4,25 @@
 
 1.  **Preconditions :** The user provides a valid address to an existing repository. 
 
-2.  **Main Flow:** The user provides a valid address to the repository[S1] and then the system will assess the provided repository by using[S2] Github REST API to fetch the code and applying the quality metrics on the data. Further the visualization of the metrics would be done in Tableau or Power BI[S3] and shown to the user by embedding it in the Portal[S4].  
+2.  **Main Flow:** The user provides a valid address to the repository[S1] and then the system assesses the provided repository by using[S2] Github REST API to fetch the code and applying the quality metrics on the data. Further the visualization of the metrics is done in Tableau [S3] and shown to the user by embedding it in the Portal[S4].  
 
 1.  **Subflows**:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S1\] User will give a link to an existing Github repository. If the repository is private, the user must provide an access token.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S2\] The Github REST API is used to get code from that address and analysis is further done to measure our code quality metrics.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S2\] The Github REST API is used to get code from that address and analysis is further done to measure the code quality metrics.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S3\] The data returned is processed and stored in a database and used to generate visualizations which would be done in Tableau or Power BI for the user's analysis.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S3\] The data returned is processed and stored in a database and used to generate visualizations, which will be done in Tableau, for the user's analysis.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S4\] The visualizations are prepared to be shown to the user by embedding the graph/visual in our portal.
 
-4.  **Alternate Flows**: At any moment of analysis, if the system is not able to get the data, get the access to the resources or any tool fails while assessing which would be required for the analysis, an alert specifying the error would be shown to the user.
+4.  **Alternate Flows**: At any moment of analysis, if the system is not able to get the data, or get access to the resources, or any tool required for the analysis fails, an alert specifying the error will be shown to the user.
 
 ### Use-Case 2: Choose a Metric
 
-1.  **Preconditions:** The code from the REST API is successfully
-    received.
+1.  **Preconditions:** The code from the REST API is successfully received.
 
-2.  **Main Flow**: After the successful getting of the repository, user
-    would be allowed to choose an option[S2] from the given set of choices[S1],
-    that are the different metrics available to evaluate the
-    code. After selecting the options the corresponding visualizations would be shown[S3].
+2.  **Main Flow**: After successfully getting the repository, user will be asked to choose an option[S2] from the given set of choices[S1], i.e. the different metrics available to evaluate the code. After selecting their desired metrics the corresponding visualizations are displayed[S3].
 
 3.  **Subflows:**
 
@@ -36,37 +32,28 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S3\] The user is then redirected to a page where the corresponding graphs and visualisations are shown to the user.
 
-4.  **Alternate Flows:** If the web scraping or the processing of metric fails completely or partially then alert the user.
+4.  **Alternate Flows:** If retreiving repository data or metric processing fails completely or partially then the user is alerted.
 
 ### Use-Case 3: Evaluate Complexity of the Code 
 
-1.  **Preconditions:** The Repository data from the Github API is successfully
-    received. The user has selected to view data on cyclomatic complexity, number of lines of code and class
-    hierarchy level.
+1.  **Preconditions:** The repository data from the Github API is successfully received.
 
-2.  **Main Flow:** After successfully getting the repository, user
-    would be able to check the complexity of the code by evaluating the
-    graphs of cyclomatic complexity, number of lines of code and class
-    hierarchy level[S1][S3] by selecting the suitable options[S2]. The portal will also provide sections of code which
-    contribute most to each of these metrics[S4] for the Project Manager to
-    evaluate which parts of code needs to be simplified for a new user
-    to understand.
+2.  **Main Flow:** After successfully getting the repository, user selects metrics related to code complexity [S1] from options provided on the portal [S2]. The user can then view the graphs and visualisations presented based on the metrics they selected and derive information related to the complexity of their code [S3].
 
 3.  **Subflows:**
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S1\] User selects the options they need for checking the complexity of the code.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S2\] in this case user chooses cyclomatic complexity, number of lines of code and class hierarchy level as the metrics they want to visualise.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S2\] In this case user chooses cyclomatic complexity, number of lines of code and class hierarchy level as the metrics they want to visualise.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \[S3\] The user can then view the visualisations of these parameters with respect to the repository code received from Github.
 
-4.  **Alternative Flow**: The user doesn’t select the option and nothing
-    happens.
+4.  **Alternative Flow**: The user doesn’t select any option and nothing happens.
 
 
 # Mocking
 
-First of all we are using MYSQL for out database. The Database will have 2 tables:
+We are using MySQL for out database which will have two tables:
 1.  Metric by Files
 2.  Metric by Project
 
@@ -82,15 +69,17 @@ The Second table consists of metrics which relate to the project as a whole. It 
 
 <img src="/images/MetricByProject.png" alt="drawing" width="600"/>
 
-Now for mocking the data, we used python to connect with MySQL. We wrote down the scripts in python to insert data into MySQL Database. We first connected the SQL server using connector. We created tables and inserted that data using python scripts. The file namely sql_db.py is used for it and its also pushed in our github repository. Actually we took an object oriented use case for our data of Bank. It had total of 4 different files and 24 different classes. We took total of 5 different timestamps to store. There were total of 170 rows of data that was added finally after taking all those 5 timestamps. We used different timestamps to help us visualize how different metrics would alter with time. The time stamp chosen was half yearly(1/2 year). 
+In order to mock data for this milestone we have written a python script, stored in the file sql_db.py, that is called by the server to populate the MySQL database. First a connection is made to the database using mysql-connector-python. Then our tables are creating and populated with mock data. To give a good representation of our portal and to aid our visualisations we have chosen to create this data based on an example object-oriented bank system. This system includes 4 different files of code and 24 classes with multiple hierarchy levels. The mock data represents the state of the codebase at 5 different timestamps spread over 3 years (with 6 months in between each timestamp). In order to simulate a realistic reperesentation of a big project over time we have generated 170 rows of timestamped data in total. This allows the user to interact with the visualisations and view the evolution of their codebase with time. 
 
 # Bot/Portal Implementation
 
-To implement our Code Quality Visualization portal we have created an application using Flask which a python framework. This application is hosted on our local server and will be deployed on the deployment server. This application communicates with the frontend and will eventually get data from Github's APIs in order generate visualisations. As of now, since we aren't connecting to Github's API and are not processing data, our server code is minimum and so we haven't yet implemented any design patterns.
+Our portal implementation so far is merged onto the branch 'flask_web_app'.
 
-Currently we have prepared a complete mockup of our intended portal.  The frontend of the application, written in HTML with CSS and jQuery, allows the user to enter a mock URL from which data is supposed to be fetched. As of now we running a script to populate the MySQL database with mock data once user enters a repository URL. We are then using Tableau to visualise this data. Tableau directly connects to the MySQL server and generates the visualisations. We have then published the visualisations on Tableau's public server. Once the mock data is inerted into the database, the user is given a choice to select the metrics they wish to view. The frontend then fetches those specific metrics dashboard from Tableau's public server and embeds it for the user to view and interact with within the portal itself.
+To implement our Code Quality Visualization portal we have created an application using Flask which is a python framework. This application is currently hosted on our local server and will be what we deploy on the deployment server. As of now this app communicates only with the frontend. It will eventually get data from Github's APIs and process it in order generate our  visualisations. Since we haven't yet connected to Github's APIs, our server code is minimum and so we haven't yet implemented any design patterns.
 
-In order to visualise the code quality metrics that we have assessed from the code, we have generated multiple visualizations such as Tree Maps, Horizontal and Vertical Bars, Packed Bubbles, Line Chart, etc. We have also implemented filters based on attributes like time stamp, class name, file names, etc. to dynamically change the data used to visualize a chart and see a subset of the visualization. For example, suppose the user only wants to see the data from a specific file or a specific time, they can just choose the filter and visualize accordingly.
+Currently we have prepared a complete mockup of our intended portal. The frontend of the application, written in HTML with CSS and jQuery, allows the user to enter a mock URL from which data is supposed to be fetched. As of now we running a script to populate the MySQL database with mock data once user enters the URL. We are then using Tableau to visualise this data. Tableau directly connects to the MySQL server and generates these visualisations. We have then published the visualisations on Tableau's public server. Once the mock data is inserted into the database, the user is given a choice to select the metrics they wish to view. The frontend then fetches those specific metric dashboards from Tableau's public server and embeds it for the user to view and interact with within the portal itself.
+
+In order to visualise the quality metrics that we have assessed from the code, we have generated multiple visualizations such as Tree Maps, Horizontal and Vertical Bars, Packed Bubbles, Line Chart, etc. We have also implemented filters based on attributes like time stamp, class name, file names, etc. in order to dynamically change the data used to visualize a chart and see a subset of the visualization. For example, if the user only wants to see  data from a specific file or a specific time, they can just choose the filter and visualize it accordingly.
 
 # Task Tracking
 [Worksheet](https://github.ncsu.edu/umisra/csc510-project/blob/master/WORKSHEET.md)
