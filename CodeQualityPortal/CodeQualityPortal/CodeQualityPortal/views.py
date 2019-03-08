@@ -35,6 +35,8 @@ def choose_metric():
             print(request.form)
             if 'class_hierarchy_level' in request.form:
                 metrics.append('Class Hierarchy Level')
+            if 'no_of_collaborators_per_file' in request.form:
+                metrics.append('No. of Collaborators per File')
             if 'no_of_methods_per_class' in request.form:
                 metrics.append('No. of Methods per Class')
             if 'cyclomatic_complexity' in request.form:
@@ -46,9 +48,7 @@ def choose_metric():
             if 'lines_of_code' in request.form:
                 metrics.append('Lines of Code')
             if 'avg_faults' in request.form:
-                metrics.append('Averge Faults')
-            if 'no_of_collaborators_per_file' in request.form:
-                metrics.append('No. of Collaborators per File')
+                metrics.append('Average Faults')
 
             return redirect(url_for('visualisations', metrics=metrics))
 
