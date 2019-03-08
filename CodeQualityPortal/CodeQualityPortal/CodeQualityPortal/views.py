@@ -3,35 +3,66 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from flask import render_template
+from flask import render_template, redirect, request, url_for
+from CodeQualityPortal.forms import SubmitRepositoryForm, ChooseMetricsForm
 from CodeQualityPortal import app
+import logging
+import json
 
-@app.route('/')
-@app.route('/home')
-def home():
+logger = logging.getLogger(__name__)
+
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
     """Renders the home page."""
+    form = SubmitRepositoryForm()
+    if request.method == "POST":
+        if form.validate_on_submit():
+            return redirect('/choose-metric')
+
     return render_template(
         'index.html',
-        title='Home Page',
-        year=datetime.now().year,
+        form=form
     )
 
-@app.route('/contact')
-def contact():
+@app.route('/choose-metric', methods=['GET', 'POST'])
+def choose_metric():
     """Renders the contact page."""
+    form = ChooseMetricsForm()
+    if request.method == "POST":
+        if form.validate_on_submit():
+            metrics = []
+            print(request.form)
+            if 'class_hierarchy_level' in request.form:
+                metrics.append('Class Hierarchy Level')
+            if 'no_of_collaborators_per_file' in request.form:
+                metrics.append('No. of Collaborators per File')
+            if 'no_of_methods_per_class' in request.form:
+                metrics.append('No. of Methods per Class')
+            if 'cyclomatic_complexity' in request.form:
+                metrics.append('Cyclomatic Complexity')
+            if 'coupling_between_objects' in request.form:
+                metrics.append('Coupling between Objects')
+            if 'comments_or_documentation' in request.form:
+                metrics.append('Comments or Documentation')
+            if 'lines_of_code' in request.form:
+                metrics.append('Lines of Code')
+            if 'avg_faults' in request.form:
+                metrics.append('Average Faults')
+
+            return redirect(url_for('visualisations', metrics=metrics))
+
     return render_template(
-        'contact.html',
-        title='Contact',
-        year=datetime.now().year,
-        message='Your contact page.'
+        'choose-metric.html',
+        form=form
     )
 
-@app.route('/about')
-def about():
+@app.route('/visualisations', methods=['GET', 'POST'])
+def visualisations():
     """Renders the about page."""
+    metrics = request.args.getlist('metrics')
+    print(metrics)
     return render_template(
-        'about.html',
-        title='About',
-        year=datetime.now().year,
-        message='Your application description page.'
+        'visualisations.html',
+        metrics=metrics
     )
