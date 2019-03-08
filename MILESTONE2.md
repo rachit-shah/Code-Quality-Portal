@@ -96,3 +96,5 @@ In order to visualise the code quality metrics that we have assessed from the co
 [Worksheet](csc510-project/WORKSHEET.md)
 
 # Screencast
+
+![Project ScreenCast](csc510-project/screencast.mp4)
