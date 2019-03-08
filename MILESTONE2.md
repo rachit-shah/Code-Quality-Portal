@@ -93,8 +93,8 @@ Currently we have prepared a complete mockup of our intended portal.  The fronte
 In order to visualise the code quality metrics that we have assessed from the code, we have generated multiple visualizations such as Tree Maps, Horizontal and Vertical Bars, Packed Bubbles, Line Chart, etc. We have also implemented filters based on attributes like time stamp, class name, file names, etc. to dynamically change the data used to visualize a chart and see a subset of the visualization. For example, suppose the user only wants to see the data from a specific file or a specific time, they can just choose the filter and visualize accordingly.
 
 # Task Tracking
-[Worksheet](csc510-project/WORKSHEET.md)
+![Worksheet](csc510-project/WORKSHEET.md)
 
 # Screencast
 
-![Project ScreenCast](csc510-project/screencast.mp4)
+[Project ScreenCast](csc510-project/screencast.mp4)
