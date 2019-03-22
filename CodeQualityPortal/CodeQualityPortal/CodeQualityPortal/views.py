@@ -59,7 +59,7 @@ def index():
                     response = requests.get(x["url"])
                     response = response.json()["content"]
                     content = base64.b64decode(response)
-
+                    print(content)
                     parse_file_content(content, x["path"].split("/")[-1])
 
 
