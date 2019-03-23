@@ -26,8 +26,62 @@ headers = {
 }
 
 
-def parse_file_content(content, param):
-    pass
+class ClassContent(object):
+
+    def __init__(self, file_name):
+        self.file_name = file_name
+        self.first_line = None
+        self.last_line = None
+        self.parents = []
+        self.no_of_methods = None
+        self.no_of_comments = None
+        self.cyclomatic_complexity = None
+        self.no_of_objects = None
+
+
+
+def parse_file_content(content, file_name, class_objects):
+    lines = content.split("\\r\\n")
+
+    class_size_pointer = {}
+    for i, line in enumerate(lines):
+        words = line.split(" ")
+
+
+        if "class" in words:
+            # create class object
+            class_content = ClassContent(file_name)
+
+            # save line where class is found
+            class_content.first_line = i
+
+            # get class name and store objects
+            class_name = words[words.index("class")+1]
+            class_objects[class_name] = class_content
+
+            if "extends" in words:
+                class_content.parents.append(words[words.index("extends")+1])
+
+            if "implements" in words:
+                t = line[line.index("implements")+11:]
+                p = t.split(",")
+
+                class_content.parents.extend(p[:len(p)-1])
+
+                if "{" in p[len(p)-1]:
+                    last = p[len(p)-1].strip()[:-1]
+                else:
+                    last = p[len(p)-1]
+                class_content.parents.append(last)
+
+
+
+
+
+
+            class_size_pointer[class_name] = 1
+
+
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -53,6 +107,7 @@ def index():
 
             tree = response["tree"]
 
+            class_objects = {}
 
             for x in tree:
                 if ".java" in x["path"]:
@@ -62,7 +117,9 @@ def index():
                         content = base64.b64decode(response)
                         if x["path"].split("/")[-1] == "HEncoder.java":
                             print(content)
-                        parse_file_content(content, x["path"].split("/")[-1])
+
+
+                        parse_file_content(content, x["path"].split("/")[-1], class_objects)
 
 
 
