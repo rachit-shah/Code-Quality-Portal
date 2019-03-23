@@ -56,11 +56,14 @@ def index():
 
             for x in tree:
                 if ".java" in x["path"]:
-                    response = requests.get(x["url"])
-                    response = response.json()["content"]
-                    content = base64.b64decode(response)
-                    print(content)
-                    parse_file_content(content, x["path"].split("/")[-1])
+                    response = requests.get(x["url"], headers=headers)
+                    if "content" in response.json():
+                        response = response.json()["content"]
+                        content = base64.b64decode(response)
+                        if x["path"].split("/")[-1] == "HEncoder.java":
+                            print(content)
+                        parse_file_content(content, x["path"].split("/")[-1])
+
 
 
             sql_db.mock_database_generator()
