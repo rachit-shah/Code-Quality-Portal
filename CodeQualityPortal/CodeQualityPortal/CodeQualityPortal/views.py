@@ -41,14 +41,17 @@ class ClassContent(object):
 
 
 def parse_file_content(content, file_name, class_objects):
-    lines = content.split("\\r\\n")
+    lines = content.split("\r\n")
 
     class_size_pointer = {}
+    other = 0
+    class_stack = []
     for i, line in enumerate(lines):
         words = line.split(" ")
 
 
         if "class" in words:
+
             # create class object
             class_content = ClassContent(file_name)
 
@@ -57,7 +60,10 @@ def parse_file_content(content, file_name, class_objects):
 
             # get class name and store objects
             class_name = words[words.index("class")+1]
-            class_objects[class_name] = class_content
+
+            if class_stack:
+                class_content.parents.append(class_stack[-1])
+
 
             if "extends" in words:
                 class_content.parents.append(words[words.index("extends")+1])
@@ -73,6 +79,27 @@ def parse_file_content(content, file_name, class_objects):
                 else:
                     last = p[len(p)-1]
                 class_content.parents.append(last)
+
+            #Lines of code
+            if "{" in line:
+                class_size_pointer[class_name] = 1
+            else:
+                class_size_pointer[class_name] = -1
+            class_stack.append(class_name)
+            class_objects[class_name] = class_content
+        elif "{" in line:
+            recent_class = class_stack[-1]
+            if class_size_pointer[recent_class]==-1:
+                class_size_pointer[recent_class] = 1
+            else:
+                other+=1
+        if "}" in line:
+            if other==0:
+                recent_class = class_stack.pop()
+                class_size_pointer[recent_class] = 0
+                class_objects[recent_class].last_line = i
+            else:
+                other -= 1
 
 
 
