@@ -11,6 +11,7 @@ import logging
 import requests
 import os
 import base64
+import re
 import json
 
 logger = logging.getLogger(__name__)
@@ -38,9 +39,14 @@ class ClassContent(object):
         self.cyclomatic_complexity = None
         self.no_of_objects = None
 
+def strip_generalize_class(class_name):
+    if "<" in class_name:
+        class_name = class_name[:class_name.index("<")]
+    return class_name.strip()
 
 
 def parse_file_content(content, file_name, class_objects):
+    function_regex = "(public|protected|private|static|abstract|synchronized|final|transient|volatile|native|strictfp|\s)*[\w\<\>\[\]]+\s+(\w+) *\([^\)]*\) *(\{?|[^;])"
     lines = content.split("\r\n")
 
     class_size_pointer = {}
@@ -59,26 +65,28 @@ def parse_file_content(content, file_name, class_objects):
             class_content.first_line = i
 
             # get class name and store objects
-            class_name = words[words.index("class")+1]
+            class_name = strip_generalize_class(words[words.index("class")+1])
 
+            #Add parent of the current class if it exists (for nested classes)
             if class_stack:
                 class_content.parents.append(class_stack[-1])
 
 
             if "extends" in words:
-                class_content.parents.append(words[words.index("extends")+1])
+                class_content.parents.append(strip_generalize_class(words[words.index("extends")+1]))
 
             if "implements" in words:
                 t = line[line.index("implements")+11:]
                 p = t.split(",")
 
-                class_content.parents.extend(p[:len(p)-1])
+                for x in p[:len(p)-1]:
+                    class_content.parents.append(strip_generalize_class(x))
 
                 if "{" in p[len(p)-1]:
                     last = p[len(p)-1].strip()[:-1]
                 else:
                     last = p[len(p)-1]
-                class_content.parents.append(last)
+                class_content.parents.append(strip_generalize_class(last))
 
             #Lines of code
             if "{" in line:
@@ -101,12 +109,16 @@ def parse_file_content(content, file_name, class_objects):
             else:
                 other -= 1
 
+        #Number of methods per class
+        if "=" not in line and re.match(function_regex,line):
+            if class_objects[class_stack[-1]].no_of_methods is None:
+                class_objects[class_stack[-1]].no_of_methods=0
+            class_objects[class_stack[-1]].no_of_methods+=1
 
 
 
 
 
-            class_size_pointer[class_name] = 1
 
 
 
