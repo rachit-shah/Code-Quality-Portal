@@ -35,27 +35,46 @@ class ClassContent(object):
         self.last_line = None
         self.parents = []
         self.no_of_methods = None
-        self.no_of_comments = None
+        self.no_of_comments = 0
         self.cyclomatic_complexity = None
         self.no_of_objects = None
-
-def strip_generalize_class(class_name):
-    if "<" in class_name:
-        class_name = class_name[:class_name.index("<")]
-    return class_name.strip()
 
 
 def parse_file_content(content, file_name, class_objects):
     function_regex = "(public|protected|private|static|abstract|synchronized|final|transient|volatile|native|strictfp|\s)*[\w\<\>\[\]]+\s+(\w+) *\([^\)]*\) *(\{?|[^;])"
-    lines = content.split("\r\n")
+    lines = content.split("\n")
 
     class_size_pointer = {}
     other = 0
     class_stack = []
+    multi_comment_flag = False
     for i, line in enumerate(lines):
+
+        if "*/" in line:
+            if class_stack:
+                class_objects[class_stack[-1]].no_of_comments+=1
+
+            multi_comment_flag=False
+
+        if multi_comment_flag:
+            if class_stack:
+                class_objects[class_stack[-1]].no_of_comments+=1
+            continue
+
+        prev = line
+        line = line.split("//")[0]
+        if prev != line:
+            if class_stack:
+                class_objects[class_stack[-1]].no_of_comments+=1
         words = line.split(" ")
 
+        if "/*" in line:
+            multi_comment_flag=True
+            continue
 
+        
+
+         # Total Number of Classes   
         if "class" in words:
 
             # create class object
@@ -115,6 +134,7 @@ def parse_file_content(content, file_name, class_objects):
                 class_objects[class_stack[-1]].no_of_methods=0
             class_objects[class_stack[-1]].no_of_methods+=1
 
+        
 
 
 
