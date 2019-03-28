@@ -14,6 +14,9 @@ import base64
 import re
 import math
 import json
+import lizard
+import subprocess
+import pandas as pd
 
 logger = logging.getLogger(__name__)
 
@@ -37,14 +40,14 @@ class ClassContent(object):
         self.parents = []
         self.no_of_methods = None
         self.no_of_comments = 0
-        self.cyclomatic_complexity = None
+        self.cyclomatic_complexity = 0
         self.no_of_objects = None
 
 
 def strip_generalize_class(class_name):
     if "<" in class_name:
         class_name = class_name[:class_name.index("<")]
-    return class_name.strip()
+    return class_name.replace("{","").strip()
 
 
 def parse_file_content(content, file_name, class_objects):
@@ -180,7 +183,7 @@ def index():
             tree = response["tree"]
 
             class_objects = {}
-
+            count=0
             for x in tree:
                 if ".java" in x["path"]:
                     response = requests.get(x["url"], headers=headers)
@@ -188,9 +191,35 @@ def index():
                         response = response.json()["content"]
                         content = base64.b64decode(response)
                         #print(str(content, "utf-8"), "ii")
-                        parse_file_content(str(content, "utf-8"), x["path"].split("/")[-1], class_objects)
+                        file_name = x["path"].split("/")[-1]
+                        parse_file_content(str(content, "utf-8"), file_name, class_objects)
+                        #print(file_name,str(content, "utf-8"))
+                        with(open(file_name,"w")) as f:
+                            f.write(str(content, "utf-8"))
+                            f.close()
+                        cmd = ["lizard", "--csv",file_name]
+                        with open('out.csv', 'w') as fout:
+                            subprocess.call(cmd, stdout=fout, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                            fout.close()
 
 
+                        df = pd.read_csv("out.csv",header=None,names=['nloc','ccn','token','param','length','location','filename','methodname','methodparams','a','b'])
+
+                        df["class_name"] = df["location"].map(lambda x: x.split("@")[0])
+                        for i in range(len(df)):
+                            try:
+                                df.at[i,"class_name"] = strip_generalize_class(df.at[i,"class_name"].split("::")[-2])
+                            except:
+                                df.at[i,"class_name"] = None
+                        class_ccn = df.groupby("class_name")["ccn"].max()
+                        for key,val in class_ccn.iteritems():
+                            if key:
+                                class_objects[key].cyclomatic_complexity = val
+                        os.remove(file_name)
+
+            for x in class_objects.keys():
+                print(x, class_objects[x].file_name, class_objects[x].parents, class_objects[x].first_line, class_objects[x].last_line,
+                      class_objects[x].no_of_methods, class_objects[x].no_of_comments, class_objects[x].cyclomatic_complexity)
 
             sql_db.mock_database_generator()
             return redirect('/choose-metric')
@@ -241,6 +270,3 @@ def visualisations():
         'visualisations.html',
         metrics=metrics
     )
-
-
-
