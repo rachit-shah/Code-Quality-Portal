@@ -35,13 +35,12 @@ class ClassContent(object):
 
     def __init__(self, file_name):
         self.file_name = file_name
-        self.first_line = None
-        self.last_line = None
+        self.first_line = 0
+        self.last_line = 0
         self.parents = []
-        self.no_of_methods = None
+        self.no_of_methods = 0
         self.no_of_comments = 0
         self.cyclomatic_complexity = 0
-        self.no_of_objects = None
 
 
 def strip_generalize_class(class_name):
@@ -216,12 +215,15 @@ def index():
                             if key:
                                 class_objects[key].cyclomatic_complexity = val
                         os.remove(file_name)
+                        #count+=1
+                        #if count==5:
+                        #    break
 
-            for x in class_objects.keys():
-                print(x, class_objects[x].file_name, class_objects[x].parents, class_objects[x].first_line, class_objects[x].last_line,
-                      class_objects[x].no_of_methods, class_objects[x].no_of_comments, class_objects[x].cyclomatic_complexity)
+            #for x in class_objects.keys():
+            #    print(x, class_objects[x].file_name, class_objects[x].parents, class_objects[x].first_line, class_objects[x].last_line,
+            #          class_objects[x].no_of_methods, class_objects[x].no_of_comments, class_objects[x].cyclomatic_complexity)
 
-            sql_db.mock_database_generator()
+            sql_db.mock_database_generator(class_objects,repo_name)
             return redirect('/choose-metric')
 
     return render_template(
@@ -270,3 +272,6 @@ def visualisations():
         'visualisations.html',
         metrics=metrics
     )
+
+
+
