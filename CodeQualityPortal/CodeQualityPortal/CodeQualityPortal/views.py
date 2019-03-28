@@ -12,6 +12,7 @@ import requests
 import os
 import base64
 import re
+import math
 import json
 
 logger = logging.getLogger(__name__)
@@ -40,6 +41,12 @@ class ClassContent(object):
         self.no_of_objects = None
 
 
+def strip_generalize_class(class_name):
+    if "<" in class_name:
+        class_name = class_name[:class_name.index("<")]
+    return class_name.strip()
+
+
 def parse_file_content(content, file_name, class_objects):
     function_regex = "(public|protected|private|static|abstract|synchronized|final|transient|volatile|native|strictfp|\s)*[\w\<\>\[\]]+\s+(\w+) *\([^\)]*\) *(\{?|[^;])"
     lines = content.split("\n")
@@ -49,33 +56,32 @@ def parse_file_content(content, file_name, class_objects):
     class_stack = []
     multi_comment_flag = False
     for i, line in enumerate(lines):
-
+        # print(i,line)
         if "*/" in line:
             if class_stack:
-                class_objects[class_stack[-1]].no_of_comments+=1
+                class_objects[class_stack[-1]].no_of_comments += 1
 
-            multi_comment_flag=False
+            multi_comment_flag = False
 
         if multi_comment_flag:
             if class_stack:
-                class_objects[class_stack[-1]].no_of_comments+=1
+                class_objects[class_stack[-1]].no_of_comments += 1
             continue
 
         prev = line
         line = line.split("//")[0]
         if prev != line:
             if class_stack:
-                class_objects[class_stack[-1]].no_of_comments+=1
+                class_objects[class_stack[-1]].no_of_comments += 1
         words = line.split(" ")
 
         if "/*" in line:
-            multi_comment_flag=True
+            if "*/" in line:
+                continue
+            multi_comment_flag = True
             continue
 
-        
-
-         # Total Number of Classes   
-        if "class" in words:
+        if "class" in words or "interface" in words:
 
             # create class object
             class_content = ClassContent(file_name)
@@ -84,30 +90,32 @@ def parse_file_content(content, file_name, class_objects):
             class_content.first_line = i
 
             # get class name and store objects
-            class_name = strip_generalize_class(words[words.index("class")+1])
+            if "interface" in words:
+                class_name = strip_generalize_class(words[words.index("interface") + 1])
+            else:
+                class_name = strip_generalize_class(words[words.index("class") + 1])
 
-            #Add parent of the current class if it exists (for nested classes)
+            # Add parent of the current class if it exists (for nested classes)
             if class_stack:
                 class_content.parents.append(class_stack[-1])
 
-
             if "extends" in words:
-                class_content.parents.append(strip_generalize_class(words[words.index("extends")+1]))
+                class_content.parents.append(strip_generalize_class(words[words.index("extends") + 1]))
 
             if "implements" in words:
-                t = line[line.index("implements")+11:]
+                t = line[line.index("implements") + 11:]
                 p = t.split(",")
 
-                for x in p[:len(p)-1]:
+                for x in p[:len(p) - 1]:
                     class_content.parents.append(strip_generalize_class(x))
 
-                if "{" in p[len(p)-1]:
-                    last = p[len(p)-1].strip()[:-1]
+                if "{" in p[len(p) - 1]:
+                    last = p[len(p) - 1].strip()[:-1]
                 else:
-                    last = p[len(p)-1]
+                    last = p[len(p) - 1]
                 class_content.parents.append(strip_generalize_class(last))
 
-            #Lines of code
+            # Lines of code
             if "{" in line:
                 class_size_pointer[class_name] = 1
             else:
@@ -115,33 +123,38 @@ def parse_file_content(content, file_name, class_objects):
             class_stack.append(class_name)
             class_objects[class_name] = class_content
         elif "{" in line:
+            open_braces = line.count("{")
+            if not class_stack:
+                other += open_braces
+                continue
             recent_class = class_stack[-1]
-            if class_size_pointer[recent_class]==-1:
+            if class_size_pointer[recent_class] == -1:
                 class_size_pointer[recent_class] = 1
+                open_braces -= 1
+                other += open_braces
             else:
-                other+=1
+                other += open_braces
         if "}" in line:
-            if other==0:
+            close_braces = line.count("}")
+            if other == 0:
                 recent_class = class_stack.pop()
                 class_size_pointer[recent_class] = 0
                 class_objects[recent_class].last_line = i
             else:
-                other -= 1
+                other -= close_braces
+                if other < 0:
+                    count_class = math.abs(other)
+                    for i in range(count_class):
+                        recent_class = class_stack.pop()
+                        class_size_pointer[recent_class] = 0
+                        class_objects[recent_class].last_line = i
+                    other = 0
 
-        #Number of methods per class
-        if "=" not in line and re.match(function_regex,line):
+        # Number of methods per class
+        if "=" not in line and re.match(function_regex, line):
             if class_objects[class_stack[-1]].no_of_methods is None:
-                class_objects[class_stack[-1]].no_of_methods=0
-            class_objects[class_stack[-1]].no_of_methods+=1
-
-        
-
-
-
-
-
-
-
+                class_objects[class_stack[-1]].no_of_methods = 0
+            class_objects[class_stack[-1]].no_of_methods += 1
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -174,11 +187,8 @@ def index():
                     if "content" in response.json():
                         response = response.json()["content"]
                         content = base64.b64decode(response)
-                        if x["path"].split("/")[-1] == "HEncoder.java":
-                            print(content)
-
-
-                        parse_file_content(content, x["path"].split("/")[-1], class_objects)
+                        #print(str(content, "utf-8"), "ii")
+                        parse_file_content(str(content, "utf-8"), x["path"].split("/")[-1], class_objects)
 
 
 
