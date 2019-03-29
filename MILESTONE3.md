@@ -19,6 +19,7 @@
 4.  **Alternate Flows**: At any moment of analysis, if the system is not able to get the data, or get access to the resources, or any tool required for the analysis fails, an alert specifying the error will be shown to the user.
 
 **Description**
+
 In our first use case we have asked user to provide us a valid Github Repository URL so that we can get that URL, then do some string manipulation on that, so as to get Owner and Repo Name from that URL. If the URL is not a valid URL then an error message is shown saying its not a valid url. Now we would recursively get all the '.java' extension files using the REST API. Now as we receive the file, simultaneously we start scraping the data inside the file with all are metrics required for visualzation. We have also shown a progress bar to track the status of all the files being fetched. As soon as the user enters the Repository url and clicks the submit button, he would be able to see all the files that are being fetched using the github rest api beneath the progress bar. Now if the user entered a repository which is not public then an access token is also provided along with the url to fetch all the files. In our portal we are only visualizing Java code. 
 
 
