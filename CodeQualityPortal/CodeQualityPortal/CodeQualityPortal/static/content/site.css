@@ -89,3 +89,26 @@ input[type="checkbox"].input-validation-error {
     height: 500px;
     border: 2px black;
 }
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #19334d; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.files{
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+}

@@ -20,12 +20,10 @@ class SubmitRepositoryForm(FlaskForm):
 class ChooseMetricsForm(FlaskForm):
     class_hierarchy_level = BooleanField('Class Hierarchy Level', validators=[Optional()])
     no_of_methods_per_class = BooleanField('Number of Methods per Class', validators=[Optional()])
-    cyclomatic_complexity = BooleanField('Cyclomatic Complexity', validators=[Optional()])
-    coupling_between_objects  = BooleanField('Coupling between Objects', validators=[Optional()])
-    comments_or_documentation = BooleanField('Comments/Documentation:', validators=[Optional()])
+    cyclomatic_complexity = BooleanField('Cyclomatic Complexity per Class', validators=[Optional()])
+    comments_or_documentation = BooleanField('Number of Comment Lines per Class:', validators=[Optional()])
     lines_of_code = BooleanField('Lines of Code', validators=[Optional()])
-    avg_faults = BooleanField('Average Number of Faults Detected over Test', validators=[Optional()])
-    no_of_collaborators_per_file = BooleanField('Number of Collaborators for a file', validators=[Optional()])
+    no_of_collaborators_per_file = BooleanField('Number of Collaborators for Repository', validators=[Optional()])
     submit = SubmitField('GO')
 
     def validate(self):
@@ -37,7 +35,6 @@ class ChooseMetricsForm(FlaskForm):
             not self.coupling_between_objects.data and \
             not self.comments_or_documentation.data and \
             not self.lines_of_code.data and \
-            not self.avg_faults.data and \
             not self.no_of_collaborators_per_file.data:
 
             error = "You must choose at least one metric."

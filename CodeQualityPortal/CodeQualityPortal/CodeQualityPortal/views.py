@@ -3,7 +3,7 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from flask import render_template, redirect, request, url_for
+from flask import render_template, redirect, request, url_for, Response
 from CodeQualityPortal.forms import SubmitRepositoryForm, ChooseMetricsForm
 from CodeQualityPortal import app
 from CodeQualityPortal import sql_db
@@ -29,6 +29,7 @@ headers = {
     "Authorization": "token " + token,
     "Accept": "application/vnd.github.squirrel-girl-preview+json",
 }
+
 
 
 class ClassContent(object):
@@ -161,6 +162,7 @@ def parse_file_content(content, file_name, class_objects):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     """Renders the home page."""
+
     form = SubmitRepositoryForm()
     if request.method == "POST":
         if form.validate_on_submit():
@@ -169,67 +171,79 @@ def index():
             owner = data[3]
             repo_name = data[4]
 
-            repo_root_url = os.path.join(url_root, "repos", owner, repo_name, "branches/master")
-            response = requests.get(repo_root_url, headers=headers)
-
-            response = response.json()
-            tree_sha = response["commit"]["sha"]
-            repo_tree_url = os.path.join(url_root, "repos", owner, repo_name, "git/trees", tree_sha+"?recursive=1")
-
-            response = requests.get(repo_tree_url, headers=headers)
-            response = response.json()
-
-            tree = response["tree"]
-
-            class_objects = {}
-            count=0
-            for x in tree:
-                if ".java" in x["path"]:
-                    response = requests.get(x["url"], headers=headers)
-                    if "content" in response.json():
-                        response = response.json()["content"]
-                        content = base64.b64decode(response)
-                        #print(str(content, "utf-8"), "ii")
-                        file_name = x["path"].split("/")[-1]
-                        parse_file_content(str(content, "utf-8"), file_name, class_objects)
-                        #print(file_name,str(content, "utf-8"))
-                        with(open(file_name,"w")) as f:
-                            f.write(str(content, "utf-8"))
-                            f.close()
-                        cmd = ["lizard", "--csv",file_name]
-                        with open('out.csv', 'w') as fout:
-                            subprocess.call(cmd, stdout=fout, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-                            fout.close()
-
-
-                        df = pd.read_csv("out.csv",header=None,names=['nloc','ccn','token','param','length','location','filename','methodname','methodparams','a','b'])
-
-                        df["class_name"] = df["location"].map(lambda x: x.split("@")[0])
-                        for i in range(len(df)):
-                            try:
-                                df.at[i,"class_name"] = strip_generalize_class(df.at[i,"class_name"].split("::")[-2])
-                            except:
-                                df.at[i,"class_name"] = None
-                        class_ccn = df.groupby("class_name")["ccn"].max()
-                        for key,val in class_ccn.iteritems():
-                            if key:
-                                class_objects[key].cyclomatic_complexity = val
-                        os.remove(file_name)
-                        #count+=1
-                        #if count==5:
-                        #    break
-
-            #for x in class_objects.keys():
-            #    print(x, class_objects[x].file_name, class_objects[x].parents, class_objects[x].first_line, class_objects[x].last_line,
-            #          class_objects[x].no_of_methods, class_objects[x].no_of_comments, class_objects[x].cyclomatic_complexity)
-
-            sql_db.mock_database_generator(class_objects,repo_name)
-            return redirect('/choose-metric')
+            return render_template(
+                'index.html',
+                form=form,
+                repo_name=repo_name,
+                owner=owner,
+                flag="1"
+            )
 
     return render_template(
         'index.html',
-        form=form
+        form=form,
+        repo_name="",
+        owner="",
+        flag="0"
     )
+
+@app.route('/progress/<repo_name>/<owner>')
+def progress(repo_name, owner):
+    def generate():
+        print("HERE")
+        repo_root_url = os.path.join(url_root, "repos", owner, repo_name, "branches/master")
+        response = requests.get(repo_root_url, headers=headers)
+        print(response)
+        response = response.json()
+        tree_sha = response["commit"]["sha"]
+        repo_tree_url = os.path.join(url_root, "repos", owner, repo_name, "git/trees", tree_sha + "?recursive=1")
+
+        response = requests.get(repo_tree_url, headers=headers)
+        response = response.json()
+
+        tree = response["tree"]
+
+        class_objects = {}
+        count = 0
+        for x in tree:
+            if ".java" in x["path"]:
+                response = requests.get(x["url"], headers=headers)
+                if "content" in response.json():
+                    response = response.json()["content"]
+                    content = base64.b64decode(response)
+                    # print(str(content, "utf-8"), "ii")
+                    file_name = x["path"].split("/")[-1]
+
+                    yield "data:" + x["path"] + "\n\n"
+                    parse_file_content(str(content, "utf-8"), file_name, class_objects)
+                    print(file_name)
+                    with(open(file_name, "w")) as f:
+                        f.write(str(content, "utf-8"))
+                        f.close()
+                    cmd = ["lizard", "--csv", file_name]
+                    with open('out.csv', 'w') as fout:
+                        subprocess.call(cmd, stdout=fout, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                        fout.close()
+
+                    df = pd.read_csv("out.csv", header=None,
+                                     names=['nloc', 'ccn', 'token', 'param', 'length', 'location', 'filename', 'methodname',
+                                            'methodparams', 'a', 'b'])
+
+                    df["class_name"] = df["location"].map(lambda x: x.split("@")[0])
+                    for i in range(len(df)):
+                        try:
+                            df.at[i, "class_name"] = strip_generalize_class(df.at[i, "class_name"].split("::")[-2])
+                        except:
+                            df.at[i, "class_name"] = None
+                    class_ccn = df.groupby("class_name")["ccn"].max()
+                    for key, val in class_ccn.iteritems():
+                        if key:
+                            class_objects[key].cyclomatic_complexity = val
+                    os.remove(file_name)
+        yield "data:" + "100" + "\n\n"
+
+        sql_db.mock_database_generator(class_objects, repo_name)
+    return Response(generate(), mimetype='text/event-stream')
 
 @app.route('/choose-metric', methods=['GET', 'POST'])
 def choose_metric():
@@ -239,22 +253,18 @@ def choose_metric():
         if form.validate_on_submit():
             metrics = []
             print(request.form)
-            if 'class_hierarchy_level' in request.form:
-                metrics.append('Class Hierarchy Level')
-            if 'no_of_collaborators_per_file' in request.form:
-                metrics.append('No. of Collaborators per File')
+            if 'comments_or_documentation' in request.form:
+                metrics.append('Comments or Documentation')
             if 'no_of_methods_per_class' in request.form:
                 metrics.append('No. of Methods per Class')
             if 'cyclomatic_complexity' in request.form:
                 metrics.append('Cyclomatic Complexity')
-            if 'coupling_between_objects' in request.form:
-                metrics.append('Coupling between Objects')
-            if 'comments_or_documentation' in request.form:
-                metrics.append('Comments or Documentation')
+            if 'no_of_collaborators_per_file' in request.form:
+                metrics.append('No. of Collaborators per File')
             if 'lines_of_code' in request.form:
                 metrics.append('Lines of Code')
-            if 'avg_faults' in request.form:
-                metrics.append('Average Faults')
+            if 'class_hierarchy_level' in request.form:
+                metrics.append('Class Hierarchy Level')
 
             return redirect(url_for('visualisations', metrics=metrics))
 

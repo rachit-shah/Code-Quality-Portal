@@ -1,8 +1,34 @@
 {% extends "layout.html" %}
 
+{% block head_content %}
+
+{% if flag == "1" %}
+<script>
+    var source = new EventSource("/progress/{{repo_name}}/{{owner}}");
+
+    source.onmessage = function(event) {
+        console.log("HERE");
+        $(".files").show();
+        $("#spinner").show();
+        if(event.data === "100"){
+            source.close();
+            window.location.replace("{{ url_for('choose_metric') }}");
+        }
+        $('.progress-bar-label').text(event.data+'');
+
+    }
+
+</script>
+{% endif %}
+
+{% endblock %}
+
+
 {% block content %}
+
+    {% if flag == "0" %}
     <div class="col-md-offset-2 col-md-8 form-div">
-        <form action="{{ url_for('index') }}" method="post" class="repo-form" novalidate>
+        <form action="{{ url_for('index') }}" method="post" class="repo-form" id="repo-form" novalidate>
             {{ form.hidden_tag() }}
             <div class="form-group {% if form.repo_url.errors %} has-error {% endif %} row">
                 <label class="col-md-3 col-form-label col-form-label-lg" for="{{ form.repo_url.id_for_label }}">
@@ -42,6 +68,14 @@
                 </div>
             </div>
         </form>
+    </div>
+    {% endif %}
+
+    <div class="col-md-offset-5 col-md-2" style="margin-top: 20px; display: none" id="spinner">
+        <div class="loader"></div>
+    </div>
+    <div class="col-md-offset-2 col-md-8 files" style="display: none">
+        <span class="progress-bar-label"></span>
     </div>
 
 
