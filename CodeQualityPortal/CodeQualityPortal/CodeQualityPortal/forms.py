@@ -32,7 +32,6 @@ class ChooseMetricsForm(FlaskForm):
         if not self.class_hierarchy_level.data and \
             not self.no_of_methods_per_class.data and \
             not self.cyclomatic_complexity.data and \
-            not self.coupling_between_objects.data and \
             not self.comments_or_documentation.data and \
             not self.lines_of_code.data and \
             not self.no_of_collaborators_per_file.data:

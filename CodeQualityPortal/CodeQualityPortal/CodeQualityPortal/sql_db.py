@@ -21,11 +21,11 @@ def mock_database_generator(class_objects,repo, major_collab, total_collab):
 	for x in class_objects:
 		#print(x)
 		if not class_objects[x].parents:
-			tup=(time,repo,class_objects[x].no_of_methods,class_objects[x].file_name,x,None,class_objects[x].cyclomatic_complexity,class_objects[x].last_line-class_objects[x].first_line,class_objects[x].no_of_comments)
+			tup=(time,repo,class_objects[x].no_of_methods,class_objects[x].file_name,x,None,class_objects[x].cyclomatic_complexity,abs(class_objects[x].last_line-class_objects[x].first_line),class_objects[x].no_of_comments)
 			mycursor.execute(sql, tup)
 		else:
 			for par in class_objects[x].parents:
-				tup=(time,repo,class_objects[x].no_of_methods,class_objects[x].file_name,x,par,class_objects[x].cyclomatic_complexity,class_objects[x].last_line-class_objects[x].first_line,class_objects[x].no_of_comments)
+				tup=(time,repo,class_objects[x].no_of_methods,class_objects[x].file_name,x,par,class_objects[x].cyclomatic_complexity,abs(class_objects[x].last_line-class_objects[x].first_line),class_objects[x].no_of_comments)
 				mycursor.execute(sql,tup)
 	mydb.commit()
 
