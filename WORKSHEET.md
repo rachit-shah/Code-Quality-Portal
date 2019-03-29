@@ -38,6 +38,16 @@
 | Subflow | 2 |Task - [1](https://github.ncsu.edu/umisra/csc510-project/projects/2#card-8823), [2](https://github.ncsu.edu/umisra/csc510-project/projects/2#card-8825), [3](https://github.ncsu.edu/umisra/csc510-project/projects/2#card-9216), [4](https://github.ncsu.edu/umisra/csc510-project/projects/2#card-9217), [5](https://github.ncsu.edu/umisra/csc510-project/projects/2#card-9217), [6](https://github.ncsu.edu/umisra/csc510-project/projects/2#card-8829), [7](https://github.ncsu.edu/umisra/csc510-project/projects/2#card-8826), [8](https://github.ncsu.edu/umisra/csc510-project/projects/2#card-8827)|
 
 
+## WEEK 5
+
+|  Deliverable | Item/Status  |  Issues/Tasks | 
+|---|---|---|
+| Use Case 1 |  User's First Visit |   |
+| Subflow  |  2  | Task - [9](https://github.ncsu.edu/umisra/csc510-project/projects/2#card-8831) <br> Commit - [1](https://github.ncsu.edu/umisra/csc510-project/commit/bdc03d68eb65f748c76488b4707afc49de23ad0a), [2](https://github.ncsu.edu/umisra/csc510-project/commit/5e9bcce8584632ab3a030cc1ce95851329e0cf2d) |
+| Subflow | 3 | Task - [10](https://github.ncsu.edu/umisra/csc510-project/projects/2#card-9034), [11](https://github.ncsu.edu/umisra/csc510-project/projects/2#card-9024), [12](https://github.ncsu.edu/umisra/csc510-project/projects/2#card-9035), [13](https://github.ncsu.edu/umisra/csc510-project/projects/2#card-9036) <br> Commit - [3](https://github.ncsu.edu/umisra/csc510-project/commit/ada5f14b09fe8adfd28b4d59bf8c1c65c937b36d), [4](https://github.ncsu.edu/umisra/csc510-project/commit/08ef5d2dedf738cc5837b3c4e7ab86d918789935), [5](https://github.ncsu.edu/umisra/csc510-project/commit/142f6697e051feec70233116f97fae961ba97f3f), [6](https://github.ncsu.edu/umisra/csc510-project/commit/0d24d194496294284986582e0670530614b9ebba)|
+| Use Case 2 |  Choose a Metric |   |
+| Subflow  |  3  | Commit - [7](https://github.ncsu.edu/umisra/csc510-project/commit/6e532cc037847a2325d733f4903aceb92684251f), [8](https://github.ncsu.edu/umisra/csc510-project/commit/9622ea0c359c251d316cd84973844eafd3e47343)|
+
 ## WEEK 6
 |  Deliverable | Item/Status  |  Issues/Tasks | 
 |---|---|---|
