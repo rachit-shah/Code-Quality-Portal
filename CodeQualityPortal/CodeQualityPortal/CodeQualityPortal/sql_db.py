@@ -1,7 +1,7 @@
 import mysql.connector
 import datetime
 
-def mock_database_generator(class_objects,repo):
+def mock_database_generator(class_objects,repo, major_collab, total_collab):
 	mydb = mysql.connector.connect(
 	  host="localhost",
 	  user="root",
@@ -35,12 +35,12 @@ def mock_database_generator(class_objects,repo):
 	#sqlQuery = "WITH RECURSIVE class_path AS ( SELECT Class_Name, Child Child_Class_Name, 1 lvl FROM File_Records WHERE Child IS NULL UNION ALL SELECT f.Class_Name, f.Child, lvl+1 FROM File_Records f INNER JOIN class_path cp ON cp.Class_Name = f.Child )"
 	#sqlQuery1="SELECT Class_Name,Child_Class,lvl FROM class_path cp ORDER BY lvl"
 
-	#sql1 = 'INSERT INTO Project_Records(TimeStamp,Total_Collaborators,Major_Collaborator) VALUES (%s,%s,%s);'
-	#tup1=(time,total_colab,major)
-	#mycursor.execute(sqlQuery)
+	sql1 = 'INSERT INTO Project_Records(TimeStamp,Total_Collaborators,Major_Collaborator) VALUES (%s,%s,%s);'
+	tup1=(time,total_collab,major_collab)
+	mycursor.execute(sql1,tup1)
 	#mycursor.execute(sqlQuery1)
 	#myresult = mycursor.fetchall()
 	#for x in myresult:
 	#  print(x)
 #	mycursor.executemany(sql1,val1)
-#	mydb.commit()
+	mydb.commit()

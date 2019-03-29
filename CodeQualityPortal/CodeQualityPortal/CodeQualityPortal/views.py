@@ -241,8 +241,28 @@ def progress(repo_name, owner):
                             class_objects[key].cyclomatic_complexity = val
                     os.remove(file_name)
         yield "data:" + "100" + "\n\n"
+        header = {
+            "content-type": "application/json",
+            "Authorization": "token " + token,
+            'Accept': 'application/vnd.github.hellcat-preview+json'
+        }
+        response_collab = requests.get(url_root + '/repos/' + owner + '/' + repo_name + '/stats/contributors',
+                                       headers=header)
+        response_collab = response_collab.json()
+        r = response_collab[-1]
+        major_collab = r["author"]["login"]
+        print(major_collab)
 
-        sql_db.mock_database_generator(class_objects, repo_name)
+        total_collab = 0
+        for i in range(1, 10):
+            response = requests.get(
+                url_root + '/repos/' + owner + '/' + repo_name + '/contributors?page=' + str(i) + '&per_page=1000',
+                headers=header)
+            response = response.json()
+            total_collab += len(response)
+        print(total_collab)
+
+        sql_db.mock_database_generator(class_objects, repo_name, major_collab, total_collab)
     return Response(generate(), mimetype='text/event-stream')
 
 @app.route('/choose-metric', methods=['GET', 'POST'])
