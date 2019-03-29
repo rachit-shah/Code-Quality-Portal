@@ -18,7 +18,7 @@
 
 4.  **Alternate Flows**: At any moment of analysis, if the system is not able to get the data, or get access to the resources, or any tool required for the analysis fails, an alert specifying the error will be shown to the user.
 
-
+**Description**
 In our first use case we have asked user to provide us a valid Github Repository URL so that we can get that URL, then do some string manipulation on that, so as to get Owner and Repo Name from that URL. If the URL is not a valid URL then an error message is shown saying its not a valid url. Now we would recursively get all the '.java' extension files using the REST API. Now as we receive the file, simultaneously we start scraping the data inside the file with all are metrics required for visualzation. We have also shown a progress bar to track the status of all the files being fetched. As soon as the user enters the Repository url and clicks the submit button, he would be able to see all the files that are being fetched using the github rest api beneath the progress bar. Now if the user entered a repository which is not public then an access token is also provided along with the url to fetch all the files. In our portal we are only visualizing Java code. 
 
 
@@ -38,6 +38,7 @@ In our first use case we have asked user to provide us a valid Github Repository
 
 4.  **Alternate Flows:** If retreiving repository data or metric processing fails completely or partially then the user is alerted.
 
+**Description**
 
 In our second use case, we are assuming that our first use case is passed and we are recursively receiving all the java files of the github repositry entered by the user. Simultaneously we start parsing the code of the file received. We have made a class which will store all the classes metric attributes received in the files like Total methods in a class, Total comments per class, Lines of code per class, Cyclomatic complexity per class, Parents off all the class. For the overall project we have computed Total collaborators and Major collaborator. Now we will simultaneouly populate our database as soon as we keep getting the files and parse it. We have implemented out own logic from scratch to find total comments in the class, total methods in the class, lines of code for the class and finding the parents of every class. We have used Github Rest Api to get the total collaborators of the project and major collaborator of the project. When all the files are parsed the SQL database is formed with all the classes encountered. Now this database can be directly taken by the tableau serverfor visualization of the metrics. Now after the visualization is done on the dashboard, these dashboards are embedded on the final web page of our portal showcasing all the visualizations.
 
@@ -58,6 +59,7 @@ In our second use case, we are assuming that our first use case is passed and we
 
 4.  **Alternative Flow**: The user doesn’t select any option and nothing happens.
 
+**Description**
 
 Our third use case is a specific type of second use case. In this we are specifically visualizing the complexity of the code. The metrics that can be majorly used are the Cyclomatic complexity of the class, Lines of code and total methods inside the class. For finding lines of code and total methods inside the class, we have implemented our own logic from scratch. While for finding cyclomatic complexity we have used an inbuilt python library, lizard, that will find the cyclomatic complexity of all the classes within a file. As soon as we find these above metrices we populate this in our database. Now after that database will be populated, we will form the visualizations using tableau and embed those dashboards in our final webpage of our portal.
 
