@@ -164,12 +164,19 @@ def index():
     """Renders the home page."""
 
     form = SubmitRepositoryForm()
+    print(request.args.getlist('error'))
+
     if request.method == "POST":
         if form.validate_on_submit():
-            repo_url = request.form["repo_url"]
-            data = repo_url.split("/")
-            owner = data[3]
-            repo_name = data[4]
+            repo_name = ""
+            owner = ""
+            try:
+                repo_url = request.form["repo_url"]
+                data = repo_url.split("/")
+                owner = data[3]
+                repo_name = data[4]
+            except:
+                form.repo_url.errors.append("Invalid Github Repository URL")
 
             return render_template(
                 'index.html',
@@ -189,82 +196,84 @@ def index():
 
 @app.route('/progress/<repo_name>/<owner>')
 def progress(repo_name, owner):
+
     def generate():
-        print("HERE")
         repo_root_url = os.path.join(url_root, "repos", owner, repo_name, "branches/master")
         response = requests.get(repo_root_url, headers=headers)
         print(response)
-        response = response.json()
-        tree_sha = response["commit"]["sha"]
-        repo_tree_url = os.path.join(url_root, "repos", owner, repo_name, "git/trees", tree_sha + "?recursive=1")
-
-        response = requests.get(repo_tree_url, headers=headers)
-        response = response.json()
-
-        tree = response["tree"]
-
-        class_objects = {}
-        count = 0
-        for x in tree:
-            if ".java" in x["path"]:
-                response = requests.get(x["url"], headers=headers)
-                if "content" in response.json():
-                    response = response.json()["content"]
-                    content = base64.b64decode(response)
-                    # print(str(content, "utf-8"), "ii")
-                    file_name = x["path"].split("/")[-1]
-
-                    yield "data:" + x["path"] + "\n\n"
-                    parse_file_content(str(content, "utf-8"), file_name, class_objects)
-                    print(file_name)
-                    with(open(file_name, "w")) as f:
-                        f.write(str(content, "utf-8"))
-                        f.close()
-                    cmd = ["lizard", "--csv", file_name]
-                    with open('out.csv', 'w') as fout:
-                        subprocess.call(cmd, stdout=fout, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-                        fout.close()
-
-                    df = pd.read_csv("out.csv", header=None,
-                                     names=['nloc', 'ccn', 'token', 'param', 'length', 'location', 'filename', 'methodname',
-                                            'methodparams', 'a', 'b'])
-
-                    df["class_name"] = df["location"].map(lambda x: x.split("@")[0])
-                    for i in range(len(df)):
-                        try:
-                            df.at[i, "class_name"] = strip_generalize_class(df.at[i, "class_name"].split("::")[-2])
-                        except:
-                            df.at[i, "class_name"] = None
-                    class_ccn = df.groupby("class_name")["ccn"].max()
-                    for key, val in class_ccn.iteritems():
-                        if key:
-                            class_objects[key].cyclomatic_complexity = val
-                    os.remove(file_name)
-        yield "data:" + "100" + "\n\n"
-        header = {
-            "content-type": "application/json",
-            "Authorization": "token " + token,
-            'Accept': 'application/vnd.github.hellcat-preview+json'
-        }
-        response_collab = requests.get(url_root + '/repos/' + owner + '/' + repo_name + '/stats/contributors',
-                                       headers=header)
-        response_collab = response_collab.json()
-        r = response_collab[-1]
-        major_collab = r["author"]["login"]
-        print(major_collab)
-
-        total_collab = 0
-        for i in range(1, 10):
-            response = requests.get(
-                url_root + '/repos/' + owner + '/' + repo_name + '/contributors?page=' + str(i) + '&per_page=1000',
-                headers=header)
+        if response.status_code != 200:
+            yield "data:" + "99" + "\n\n"
+        else:
             response = response.json()
-            if(len(response)==0):
-                break
-            total_collab += len(response)
-        print(total_collab)
+            tree_sha = response["commit"]["sha"]
+            repo_tree_url = os.path.join(url_root, "repos", owner, repo_name, "git/trees", tree_sha + "?recursive=1")
 
-        sql_db.mock_database_generator(class_objects, repo_name, major_collab, total_collab)
+            response = requests.get(repo_tree_url, headers=headers)
+            response = response.json()
+
+            tree = response["tree"]
+
+            class_objects = {}
+            count = 0
+            for x in tree:
+                if ".java" in x["path"]:
+                    response = requests.get(x["url"], headers=headers)
+                    if "content" in response.json():
+                        response = response.json()["content"]
+                        content = base64.b64decode(response)
+                        file_name = x["path"].split("/")[-1]
+                        print(file_name)
+
+                        yield "data:" + x["path"] + "\n\n"
+
+                        parse_file_content(str(content, "utf-8"), file_name, class_objects)
+                        print(file_name)
+                        with(open(file_name, "w")) as f:
+                            f.write(str(content, "utf-8"))
+                            f.close()
+                        cmd = ["lizard", "--csv", file_name]
+                        with open('out.csv', 'w') as fout:
+                            subprocess.call(cmd, stdout=fout, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                            fout.close()
+
+                        df = pd.read_csv("out.csv", header=None,
+                                         names=['nloc', 'ccn', 'token', 'param', 'length', 'location', 'filename', 'methodname',
+                                                'methodparams', 'a', 'b'])
+
+                        df["class_name"] = df["location"].map(lambda x: x.split("@")[0])
+                        for i in range(len(df)):
+                            try:
+                                df.at[i, "class_name"] = strip_generalize_class(df.at[i, "class_name"].split("::")[-2])
+                            except:
+                                df.at[i, "class_name"] = None
+                        class_ccn = df.groupby("class_name")["ccn"].max()
+                        for key, val in class_ccn.iteritems():
+                            if key:
+                                class_objects[key].cyclomatic_complexity = val
+                        os.remove(file_name)
+            yield "data:" + "100" + "\n\n"
+            header = {
+                "content-type": "application/json",
+                "Authorization": "token " + token,
+                'Accept': 'application/vnd.github.hellcat-preview+json'
+            }
+            response_collab = requests.get(url_root + '/repos/' + owner + '/' + repo_name + '/stats/contributors',
+                                           headers=header)
+            response_collab = response_collab.json()
+            r = response_collab[-1]
+            major_collab = r["author"]["login"]
+            print(major_collab)
+
+            total_collab = 0
+            for i in range(1, 10):
+                response = requests.get(
+                    url_root + '/repos/' + owner + '/' + repo_name + '/contributors?page=' + str(i) + '&per_page=1000',
+                    headers=header)
+                response = response.json()
+                total_collab += len(response)
+            print(total_collab)
+
+            sql_db.mock_database_generator(class_objects, repo_name, major_collab, total_collab)
     return Response(generate(), mimetype='text/event-stream')
 
 @app.route('/choose-metric', methods=['GET', 'POST'])

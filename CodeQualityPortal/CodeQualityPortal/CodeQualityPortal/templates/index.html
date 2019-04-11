@@ -4,12 +4,22 @@
 
 {% if flag == "1" %}
 <script>
+
     var source = new EventSource("/progress/{{repo_name}}/{{owner}}");
 
     source.onmessage = function(event) {
-        console.log("HERE");
+
+        $("#repo-form-div").hide();
         $(".files").show();
         $("#spinner").show();
+        if(event.data === "99"){
+            source.close();
+            $(".files").hide();
+            $("#spinner").hide();
+            $("#repo-form-div").show();
+            $("#repo-url-div").addClass("has-error");
+            $("#repo-url-error").show();
+        }
         if(event.data === "100"){
             source.close();
             window.location.replace("{{ url_for('choose_metric') }}");
@@ -26,16 +36,16 @@
 
 {% block content %}
 
-    {% if flag == "0" %}
-    <div class="col-md-offset-2 col-md-8 form-div">
+    <div class="col-md-offset-2 col-md-8 form-div" id="repo-form-div">
         <form action="{{ url_for('index') }}" method="post" class="repo-form" id="repo-form" novalidate>
             {{ form.hidden_tag() }}
-            <div class="form-group {% if form.repo_url.errors %} has-error {% endif %} row">
+            <div class="form-group {% if form.repo_url.errors %} has-error {% endif %} row" id="repo-url-div">
                 <label class="col-md-3 col-form-label col-form-label-lg" for="{{ form.repo_url.id_for_label }}">
                     Repo URL:
                 </label>
                 <div class="col-md-9">
                     {{ form.repo_url(class_="form-control form-control-lg", style="max-width:100%") }}
+                    <span class="help-block" id="repo-url-error" style="display: none">URL does not exist</span>
                     {% for error in form.repo_url.errors %}
                         <span class="help-block">{{ error }}</span>
                     {% endfor %}
@@ -69,7 +79,6 @@
             </div>
         </form>
     </div>
-    {% endif %}
 
     <div class="col-md-offset-5 col-md-2" style="margin-top: 20px; display: none" id="spinner">
         <div class="loader"></div>
