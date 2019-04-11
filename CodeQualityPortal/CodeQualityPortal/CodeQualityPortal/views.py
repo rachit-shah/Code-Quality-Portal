@@ -259,6 +259,8 @@ def progress(repo_name, owner):
                 url_root + '/repos/' + owner + '/' + repo_name + '/contributors?page=' + str(i) + '&per_page=1000',
                 headers=header)
             response = response.json()
+            if(len(response)==0):
+                break
             total_collab += len(response)
         print(total_collab)
 
