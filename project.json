@@ -1,5 +1,0 @@
-{"_id":{"$oid":"5c7ccd49582a3a42e85aa630"},"ID":"101","Time Stamp":100,"Cyclomatic Complexity":15,"Fault Detection Per Test":4}
-{"_id":{"$oid":"5c7ccd49582a3a42e85aa631"},"ID":"102","Time Stamp":200,"Cyclomatic Complexity":14,"Fault Detection Per Test":4}
-{"_id":{"$oid":"5c7ccd49582a3a42e85aa632"},"ID":"103","Time Stamp":300,"Cyclomatic Complexity":14,"Fault Detection Per Test":2}
-{"_id":{"$oid":"5c7ccd49582a3a42e85aa633"},"ID":"104","Time Stamp":400,"Cyclomatic Complexity":14,"Fault Detection Per Test":0}
-{"_id":{"$oid":"5c7ccd49582a3a42e85aa634"},"ID":"105","Time Stamp":500,"Cyclomatic Complexity":13,"Fault Detection Per Test":0}

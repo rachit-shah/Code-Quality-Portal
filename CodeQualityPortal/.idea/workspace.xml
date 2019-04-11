@@ -14,23 +14,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CodeQualityPortal/CodeQualityPortal/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="267" column="34" lean-forward="false" selection-start-line="267" selection-start-column="34" selection-end-line="267" selection-end-column="34" />
-              <folding>
-                <element signature="e#53#82#0" expanded="true" />
-                <element signature="e#730#978#0" expanded="false" />
-                <element signature="e#1025#1148#0" expanded="false" />
-                <element signature="e#1214#5182#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CodeQualityPortal/CodeQualityPortal/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="285">
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -68,12 +53,13 @@
               <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
-                <marker date="1554997740828" expanded="true" signature="375:637" ph="CREATE TABLE... IF" />
-                <marker date="1554997740828" expanded="true" signature="660:839" ph="CREATE TABLE... IF" />
-                <marker date="1554997740828" expanded="true" signature="851:1016" ph="INSERT INTO File_Records... " />
-                <marker date="1554997740828" expanded="true" signature="1990:2098" ph="INSERT INTO Project_Records... " />
-                <marker date="1554997740828" expanded="true" signature="2416:2487" ph="alter table github_mining.file_records... " />
-                <marker date="1554997740828" expanded="true" signature="2523:2597" ph="alter table github_mining.project_records... " />
+                <marker date="1555011763699" expanded="true" signature="116:2701" ph="..." />
+                <marker date="1555011763699" expanded="true" signature="375:636" ph="CREATE TABLE... IF" />
+                <marker date="1555011763699" expanded="true" signature="1726:2057" ph="..." />
+                <marker date="1555011763699" expanded="true" signature="2068:2176" ph="INSERT INTO Project_Records... " />
+                <marker date="1555011763699" expanded="true" signature="2253:2382" ph="..." />
+                <marker date="1555011763699" expanded="true" signature="2494:2565" ph="alter table github_mining.file_records... " />
+                <marker date="1555011763699" expanded="true" signature="2601:2675" ph="alter table github_mining.project_records... " />
               </folding>
             </state>
           </provider>
@@ -178,47 +164,6 @@
               <item name="CodeQualityPortal" type="b2602c69:ProjectViewProjectNode" />
               <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="CodeQualityPortal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CodeQualityPortal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CodeQualityPortal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CodeQualityPortal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="content" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CodeQualityPortal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CodeQualityPortal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-              <item name="CodeQualityPortal" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -257,8 +202,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16639742" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20436187" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5735901" sideWeight="0.509693" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -266,7 +212,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5735901" sideWeight="0.49030694" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5735901" sideWeight="0.49030694" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -371,13 +317,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CodeQualityPortal/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/CodeQualityPortal/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CodeQualityPortal/CodeQualityPortal/static/content/site.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="590">
@@ -453,26 +392,30 @@
           <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
-            <marker date="1554997740828" expanded="true" signature="375:637" ph="CREATE TABLE... IF" />
-            <marker date="1554997740828" expanded="true" signature="660:839" ph="CREATE TABLE... IF" />
-            <marker date="1554997740828" expanded="true" signature="851:1016" ph="INSERT INTO File_Records... " />
-            <marker date="1554997740828" expanded="true" signature="1990:2098" ph="INSERT INTO Project_Records... " />
-            <marker date="1554997740828" expanded="true" signature="2416:2487" ph="alter table github_mining.file_records... " />
-            <marker date="1554997740828" expanded="true" signature="2523:2597" ph="alter table github_mining.project_records... " />
+            <marker date="1555011763699" expanded="true" signature="116:2701" ph="..." />
+            <marker date="1555011763699" expanded="true" signature="375:636" ph="CREATE TABLE... IF" />
+            <marker date="1555011763699" expanded="true" signature="1726:2057" ph="..." />
+            <marker date="1555011763699" expanded="true" signature="2068:2176" ph="INSERT INTO Project_Records... " />
+            <marker date="1555011763699" expanded="true" signature="2253:2382" ph="..." />
+            <marker date="1555011763699" expanded="true" signature="2494:2565" ph="alter table github_mining.file_records... " />
+            <marker date="1555011763699" expanded="true" signature="2601:2675" ph="alter table github_mining.project_records... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CodeQualityPortal/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1368">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CodeQualityPortal/CodeQualityPortal/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="267" column="34" lean-forward="false" selection-start-line="267" selection-start-column="34" selection-end-line="267" selection-end-column="34" />
-          <folding>
-            <element signature="e#53#82#0" expanded="true" />
-            <element signature="e#730#978#0" expanded="false" />
-            <element signature="e#1025#1148#0" expanded="false" />
-            <element signature="e#1214#5182#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="285">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
