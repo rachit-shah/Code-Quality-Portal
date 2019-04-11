@@ -17,6 +17,7 @@ import json
 import lizard
 import subprocess
 import pandas as pd
+import shutil
 
 logger = logging.getLogger(__name__)
 
@@ -198,6 +199,26 @@ def index():
         flag="0"
     )
 
+
+def delete_temp_files():
+#    subprocess.call(['rm','-rf','temp/*.java'])
+#    subprocess.call(['rm','-rf','*.csv'])
+    folder='temp'
+    for file in os.listdir(folder):
+        file_path=os.path.join(folder,file)
+        try:
+            if(os.path.isfile(file_path)):
+                print(file_path)
+                os.unlink(file_path)
+        except Exception as e:
+            print(e)
+    for file in os.listdir('.'):
+        if(file.split('.')[-1]=='csv'):
+            try:
+                os.unlink(file)
+            except Exception as e:
+                print(e)
+
 @app.route('/progress/<repo_name>/<owner>/<token>')
 def progress(repo_name, owner, token):
 
@@ -282,10 +303,8 @@ def progress(repo_name, owner, token):
             response_collab = requests.get(url_root + '/repos/' + owner + '/' + repo_name + '/stats/contributors',
                                            headers=header)
             response_collab = response_collab.json()
-            #print(response_collab)
             r = response_collab[-1]
             major_collab = r["author"]["login"]
-            #print(major_collab)
 
             total_collab = 0
             for i in range(1, 10):
@@ -294,7 +313,9 @@ def progress(repo_name, owner, token):
                     headers=header)
                 response = response.json()
                 total_collab += len(response)
-            #print(total_collab)
+            
+            
+            delete_temp_files()
 
             sql_db.mock_database_generator(class_objects, repo_name, major_collab, total_collab)
     return Response(generate(), mimetype='text/event-stream')
