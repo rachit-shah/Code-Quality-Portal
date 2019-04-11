@@ -22,11 +22,10 @@ logger = logging.getLogger(__name__)
 
 url_root = "https://api.github.com"
 
-token = "8fede56e8b1ee9ac65d84b4b2b9ccec65c19d7db"
+# token = "8fede56e8b1ee9ac65d84b4b2b9ccec65c19d7db"
 
 headers = {
     "content-type": "application/json",
-    "Authorization": "token " + token,
     "Accept": "application/vnd.github.squirrel-girl-preview+json",
 }
 
@@ -170,8 +169,10 @@ def index():
         if form.validate_on_submit():
             repo_name = ""
             owner = ""
+            token = ""
             try:
                 repo_url = request.form["repo_url"]
+                token = request.form["access_token"]
                 data = repo_url.split("/")
                 owner = data[3]
                 repo_name = data[4]
@@ -183,6 +184,7 @@ def index():
                 form=form,
                 repo_name=repo_name,
                 owner=owner,
+                token=token,
                 flag="1"
             )
 
@@ -191,13 +193,16 @@ def index():
         form=form,
         repo_name="",
         owner="",
+        token="",
         flag="0"
     )
 
-@app.route('/progress/<repo_name>/<owner>')
-def progress(repo_name, owner):
+@app.route('/progress/<repo_name>/<owner>/<token>')
+def progress(repo_name, owner, token):
 
     def generate():
+        headers["Authorization"] = "token " + token
+
         repo_root_url = os.path.join(url_root, "repos", owner, repo_name, "branches/master")
         response = requests.get(repo_root_url, headers=headers)
         print(response)
@@ -260,6 +265,7 @@ def progress(repo_name, owner):
             response_collab = requests.get(url_root + '/repos/' + owner + '/' + repo_name + '/stats/contributors',
                                            headers=header)
             response_collab = response_collab.json()
+            print(response_collab)
             r = response_collab[-1]
             major_collab = r["author"]["login"]
             print(major_collab)
