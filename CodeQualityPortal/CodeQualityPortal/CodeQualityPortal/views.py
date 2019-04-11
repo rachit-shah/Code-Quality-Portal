@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 url_root = "https://api.github.com"
 
-# token = "8fede56e8b1ee9ac65d84b4b2b9ccec65c19d7db"
+#token = "8fede56e8b1ee9ac65d84b4b2b9ccec65c19d7db"
 
 headers = {
     "content-type": "application/json",
@@ -41,6 +41,7 @@ class ClassContent(object):
         self.no_of_methods = 0
         self.no_of_comments = 0
         self.cyclomatic_complexity = 0
+        self.coupling = 0
 
 
 def strip_generalize_class(class_name):
@@ -205,7 +206,7 @@ def progress(repo_name, owner, token):
 
         repo_root_url = os.path.join(url_root, "repos", owner, repo_name, "branches/master")
         response = requests.get(repo_root_url, headers=headers)
-        print(response)
+        #print(response)
         if response.status_code != 200:
             yield "data:" + "99" + "\n\n"
         else:
@@ -227,16 +228,16 @@ def progress(repo_name, owner, token):
                         response = response.json()["content"]
                         content = base64.b64decode(response)
                         file_name = x["path"].split("/")[-1]
-                        print(file_name)
+                        #print(file_name)
 
                         yield "data:" + x["path"] + "\n\n"
 
                         parse_file_content(str(content, "utf-8"), file_name, class_objects)
-                        print(file_name)
-                        with(open(file_name, "w")) as f:
+                        #print(file_name)
+                        with(open("temp/"+file_name, "w")) as f:
                             f.write(str(content, "utf-8"))
                             f.close()
-                        cmd = ["lizard", "--csv", file_name]
+                        cmd = ["lizard", "--csv", "temp/"+file_name]
                         with open('out.csv', 'w') as fout:
                             subprocess.call(cmd, stdout=fout, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                             fout.close()
@@ -255,8 +256,24 @@ def progress(repo_name, owner, token):
                         for key, val in class_ccn.iteritems():
                             if key:
                                 class_objects[key].cyclomatic_complexity = val
-                        os.remove(file_name)
+
+
+
             yield "data:" + "100" + "\n\n"
+
+            # Coupling Between Objects
+            subprocess.call(['java','-jar','ck.jar','temp'])
+            df = pd.read_csv("class.csv",usecols=['class','cbo'],index_col=False)
+            df["class"] = df["class"].map(lambda x: strip_generalize_class(x.split(".")[-1]))
+            #df['class'].map(lambda x: strip_generalize_class(x))
+
+
+            for _, row in df.iterrows():
+                #print(row)
+                if row['class'] in class_objects:
+                    #print(int(row['cbo']))
+                    class_objects[row['class']].coupling = int(row['cbo'])
+
             header = {
                 "content-type": "application/json",
                 "Authorization": "token " + token,
@@ -265,10 +282,10 @@ def progress(repo_name, owner, token):
             response_collab = requests.get(url_root + '/repos/' + owner + '/' + repo_name + '/stats/contributors',
                                            headers=header)
             response_collab = response_collab.json()
-            print(response_collab)
+            #print(response_collab)
             r = response_collab[-1]
             major_collab = r["author"]["login"]
-            print(major_collab)
+            #print(major_collab)
 
             total_collab = 0
             for i in range(1, 10):
@@ -277,7 +294,7 @@ def progress(repo_name, owner, token):
                     headers=header)
                 response = response.json()
                 total_collab += len(response)
-            print(total_collab)
+            #print(total_collab)
 
             sql_db.mock_database_generator(class_objects, repo_name, major_collab, total_collab)
     return Response(generate(), mimetype='text/event-stream')

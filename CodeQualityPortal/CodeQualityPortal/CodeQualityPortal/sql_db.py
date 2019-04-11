@@ -13,19 +13,19 @@ def mock_database_generator(class_objects,repo, major_collab, total_collab):
 	mycursor = mydb.cursor()
 
 	# mycursor.execute("CREATE DATABASE Github_Mining")
-	mycursor.execute("CREATE TABLE IF NOT EXISTS File_Records (ID INT AUTO_INCREMENT PRIMARY KEY, TimeStamp  DATETIME,Repo_Name VARCHAR(255),File_Name Varchar(255), Total_Methods INT,Class_Name VARCHAR(255),Parent VARCHAR(255), Cyclomatic_Complexity INT , LOC INT, Total_Comments INT)")
+	mycursor.execute("CREATE TABLE IF NOT EXISTS File_Records (ID INT AUTO_INCREMENT PRIMARY KEY, TimeStamp  DATETIME,Repo_Name VARCHAR(255),File_Name Varchar(255), Total_Methods INT,Class_Name VARCHAR(255),Parent VARCHAR(255), Cyclomatic_Complexity INT , LOC INT, Total_Comments INT, Coupling INT)")
 
 	mycursor.execute("CREATE TABLE IF NOT EXISTS Project_Records (ID INT AUTO_INCREMENT PRIMARY KEY, TimeStamp DATETIME, Repo_Name VARCHAR(255),Total_Collaborators INT, Major_Collaborator Varchar(255))")
 
-	sql = "INSERT INTO File_Records (TimeStamp,Repo_Name,Total_Methods,File_Name,Class_Name,Parent,Cyclomatic_Complexity,LOC,Total_Comments) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+	sql = "INSERT INTO File_Records (TimeStamp,Repo_Name,Total_Methods,File_Name,Class_Name,Parent,Cyclomatic_Complexity,LOC,Total_Comments,Coupling) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 	for x in class_objects:
 		#print(x)
 		if not class_objects[x].parents:
-			tup=(time,repo,class_objects[x].no_of_methods,class_objects[x].file_name,x,None,class_objects[x].cyclomatic_complexity,abs(class_objects[x].last_line-class_objects[x].first_line),class_objects[x].no_of_comments)
+			tup=(time,repo,class_objects[x].no_of_methods,class_objects[x].file_name,x,None,class_objects[x].cyclomatic_complexity,abs(class_objects[x].last_line-class_objects[x].first_line),class_objects[x].no_of_comments,class_objects[x].coupling)
 			mycursor.execute(sql, tup)
 		else:
 			for par in class_objects[x].parents:
-				tup=(time,repo,class_objects[x].no_of_methods,class_objects[x].file_name,x,par,class_objects[x].cyclomatic_complexity,abs(class_objects[x].last_line-class_objects[x].first_line),class_objects[x].no_of_comments)
+				tup=(time,repo,class_objects[x].no_of_methods,class_objects[x].file_name,x,par,class_objects[x].cyclomatic_complexity,abs(class_objects[x].last_line-class_objects[x].first_line),class_objects[x].no_of_comments,class_objects[x].coupling)
 				mycursor.execute(sql,tup)
 	mydb.commit()
 
