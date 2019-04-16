@@ -17,16 +17,11 @@ import json
 import lizard
 import subprocess
 import pandas as pd
-import shutil
-import mysql.connector
 
 
 logger = logging.getLogger(__name__)
 
 url_root = "https://api.github.com"
-
-#token = "8fede56e8b1ee9ac65d84b4b2b9ccec65c19d7db"
-
 headers = {
     "content-type": "application/json",
     "Accept": "application/vnd.github.squirrel-girl-preview+json",
@@ -34,41 +29,39 @@ headers = {
 
 
 def update_repo_data():
-    repo_root_url = ""
-    token = ""
-    owner = repo_root_url.split("/")[4]
-    repo_name = repo_root_url.split("/")[5]
-    print(owner, repo_name)
+    result = sql_db.get_urls()
+    for repo_root_url, token in result:
 
+        owner = repo_root_url.split("/")[4]
+        repo_name = repo_root_url.split("/")[5]
+        print(owner,repo_name)
+        headers["Authorization"] = "token " + token
+        response = requests.get(repo_root_url, headers=headers)
+        response = response.json()
+        tree_sha = response["commit"]["sha"]
+        repo_tree_url = os.path.join(url_root, "repos", owner, repo_name, "git/trees", tree_sha + "?recursive=1")
 
-    headers["Authorization"] = "token " + token
-    response = requests.get(repo_root_url, headers=headers)
-    response = response.json()
-    tree_sha = response["commit"]["sha"]
-    repo_tree_url = os.path.join(url_root, "repos", owner, repo_name, "git/trees", tree_sha + "?recursive=1")
+        response = requests.get(repo_tree_url, headers=headers)
+        response = response.json()
 
-    response = requests.get(repo_tree_url, headers=headers)
-    response = response.json()
+        tree = response["tree"]
 
-    tree = response["tree"]
+        class_objects = {}
+        for x in tree:
+            if ".java" in x["path"]:
+                response = requests.get(x["url"], headers=headers)
+                if "content" in response.json():
+                    response = response.json()["content"]
+                    content = base64.b64decode(response)
+                    file_name = x["path"].split("/")[-1]
 
-    class_objects = {}
-    count = 0
-    for x in tree:
-        if ".java" in x["path"]:
-            response = requests.get(x["url"], headers=headers)
-            if "content" in response.json():
-                response = response.json()["content"]
-                content = base64.b64decode(response)
-                file_name = x["path"].split("/")[-1]
+                    parse_file_content(str(content, "utf-8"), file_name, class_objects)
+                    calculate_cyclomatic_complexity(file_name, content, class_objects)
 
-                parse_file_content(str(content, "utf-8"), file_name, class_objects)
-                calculate_cyclomatic_complexity(file_name, content, class_objects)
-
-    calculate_coupling_and_collaborators(class_objects, token, owner, repo_name, repo_root_url)
+        calculate_coupling_and_collaborators(class_objects, token, owner, repo_name, repo_root_url)
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(update_repo_data, 'interval', seconds=3)
+scheduler.add_job(update_repo_data, 'interval', hours=1)
 scheduler.start()
 
 
@@ -93,19 +86,17 @@ def strip_generalize_class(class_name):
 
 
 def delete_temp_files():
-#    subprocess.call(['rm','-rf','temp/*.java'])
-#    subprocess.call(['rm','-rf','*.csv'])
+
     folder='temp'
     for file in os.listdir(folder):
         file_path=os.path.join(folder,file)
         try:
-            if(os.path.isfile(file_path)):
-                print(file_path)
+            if os.path.isfile(file_path):
                 os.unlink(file_path)
         except Exception as e:
             print(e)
     for file in os.listdir('.'):
-        if(file.split('.')[-1]=='csv'):
+        if file.split('.')[-1]=='csv':
             try:
                 os.unlink(file)
             except Exception as e:
@@ -121,7 +112,6 @@ def parse_file_content(content, file_name, class_objects):
     class_stack = []
     multi_comment_flag = False
     for i, line in enumerate(lines):
-        # print(i,line)
         if "*/" in line:
             if class_stack:
                 class_objects[class_stack[-1]].no_of_comments += 1
@@ -209,10 +199,10 @@ def parse_file_content(content, file_name, class_objects):
                 other -= close_braces
                 if other < 0:
                     count_class = math.abs(other)
-                    for i in range(count_class):
+                    for j in range(count_class):
                         recent_class = class_stack.pop()
                         class_size_pointer[recent_class] = 0
-                        class_objects[recent_class].last_line = i
+                        class_objects[recent_class].last_line = j
                     other = 0
 
         # Number of methods per class
@@ -227,13 +217,9 @@ def calculate_coupling_and_collaborators(class_objects, token, owner, repo_name,
     subprocess.call(['java', '-jar', 'ck.jar', 'temp'])
     df = pd.read_csv("class.csv", usecols=['class', 'cbo'], index_col=False)
     df["class"] = df["class"].map(lambda x: strip_generalize_class(x.split(".")[-1]))
-    # df['class'].map(lambda x: strip_generalize_class(x))
-
 
     for _, row in df.iterrows():
-        # print(row)
         if row['class'] in class_objects:
-            # print(int(row['cbo']))
             class_objects[row['class']].coupling = int(row['cbo'])
 
     header = {
@@ -256,11 +242,8 @@ def calculate_coupling_and_collaborators(class_objects, token, owner, repo_name,
         total_collab += len(response)
 
     delete_temp_files()
-    print("5.1")
     sql_db.save_url(repo_root_url, token)
-    print("5.2")
     sql_db.mock_database_generator(class_objects, repo_name, major_collab, total_collab)
-    print("5.3")
 
 def calculate_cyclomatic_complexity(file_name, content, class_objects):
     with(open("temp/" + file_name, "w")) as f:
@@ -275,7 +258,7 @@ def calculate_cyclomatic_complexity(file_name, content, class_objects):
                      names=['nloc', 'ccn', 'token', 'param', 'length', 'location', 'filename', 'methodname',
                             'methodparams', 'a', 'b'])
 
-    df["class_name"] = df["location"].map(lambda x: x.split("@")[0])
+    df["class_name"] = df["location"].map(lambda x: str(x).split("@")[0])
     for i in range(len(df)):
         try:
             df.at[i, "class_name"] = strip_generalize_class(df.at[i, "class_name"].split("::")[-2])
@@ -283,7 +266,7 @@ def calculate_cyclomatic_complexity(file_name, content, class_objects):
             df.at[i, "class_name"] = None
     class_ccn = df.groupby("class_name")["ccn"].max()
     for key, val in class_ccn.iteritems():
-        if key:
+        if key in class_objects:
             class_objects[key].cyclomatic_complexity = val
 
 
@@ -292,7 +275,6 @@ def index():
     """Renders the home page."""
 
     form = SubmitRepositoryForm()
-    print(request.args.getlist('error'))
 
     if request.method == "POST":
         if form.validate_on_submit():
@@ -377,7 +359,6 @@ def choose_metric():
     if request.method == "POST":
         if form.validate_on_submit():
             metrics = []
-            print(request.form)
             if 'comments_or_documentation' in request.form:
                 metrics.append('Comments or Documentation')
             if 'no_of_methods_per_class' in request.form:
@@ -405,7 +386,6 @@ def choose_metric():
 def visualisations():
     """Renders the about page."""
     metrics = request.args.getlist('metrics')
-    print(metrics)
     return render_template(
         'visualisations.html',
         metrics=metrics
