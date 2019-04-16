@@ -13,9 +13,16 @@ def save_url(u,tok):
 	mycursor.execute("CREATE TABLE IF NOT EXISTS Url_Records(url VARCHAR(255),token Varchar(255))")
 	sql = "INSERT INTO Url_Records(url,token) VALUES (%s,%s)"
 
-	y=(u,tok)
-	mycursor.execute(sql, y)
-	mydb.commit()
+	mycursor.execute("Select url from Url_Records")
+	result = mycursor.fetchall()
+#	print(type(result))
+#	print("checkpoint")
+	if any(u in s for s in result):
+		print()
+	else:
+		y = (u, tok)
+		mycursor.execute(sql, y)
+		mydb.commit()
 
 def mock_database_generator(class_objects,repo, major_collab, total_collab):
 	mydb = mysql.connector.connect(
