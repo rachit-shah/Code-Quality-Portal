@@ -50,6 +50,26 @@ def strip_generalize_class(class_name):
         class_name = class_name[:class_name.index("<")]
     return class_name.replace("{","").strip()
 
+def delete_temp_files():
+#    subprocess.call(['rm','-rf','temp/*.java'])
+#    subprocess.call(['rm','-rf','*.csv'])
+    folder='temp'
+    for file in os.listdir(folder):
+        file_path=os.path.join(folder,file)
+        try:
+            if(os.path.isfile(file_path)):
+                print(file_path)
+                os.unlink(file_path)
+        except Exception as e:
+            print(e)
+    for file in os.listdir('.'):
+        if(file.split('.')[-1]=='csv'):
+            try:
+                os.unlink(file)
+            except Exception as e:
+                print(e)
+
+
 
 def parse_file_content(content, file_name, class_objects):
     function_regex = "(public|protected|private|static|abstract|synchronized|final|transient|volatile|native|strictfp|\s)*[\w\<\>\[\]]+\s+(\w+) *\([^\)]*\) *(\{?|[^;])"
@@ -172,6 +192,7 @@ def index():
             repo_name = ""
             owner = ""
             token = ""
+            repo_url=""
             try:
                 repo_url = request.form["repo_url"]
                 token = request.form["access_token"]
@@ -187,6 +208,7 @@ def index():
                 repo_name=repo_name,
                 owner=owner,
                 token=token,
+                repo_url=repo_url,
                 flag="1"
             )
 
@@ -196,31 +218,12 @@ def index():
         repo_name="",
         owner="",
         token="",
+        repo_url="",
         flag="0"
     )
 
-
-def delete_temp_files():
-#    subprocess.call(['rm','-rf','temp/*.java'])
-#    subprocess.call(['rm','-rf','*.csv'])
-    folder='temp'
-    for file in os.listdir(folder):
-        file_path=os.path.join(folder,file)
-        try:
-            if(os.path.isfile(file_path)):
-                print(file_path)
-                os.unlink(file_path)
-        except Exception as e:
-            print(e)
-    for file in os.listdir('.'):
-        if(file.split('.')[-1]=='csv'):
-            try:
-                os.unlink(file)
-            except Exception as e:
-                print(e)
-
-@app.route('/progress/<repo_name>/<owner>/<token>')
-def progress(repo_name, owner, token):
+@app.route('/progress/<repo_name>/<owner>/<token>/<repo_url>')
+def progress(repo_name, owner, token, repo_url):
 
     def generate():
         headers["Authorization"] = "token " + token
