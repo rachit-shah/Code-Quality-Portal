@@ -14,6 +14,7 @@ class ChooseMetricsForm(FlaskForm):
     comments_or_documentation = BooleanField('Number of Comment Lines per Class:', validators=[Optional()])
     lines_of_code = BooleanField('Lines of Code', validators=[Optional()])
     no_of_collaborators_per_file = BooleanField('Number of Collaborators for Repository', validators=[Optional()])
+    coupling_between_objects = BooleanField('Coupling Between Objects', validators=[Optional()])
     submit = SubmitField('GO')
 
     def validate(self):
@@ -24,7 +25,8 @@ class ChooseMetricsForm(FlaskForm):
             not self.cyclomatic_complexity.data and \
             not self.comments_or_documentation.data and \
             not self.lines_of_code.data and \
-            not self.no_of_collaborators_per_file.data:
+            not self.no_of_collaborators_per_file.data and \
+            not self.coupling_between_objects:
 
             error = "You must choose at least one metric."
             self.submit.errors.append(error)

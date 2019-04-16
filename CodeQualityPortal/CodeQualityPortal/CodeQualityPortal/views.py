@@ -70,7 +70,6 @@ def delete_temp_files():
                 print(e)
 
 
-
 def parse_file_content(content, file_name, class_objects):
     function_regex = "(public|protected|private|static|abstract|synchronized|final|transient|volatile|native|strictfp|\s)*[\w\<\>\[\]]+\s+(\w+) *\([^\)]*\) *(\{?|[^;])"
     lines = content.split("\n")
@@ -347,6 +346,8 @@ def choose_metric():
                 metrics.append('Lines of Code')
             if 'class_hierarchy_level' in request.form:
                 metrics.append('Class Hierarchy Level')
+            if 'coupling_between_objects' in request.form:
+                metrics.append('Coupling Between Objects')
 
             return redirect(url_for('visualisations', metrics=metrics))
 
