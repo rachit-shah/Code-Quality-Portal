@@ -2,176 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb3a5af6-5f91-4305-9b16-ed55f42ee38b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/CodeQualityPortal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CodeQualityPortal.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeQualityPortal/sql_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/CodeQualityPortal/sql_db.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodeQualityPortal/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/CodeQualityPortal/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class.csv" beforeDir="false" afterPath="$PROJECT_DIR$/class.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/field.csv" beforeDir="false" afterPath="$PROJECT_DIR$/field.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/method.csv" beforeDir="false" afterPath="$PROJECT_DIR$/method.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/AES.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/AESEncryption.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/AVLTree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Abecedarian.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/AnyBaseToAnyBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/AnyBaseToDecimal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/AnytoAny.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Armstrong.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/BFS.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Bag.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/BalancedBrackets.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/BellmanFord.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/BinarySearch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/BinaryToDecimal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/BinaryToHexadecimal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/BinaryToOctal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/BinaryTree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/BinaryTreeSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/BogoSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/BrianKernighanAlgorithm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/BubbleSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/CRCAlgorithm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/CSVFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Caesar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/CircleLinkedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/CircularBuffer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/ClosestPair.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/CocktailShakerSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/CoinChange.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/ColumnarTranspositionCipher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/CombSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/ConnectedComponent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/CountChar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/CountingSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/CursorLinkedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/CycleSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Cycles.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/DFS.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/DecimalToAnyBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/DecimalToBinary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/DecimalToHexaDecimal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/DecimalToOctal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Dijkshtra.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Dijkstra.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/DoublyLinkedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Edit_Distance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/EggDropping.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/EmptyHeapException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/EulersFunction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Factorial.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/FibToN.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Fibonacci.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/FindHeightOfTree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/FloydTriangle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/FloydWarshall.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Ford_Fulkerson.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/GCD.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/GenericArrayListQueue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/GnomeSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Graphs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/GuassLegendre.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/HEncoder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/HashMap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Heap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/HeapElement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/HeapSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/HexToOct.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/HexaDecimalToBinary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/HexaDecimalToDecimal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/HomeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Huffman.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/InsertDeleteInArray.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/InsertionSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/InterpolationSearch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/IterativeBinarySearch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/IterativeTernarySearch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/JobData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/KMP.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/KadaneAlgorithm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Knapsack.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/KruskalsAlgorithm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/LevelOrderTraversal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/LevelOrderTraversalQueue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/LevenshteinDistance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/LinearCongruentialGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/LinearSearch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/LinkedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/ListController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/LongestCommonSubsequence.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/LongestIncreasingSubsequence.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/LongestValidParentheses.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/LowestBasePalindrome.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Matrix.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/MatrixChainMultiplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/MatrixFastPower.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/MatrixGraphs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/MaxHeap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/MedianOfRunningArray.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/MergeSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Merge_K_SortedLinkedlist.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/MinHeap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/MinPriorityQueue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/MinimizingLateness.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Node.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/NodeStack.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/OctalToBinary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/OctalToDecimal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/OctalToHexadecimal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Palindrome.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/PalindromicPrime.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/PancakeSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/PasswordGen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/PerlinNoise.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/PowerOfTwoOrNot.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/PrimMST.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/PrintTopViewofTree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/PriorityQueues.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/QueueUsingTwoStacks.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Queues.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/QuickSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/RSA.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/RadixSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/RedBlackBST.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/ReturnSubsequence.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/ReverseStackUsingRecursion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/ReverseString.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/RodCutting.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/RomanToInteger.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/RootPrecision.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/SJF.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/SaddlebackSearch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/SearchAlgorithm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/SearchController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/SelectionSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/ShellSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/SieveOfEratosthenes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/SinglyLinkedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/SkylineAlgorithm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/SkylineProblem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/SortAlgorithm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/SortUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/StackArray.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/StackArrayList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/StackOfLinkedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/StackPostfixNotation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/TechjobsApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/TechjobsApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/TernarySearch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/TestCSVFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/TopKWords.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/TowerOfHanoiUsingRecursion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/TreeTraversal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/TrieImp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/ValidBSTOrNot.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/Vigenere.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/compressclient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/countwords.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/crc32.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/genericheap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/heap_sort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/krishnamurthy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/removeDuplicateFromString.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/variable.csv" beforeDir="false" afterPath="$PROJECT_DIR$/variable.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -187,11 +22,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CodeQualityPortal/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
-              <caret line="219" column="24" selection-start-line="219" selection-start-column="24" selection-end-line="219" selection-end-column="24" />
-              <folding>
-                <element signature="e#53#82#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="532">
+              <caret line="318" column="48" selection-start-line="318" selection-start-column="48" selection-end-line="318" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -199,20 +31,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CodeQualityPortal/sql_db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="390">
+              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CodeQualityPortal/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="42" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -237,10 +60,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="811" />
+    <option name="height" value="808" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -309,14 +132,14 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="CodeQualityPortal" type="Python.FlaskServer" factoryName="Flask server">
+    <configuration name="CodeQualityPortal" type="Python.FlaskServer">
       <option name="flaskDebug" value="true" />
       <module name="CodeQualityPortal" />
       <option name="target" value="$PROJECT_DIR$/CodeQualityPortal/__init__.py" />
       <option name="targetType" value="PATH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="SDK_HOME" value="$USER_HOME$/.conda/envs/CodeQualityPortal/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -344,25 +167,39 @@
       <workItem from="1554992599205" duration="499000" />
       <workItem from="1555003711737" duration="795000" />
       <workItem from="1555006519936" duration="5725000" />
+      <workItem from="1555098165444" duration="357000" />
+      <workItem from="1555425913828" duration="98000" />
+      <workItem from="1555426017788" duration="81000" />
+      <workItem from="1555426103655" duration="2171000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18730000" />
+    <option name="totallyTimeSpent" value="22720000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="811" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="808" extended-state="1" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2167382" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22532189" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32962447" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2433936" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.14944135" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32962447" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
@@ -379,19 +216,8 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/CodeQualityPortal/views.py</url>
-          <line>244</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/CodeQualityPortal$CodeQualityPortal.coverage" NAME="CodeQualityPortal Coverage Results" MODIFIED="1554993011408" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/CodeQualityPortal$CodeQualityPortal.coverage" NAME="CodeQualityPortal Coverage Results" MODIFIED="1555427134366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/CodeQualityPortal.pyproj.user">
@@ -399,9 +225,7 @@
     </entry>
     <entry file="file:///usr/local/Cellar/python/3.7.2_2/Frameworks/Python.framework/Versions/3.7/lib/python3.7/runpy.py" />
     <entry file="file:///usr/local/Cellar/python/3.7.2_2/Frameworks/Python.framework/Versions/3.7/lib/python3.7/socketserver.py" />
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt" />
     <entry file="file://$PROJECT_DIR$/CodeQualityPortal/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -424,9 +248,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CodeQualityPortal/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/CodeQualityPortal/static/content/site.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -437,36 +258,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/out2.csv">
+    <entry file="file://$PROJECT_DIR$/out2.csv" />
+    <entry file="file://$PROJECT_DIR$/class.csv" />
+    <entry file="file://$PROJECT_DIR$/out.csv" />
+    <entry file="file://$PROJECT_DIR$/CodeQualityPortal/templates/index.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/class.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CodeQualityPortal/sql_db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="390">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/out.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/CodeQualityPortal/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="219" column="24" selection-start-line="219" selection-start-column="24" selection-end-line="219" selection-end-column="24" />
-          <folding>
-            <element signature="e#53#82#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="532">
+          <caret line="318" column="48" selection-start-line="318" selection-start-column="48" selection-end-line="318" selection-end-column="48" />
         </state>
       </provider>
     </entry>

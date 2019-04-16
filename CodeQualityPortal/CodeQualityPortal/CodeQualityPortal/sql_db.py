@@ -1,6 +1,22 @@
 import mysql.connector
 import datetime
 
+def save_url(u,tok):
+	mydb = mysql.connector.connect(
+		host="localhost",
+		user="root",
+		passwd="password",
+		database="Github_Mining"
+	)
+
+	mycursor = mydb.cursor()
+	mycursor.execute("CREATE TABLE IF NOT EXISTS Url_Records(url VARCHAR(255),token Varchar(255))")
+	sql = "INSERT INTO Url_Records(url,token) VALUES (%s,%s)"
+
+	y=(u,tok)
+	mycursor.execute(sql, y)
+	mydb.commit()
+
 def mock_database_generator(class_objects,repo, major_collab, total_collab):
 	mydb = mysql.connector.connect(
 	  host="localhost",

@@ -316,7 +316,7 @@ def progress(repo_name, owner, token):
             
             
             delete_temp_files()
-
+            sql_db.save_url(repo_root_url,token)
             sql_db.mock_database_generator(class_objects, repo_name, major_collab, total_collab)
     return Response(generate(), mimetype='text/event-stream')
 
