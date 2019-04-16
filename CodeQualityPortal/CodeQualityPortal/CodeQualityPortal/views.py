@@ -51,6 +51,26 @@ def strip_generalize_class(class_name):
     return class_name.replace("{","").strip()
 
 
+def delete_temp_files():
+#    subprocess.call(['rm','-rf','temp/*.java'])
+#    subprocess.call(['rm','-rf','*.csv'])
+    folder='temp'
+    for file in os.listdir(folder):
+        file_path=os.path.join(folder,file)
+        try:
+            if(os.path.isfile(file_path)):
+                print(file_path)
+                os.unlink(file_path)
+        except Exception as e:
+            print(e)
+    for file in os.listdir('.'):
+        if(file.split('.')[-1]=='csv'):
+            try:
+                os.unlink(file)
+            except Exception as e:
+                print(e)
+
+
 def parse_file_content(content, file_name, class_objects):
     function_regex = "(public|protected|private|static|abstract|synchronized|final|transient|volatile|native|strictfp|\s)*[\w\<\>\[\]]+\s+(\w+) *\([^\)]*\) *(\{?|[^;])"
     lines = content.split("\n")
@@ -160,6 +180,7 @@ def parse_file_content(content, file_name, class_objects):
                 class_objects[class_stack[-1]].no_of_methods = 0
             class_objects[class_stack[-1]].no_of_methods += 1
 
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     """Renders the home page."""
@@ -172,6 +193,7 @@ def index():
             repo_name = ""
             owner = ""
             token = ""
+            repo_url = ""
             try:
                 repo_url = request.form["repo_url"]
                 token = request.form["access_token"]
@@ -187,6 +209,7 @@ def index():
                 repo_name=repo_name,
                 owner=owner,
                 token=token,
+                repo_url=repo_url,
                 flag="1"
             )
 
@@ -196,38 +219,20 @@ def index():
         repo_name="",
         owner="",
         token="",
+        repo_url="",
         flag="0"
     )
 
 
-def delete_temp_files():
-#    subprocess.call(['rm','-rf','temp/*.java'])
-#    subprocess.call(['rm','-rf','*.csv'])
-    folder='temp'
-    for file in os.listdir(folder):
-        file_path=os.path.join(folder,file)
-        try:
-            if(os.path.isfile(file_path)):
-                print(file_path)
-                os.unlink(file_path)
-        except Exception as e:
-            print(e)
-    for file in os.listdir('.'):
-        if(file.split('.')[-1]=='csv'):
-            try:
-                os.unlink(file)
-            except Exception as e:
-                print(e)
-
-@app.route('/progress/<repo_name>/<owner>/<token>')
-def progress(repo_name, owner, token):
+@app.route('/progress/<repo_name>/<owner>/<token>/<repo_url>')
+def progress(repo_name, owner, token, repo_url):
 
     def generate():
         headers["Authorization"] = "token " + token
 
         repo_root_url = os.path.join(url_root, "repos", owner, repo_name, "branches/master")
         response = requests.get(repo_root_url, headers=headers)
-        #print(response)
+
         if response.status_code != 200:
             yield "data:" + "99" + "\n\n"
         else:
@@ -280,44 +285,8 @@ def progress(repo_name, owner, token):
 
 
 
+
             yield "data:" + "100" + "\n\n"
-
-            # Coupling Between Objects
-            subprocess.call(['java','-jar','ck.jar','temp'])
-            df = pd.read_csv("class.csv",usecols=['class','cbo'],index_col=False)
-            df["class"] = df["class"].map(lambda x: strip_generalize_class(x.split(".")[-1]))
-            #df['class'].map(lambda x: strip_generalize_class(x))
-
-
-            for _, row in df.iterrows():
-                #print(row)
-                if row['class'] in class_objects:
-                    #print(int(row['cbo']))
-                    class_objects[row['class']].coupling = int(row['cbo'])
-
-            header = {
-                "content-type": "application/json",
-                "Authorization": "token " + token,
-                'Accept': 'application/vnd.github.hellcat-preview+json'
-            }
-            response_collab = requests.get(url_root + '/repos/' + owner + '/' + repo_name + '/stats/contributors',
-                                           headers=header)
-            response_collab = response_collab.json()
-            r = response_collab[-1]
-            major_collab = r["author"]["login"]
-
-            total_collab = 0
-            for i in range(1, 10):
-                response = requests.get(
-                    url_root + '/repos/' + owner + '/' + repo_name + '/contributors?page=' + str(i) + '&per_page=1000',
-                    headers=header)
-                response = response.json()
-                total_collab += len(response)
-            
-            
-            delete_temp_files()
-            sql_db.save_url(repo_root_url,token)
-            sql_db.mock_database_generator(class_objects, repo_name, major_collab, total_collab)
     return Response(generate(), mimetype='text/event-stream')
 
 @app.route('/choose-metric', methods=['GET', 'POST'])

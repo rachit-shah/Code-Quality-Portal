@@ -5,7 +5,7 @@
 {% if flag == "1" %}
 <script>
 
-    var source = new EventSource("/progress/{{repo_name}}/{{owner}}/{{token}}");
+    var source = new EventSource("/progress/{{repo_name}}/{{owner}}/{{token}}/{{repo_url}}");
 
     source.onmessage = function(event) {
 
