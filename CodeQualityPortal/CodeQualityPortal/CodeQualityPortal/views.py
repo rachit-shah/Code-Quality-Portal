@@ -180,6 +180,68 @@ def parse_file_content(content, file_name, class_objects):
                 class_objects[class_stack[-1]].no_of_methods = 0
             class_objects[class_stack[-1]].no_of_methods += 1
 
+def calculate_coupling_and_collaborators(class_objects, token, owner, repo_name, repo_root_url):
+    # Coupling Between Objects
+    subprocess.call(['java', '-jar', 'ck.jar', 'temp'])
+    df = pd.read_csv("class.csv", usecols=['class', 'cbo'], index_col=False)
+    df["class"] = df["class"].map(lambda x: strip_generalize_class(x.split(".")[-1]))
+    # df['class'].map(lambda x: strip_generalize_class(x))
+
+
+    for _, row in df.iterrows():
+        # print(row)
+        if row['class'] in class_objects:
+            # print(int(row['cbo']))
+            class_objects[row['class']].coupling = int(row['cbo'])
+
+    header = {
+        "content-type": "application/json",
+        "Authorization": "token " + token,
+        'Accept': 'application/vnd.github.hellcat-preview+json'
+    }
+    response_collab = requests.get(url_root + '/repos/' + owner + '/' + repo_name + '/stats/contributors',
+                                   headers=header)
+    response_collab = response_collab.json()
+    r = response_collab[-1]
+    major_collab = r["author"]["login"]
+
+    total_collab = 0
+    for i in range(1, 10):
+        response = requests.get(
+            url_root + '/repos/' + owner + '/' + repo_name + '/contributors?page=' + str(i) + '&per_page=1000',
+            headers=header)
+        response = response.json()
+        total_collab += len(response)
+
+    delete_temp_files()
+    sql_db.save_url(repo_root_url, token)
+    sql_db.mock_database_generator(class_objects, repo_name, major_collab, total_collab)
+
+
+def calculate_cyclomatic_complexity(file_name, content, class_objects):
+    with(open("temp/" + file_name, "w")) as f:
+        f.write(str(content, "utf-8"))
+        f.close()
+    cmd = ["lizard", "--csv", "temp/" + file_name]
+    with open('out.csv', 'w') as fout:
+        subprocess.call(cmd, stdout=fout, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+        fout.close()
+
+    df = pd.read_csv("out.csv", header=None,
+                     names=['nloc', 'ccn', 'token', 'param', 'length', 'location', 'filename', 'methodname',
+                            'methodparams', 'a', 'b'])
+
+    df["class_name"] = df["location"].map(lambda x: x.split("@")[0])
+    for i in range(len(df)):
+        try:
+            df.at[i, "class_name"] = strip_generalize_class(df.at[i, "class_name"].split("::")[-2])
+        except:
+            df.at[i, "class_name"] = None
+    class_ccn = df.groupby("class_name")["ccn"].max()
+    for key, val in class_ccn.iteritems():
+        if key:
+            class_objects[key].cyclomatic_complexity = val
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     """Renders the home page."""
@@ -192,7 +254,6 @@ def index():
             repo_name = ""
             owner = ""
             token = ""
-            repo_url=""
             try:
                 repo_url = request.form["repo_url"]
                 token = request.form["access_token"]
@@ -208,7 +269,6 @@ def index():
                 repo_name=repo_name,
                 owner=owner,
                 token=token,
-                repo_url=repo_url,
                 flag="1"
             )
 
@@ -218,19 +278,20 @@ def index():
         repo_name="",
         owner="",
         token="",
-        repo_url="",
         flag="0"
     )
 
-@app.route('/progress/<repo_name>/<owner>/<token>/<repo_url>')
-def progress(repo_name, owner, token, repo_url):
+@app.route('/progress/<repo_name>/<owner>/<token>')
+def progress(repo_name, owner, token):
 
     def generate():
         headers["Authorization"] = "token " + token
 
         repo_root_url = os.path.join(url_root, "repos", owner, repo_name, "branches/master")
+        #if repo_root_url in table:
+            #yield "data:" + "100" + "\n\n"
+        #else
         response = requests.get(repo_root_url, headers=headers)
-        #print(response)
         if response.status_code != 200:
             yield "data:" + "99" + "\n\n"
         else:
@@ -252,75 +313,18 @@ def progress(repo_name, owner, token, repo_url):
                         response = response.json()["content"]
                         content = base64.b64decode(response)
                         file_name = x["path"].split("/")[-1]
-                        #print(file_name)
 
                         yield "data:" + x["path"] + "\n\n"
 
                         parse_file_content(str(content, "utf-8"), file_name, class_objects)
-                        #print(file_name)
-                        with(open("temp/"+file_name, "w")) as f:
-                            f.write(str(content, "utf-8"))
-                            f.close()
-                        cmd = ["lizard", "--csv", "temp/"+file_name]
-                        with open('out.csv', 'w') as fout:
-                            subprocess.call(cmd, stdout=fout, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-                            fout.close()
-
-                        df = pd.read_csv("out.csv", header=None,
-                                         names=['nloc', 'ccn', 'token', 'param', 'length', 'location', 'filename', 'methodname',
-                                                'methodparams', 'a', 'b'])
-
-                        df["class_name"] = df["location"].map(lambda x: x.split("@")[0])
-                        for i in range(len(df)):
-                            try:
-                                df.at[i, "class_name"] = strip_generalize_class(df.at[i, "class_name"].split("::")[-2])
-                            except:
-                                df.at[i, "class_name"] = None
-                        class_ccn = df.groupby("class_name")["ccn"].max()
-                        for key, val in class_ccn.iteritems():
-                            if key:
-                                class_objects[key].cyclomatic_complexity = val
+                        calculate_cyclomatic_complexity(file_name, content, class_objects)
 
 
+            calculate_coupling_and_collaborators(class_objects, token, owner, repo_name, repo_root_url)
 
             yield "data:" + "100" + "\n\n"
 
-            # Coupling Between Objects
-            subprocess.call(['java','-jar','ck.jar','temp'])
-            df = pd.read_csv("class.csv",usecols=['class','cbo'],index_col=False)
-            df["class"] = df["class"].map(lambda x: strip_generalize_class(x.split(".")[-1]))
-            #df['class'].map(lambda x: strip_generalize_class(x))
 
-
-            for _, row in df.iterrows():
-                #print(row)
-                if row['class'] in class_objects:
-                    #print(int(row['cbo']))
-                    class_objects[row['class']].coupling = int(row['cbo'])
-
-            header = {
-                "content-type": "application/json",
-                "Authorization": "token " + token,
-                'Accept': 'application/vnd.github.hellcat-preview+json'
-            }
-            response_collab = requests.get(url_root + '/repos/' + owner + '/' + repo_name + '/stats/contributors',
-                                           headers=header)
-            response_collab = response_collab.json()
-            r = response_collab[-1]
-            major_collab = r["author"]["login"]
-
-            total_collab = 0
-            for i in range(1, 10):
-                response = requests.get(
-                    url_root + '/repos/' + owner + '/' + repo_name + '/contributors?page=' + str(i) + '&per_page=1000',
-                    headers=header)
-                response = response.json()
-                total_collab += len(response)
-            
-            
-            delete_temp_files()
-            sql_db.save_url(repo_root_url,token)
-            sql_db.mock_database_generator(class_objects, repo_name, major_collab, total_collab)
     return Response(generate(), mimetype='text/event-stream')
 
 @app.route('/choose-metric', methods=['GET', 'POST'])
