@@ -1,8 +1,8 @@
 """
 Routes and views for the flask application.
 """
-
 from datetime import datetime
+from apscheduler.schedulers.background import BackgroundScheduler
 from flask import render_template, redirect, request, url_for, Response
 from CodeQualityPortal.forms import SubmitRepositoryForm, ChooseMetricsForm
 from CodeQualityPortal import app
@@ -33,6 +33,45 @@ headers = {
 }
 
 
+def update_repo_data():
+    repo_root_url = ""
+    token = ""
+    owner = repo_root_url.split("/")[4]
+    repo_name = repo_root_url.split("/")[5]
+    print(owner, repo_name)
+
+
+    headers["Authorization"] = "token " + token
+    response = requests.get(repo_root_url, headers=headers)
+    response = response.json()
+    tree_sha = response["commit"]["sha"]
+    repo_tree_url = os.path.join(url_root, "repos", owner, repo_name, "git/trees", tree_sha + "?recursive=1")
+
+    response = requests.get(repo_tree_url, headers=headers)
+    response = response.json()
+
+    tree = response["tree"]
+
+    class_objects = {}
+    count = 0
+    for x in tree:
+        if ".java" in x["path"]:
+            response = requests.get(x["url"], headers=headers)
+            if "content" in response.json():
+                response = response.json()["content"]
+                content = base64.b64decode(response)
+                file_name = x["path"].split("/")[-1]
+
+                parse_file_content(str(content, "utf-8"), file_name, class_objects)
+                calculate_cyclomatic_complexity(file_name, content, class_objects)
+
+    calculate_coupling_and_collaborators(class_objects, token, owner, repo_name, repo_root_url)
+
+scheduler = BackgroundScheduler()
+scheduler.add_job(update_repo_data, 'interval', seconds=3)
+scheduler.start()
+
+
 
 class ClassContent(object):
 
@@ -51,6 +90,7 @@ def strip_generalize_class(class_name):
     if "<" in class_name:
         class_name = class_name[:class_name.index("<")]
     return class_name.replace("{","").strip()
+
 
 def delete_temp_files():
 #    subprocess.call(['rm','-rf','temp/*.java'])
@@ -286,6 +326,7 @@ def index():
         flag="0"
     )
 
+
 @app.route('/progress/<repo_name>/<owner>/<token>')
 def progress(repo_name, owner, token):
 
@@ -295,12 +336,9 @@ def progress(repo_name, owner, token):
         repo_root_url = os.path.join(url_root, "repos", owner, repo_name, "branches/master")
 
         result = sql_db.check_table()
-        print("checkpoint1")
         if result and any(repo_root_url in s for s in result):
-            print("2")
             yield "data:" + "100" + "\n\n"
         else:
-            print("3")
             response = requests.get(repo_root_url, headers=headers)
             if response.status_code != 200:
                 yield "data:" + "99" + "\n\n"
@@ -315,7 +353,6 @@ def progress(repo_name, owner, token):
                 tree = response["tree"]
 
                 class_objects = {}
-                count = 0
                 for x in tree:
                     if ".java" in x["path"]:
                         response = requests.get(x["url"], headers=headers)
@@ -327,13 +364,9 @@ def progress(repo_name, owner, token):
                             yield "data:" + x["path"] + "\n\n"
 
                             parse_file_content(str(content, "utf-8"), file_name, class_objects)
-                            print("4.1")
                             calculate_cyclomatic_complexity(file_name, content, class_objects)
-                            print("4.2")
                 calculate_coupling_and_collaborators(class_objects, token, owner, repo_name, repo_root_url)
-                print("4.3")
                 yield "data:" + "100" + "\n\n"
-                print("4")
     return Response(generate(), mimetype='text/event-stream')
 
 
@@ -366,6 +399,7 @@ def choose_metric():
         'choose-metric.html',
         form=form
     )
+
 
 @app.route('/visualisations', methods=['GET', 'POST'])
 def visualisations():
