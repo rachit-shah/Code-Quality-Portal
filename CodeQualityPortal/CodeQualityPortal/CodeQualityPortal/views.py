@@ -330,6 +330,7 @@ def progress(repo_name, owner, token):
         headers["Authorization"] = "token " + token
 
         repo_root_url = os.path.join(url_root, "repos", owner, repo_name, "branches/master")
+
         #if repo_root_url in table:
             #yield "data:" + "100" + "\n\n"
         #else
