@@ -18,6 +18,8 @@ import lizard
 import subprocess
 import pandas as pd
 import shutil
+import mysql.connector
+
 
 logger = logging.getLogger(__name__)
 
@@ -179,6 +181,7 @@ def parse_file_content(content, file_name, class_objects):
                 class_objects[class_stack[-1]].no_of_methods = 0
             class_objects[class_stack[-1]].no_of_methods += 1
 
+
 def calculate_coupling_and_collaborators(class_objects, token, owner, repo_name, repo_root_url):
     # Coupling Between Objects
     subprocess.call(['java', '-jar', 'ck.jar', 'temp'])
@@ -213,9 +216,11 @@ def calculate_coupling_and_collaborators(class_objects, token, owner, repo_name,
         total_collab += len(response)
 
     delete_temp_files()
+    print("5.1")
     sql_db.save_url(repo_root_url, token)
+    print("5.2")
     sql_db.mock_database_generator(class_objects, repo_name, major_collab, total_collab)
-
+    print("5.3")
 
 def calculate_cyclomatic_complexity(file_name, content, class_objects):
     with(open("temp/" + file_name, "w")) as f:
@@ -240,6 +245,7 @@ def calculate_cyclomatic_complexity(file_name, content, class_objects):
     for key, val in class_ccn.iteritems():
         if key:
             class_objects[key].cyclomatic_complexity = val
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -288,44 +294,48 @@ def progress(repo_name, owner, token):
 
         repo_root_url = os.path.join(url_root, "repos", owner, repo_name, "branches/master")
 
-        #if repo_root_url in table:
-            #yield "data:" + "100" + "\n\n"
-        #else
-        response = requests.get(repo_root_url, headers=headers)
-        if response.status_code != 200:
-            yield "data:" + "99" + "\n\n"
-        else:
-            response = response.json()
-            tree_sha = response["commit"]["sha"]
-            repo_tree_url = os.path.join(url_root, "repos", owner, repo_name, "git/trees", tree_sha + "?recursive=1")
-
-            response = requests.get(repo_tree_url, headers=headers)
-            response = response.json()
-
-            tree = response["tree"]
-
-            class_objects = {}
-            count = 0
-            for x in tree:
-                if ".java" in x["path"]:
-                    response = requests.get(x["url"], headers=headers)
-                    if "content" in response.json():
-                        response = response.json()["content"]
-                        content = base64.b64decode(response)
-                        file_name = x["path"].split("/")[-1]
-
-                        yield "data:" + x["path"] + "\n\n"
-
-                        parse_file_content(str(content, "utf-8"), file_name, class_objects)
-                        calculate_cyclomatic_complexity(file_name, content, class_objects)
-
-
-            calculate_coupling_and_collaborators(class_objects, token, owner, repo_name, repo_root_url)
-
+        result = sql_db.check_table()
+        print("checkpoint1")
+        if result and any(repo_root_url in s for s in result):
+            print("2")
             yield "data:" + "100" + "\n\n"
+        else:
+            print("3")
+            response = requests.get(repo_root_url, headers=headers)
+            if response.status_code != 200:
+                yield "data:" + "99" + "\n\n"
+            else:
+                response = response.json()
+                tree_sha = response["commit"]["sha"]
+                repo_tree_url = os.path.join(url_root, "repos", owner, repo_name, "git/trees", tree_sha + "?recursive=1")
 
+                response = requests.get(repo_tree_url, headers=headers)
+                response = response.json()
 
+                tree = response["tree"]
+
+                class_objects = {}
+                count = 0
+                for x in tree:
+                    if ".java" in x["path"]:
+                        response = requests.get(x["url"], headers=headers)
+                        if "content" in response.json():
+                            response = response.json()["content"]
+                            content = base64.b64decode(response)
+                            file_name = x["path"].split("/")[-1]
+
+                            yield "data:" + x["path"] + "\n\n"
+
+                            parse_file_content(str(content, "utf-8"), file_name, class_objects)
+                            print("4.1")
+                            calculate_cyclomatic_complexity(file_name, content, class_objects)
+                            print("4.2")
+                calculate_coupling_and_collaborators(class_objects, token, owner, repo_name, repo_root_url)
+                print("4.3")
+                yield "data:" + "100" + "\n\n"
+                print("4")
     return Response(generate(), mimetype='text/event-stream')
+
 
 @app.route('/choose-metric', methods=['GET', 'POST'])
 def choose_metric():

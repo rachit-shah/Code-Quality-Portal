@@ -1,6 +1,29 @@
 import mysql.connector
 import datetime
 
+def check_table():
+	mydb = mysql.connector.connect(
+		host="localhost",
+		user="root",
+		passwd="password",
+		database="Github_Mining"
+	)
+	mycursor = mydb.cursor()
+	mycursor.execute("CREATE TABLE IF NOT EXISTS Url_Records(url VARCHAR(255),token Varchar(255))")
+	mycursor.execute("Select url from Url_Records")
+	return mycursor.fetchall()
+def get_urls():
+	mydb = mysql.connector.connect(
+		host="localhost",
+		user="root",
+		passwd="password",
+		database="Github_Mining"
+	)
+	mycursor = mydb.cursor()
+	mycursor.execute("CREATE TABLE IF NOT EXISTS Url_Records(url VARCHAR(255),token Varchar(255))")
+	mycursor.execute("Select * from Url_Records")
+	return mycursor.fetchall()
+
 def save_url(u,tok):
 	mydb = mysql.connector.connect(
 		host="localhost",
