@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div>
+        {% for metric in metrics %}
+
+            {% if metric == "Comments or Documentation" %}
+                <div class='tableauPlaceholder'  id="viz1552011782386" style='width: 1000px; height: 827px;'>
+                    <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;commentD&#47;umisra@ncsu.edu&#47;comments' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /></object></div>
+            <script type='text/javascript'>
+            var divElement = document.getElementById('viz1552011782386');
+            var vizElement = divElement.getElementsByTagName('object')[0];
+            if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';}
+            else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';}
+            else { vizElement.style.width='100%';vizElement.style.height='727px';}
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+            </script>
+            {% endif %}
+
+            {% if metric == "No. of Methods per Class" %}
+            <div class='tableauPlaceholder' id="viz1552011782387" style='width: 1000px; height: 827px;'>
+                <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;methodsD&#47;umisra@ncsu.edu&#47;Methods' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /></object></div>
+
+            <script type='text/javascript'>
+            var divElement = document.getElementById('viz1552011782387');
+            var vizElement = divElement.getElementsByTagName('object')[0];
+            if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';}
+            else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';}
+            else { vizElement.style.width='100%';vizElement.style.height='727px';}
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+            </script>
+            {% endif %}
+
+            {% if metric == "Cyclomatic Complexity" %}
+            <div class='tableauPlaceholder' id="viz1552011782388" style='width: 1000px; height: 827px;'>
+                <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;cycloD&#47;umisra@ncsu.edu&#47;cyclo' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /></object></div>
+            <script type='text/javascript'>
+                var divElement = document.getElementById('viz1552011782388');
+            var vizElement = divElement.getElementsByTagName('object')[0];
+            if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';}
+            else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';}
+            else { vizElement.style.width='100%';vizElement.style.height='727px';}
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+            </script>            {% endif %}
+
+            {% if metric == "No. of Collaborators per File" %}
+            <div class='tableauPlaceholder' id="viz1552011782389" style='width: 1000px; height: 827px;'>
+                <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;collabD&#47;umisra@ncsu.edu&#47;Collab' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /></object></div>
+            <script type='text/javascript'>
+                var divElement = document.getElementById('viz1552011782389');
+            var vizElement = divElement.getElementsByTagName('object')[0];
+            if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';}
+            else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';}
+            else { vizElement.style.width='100%';vizElement.style.height='727px';}
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+            </script>            {% endif %}
+
+            {% if metric == "Lines of Code" %}
+
+            <div class='tableauPlaceholder' id="viz15520117823860" style='width: 1000px; height: 827px;'>
+                    <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;linesD&#47;umisra@ncsu.edu&#47;LOC' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /></object></div>
+            <script type='text/javascript'>
+            var divElement = document.getElementById('viz15520117823860');
+            var vizElement = divElement.getElementsByTagName('object')[0];
+            if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';}
+            else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';}
+            else { vizElement.style.width='100%';vizElement.style.height='727px';}
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+            </script>            {% endif %}
+
+            {% if metric == "Class Hierarchy Level" %}
+            <div class='tableauPlaceholder' id="viz15520117823861" style='width: 1000px; height: 827px;'>
+                <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;heirarchyD&#47;umisra@ncsu.edu&#47;Class' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /></object></div>
+            <script type='text/javascript'>
+                var divElement = document.getElementById('viz15520117823861');
+                var vizElement = divElement.getElementsByTagName('object')[0];
+            if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';}
+            else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';}
+            else { vizElement.style.width='100%';vizElement.style.height='727px';}
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+            </script>            {% endif %}
+
+
+            {% if metric == "Coupling Between Objects" %}
+            <div class='tableauPlaceholder' id="viz15520117823862" style='width: 1000px; height: 827px;'>
+            <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;couplingD&#47;umisra@ncsu.edu&#47;coupling' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /></object></div>
+            <script type='text/javascript'>
+                var divElement = document.getElementById('viz15520117823862');
+                var vizElement = divElement.getElementsByTagName('object')[0];
+            if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';}
+            else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';}
+            else { vizElement.style.width='100%';vizElement.style.height='727px';}
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+            </script>            {% endif %}
+
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
