@@ -59,3 +59,36 @@
 | Subflow | 2 | Task - [17](https://github.ncsu.edu/umisra/csc510-project/projects/2#card-9040)<br>Commit - [13](https://github.ncsu.edu/umisra/csc510-project/commit/b6ede76bbc6847864ba9fef67d320c5afcd1b986), [14](https://github.ncsu.edu/umisra/csc510-project/commit/fca1c6c2dc2e0c773ebacdb6fadb12458e2ff0ad), [15](https://github.ncsu.edu/umisra/csc510-project/commit/6188e186750b11db128960b8ddb5123db5d2b129)|
 | Subflow | 3 | Task - [18](https://github.ncsu.edu/umisra/csc510-project/projects/2#card-9219)<br>Commit - [16](https://github.ncsu.edu/umisra/csc510-project/commit/71968a6a3cad694a83699f59b10b6b04f551fbc8), [17](https://github.ncsu.edu/umisra/csc510-project/commit/c1991215d99921871de7e1a52f7c213828952edd)|
 | ScreenCast| | Task - [19](https://github.ncsu.edu/umisra/csc510-project/projects/2#card-9039)|
+
+# MILESTONE 4
+## WEEK 7
+
+|  Deliverable | Item/Status  |  Issues/Tasks | 
+|---|---|---|
+| Use Case 2 | Choose a Metric| |
+| Subflow | 2 |Task - [1](https://github.ncsu.edu/umisra/csc510-project/projects/3#card-10118)|
+| All Use Cases | Deployment | |
+| Subflow | All | Task - [2](https://github.ncsu.edu/umisra/csc510-project/projects/3#card-10119)|
+
+## WEEK 8
+|  Deliverable | Item/Status  |  Issues/Tasks | 
+|---|---|---|
+| Use Case 1 | User's First Visit | |
+| Subflow | 1 |Task - [3](https://github.ncsu.edu/umisra/csc510-project/projects/3#card-9904), [4](https://github.ncsu.edu/umisra/csc510-project/projects/3#card-10120)<br>Commit - [1](https://github.ncsu.edu/umisra/csc510-project/commit/c0e179c6692fd0251f85364de5f24407ce39f251), [2](https://github.ncsu.edu/umisra/csc510-project/commit/77d3733dff4c00c44c6fc34f8a86d3cfd8034d45)|
+| Use Case 2 | Choose a Metric| |
+| Subflow | 2 |Task - [5](https://github.ncsu.edu/umisra/csc510-project/projects/3#card-9906), [6](https://github.ncsu.edu/umisra/csc510-project/projects/3#card-9901)<br>Commit - [3](https://github.ncsu.edu/umisra/csc510-project/commit/a551d1fa2a51717f41923a3b196cfb1bf648ea1a), [4](https://github.ncsu.edu/umisra/csc510-project/commit/9c82cb3d7fedb02a8eede15afd1f2ea87a66a3ef), [5](https://github.ncsu.edu/umisra/csc510-project/commit/9653d33c14336953fe33f50804521f91dc5da41b)|
+
+## WEEK 9
+
+|  Deliverable | Item/Status  |  Issues/Tasks | 
+|---|---|---|
+| Use Case 1 | User's First Visit| |
+| Subflow | 1 |Task - [7](https://github.ncsu.edu/umisra/csc510-project/projects/3#card-10122)<br>Commit - [6](https://github.ncsu.edu/umisra/csc510-project/commit/3c682b2200b39e146f074e4c0dbe17d80670ef99), [7](https://github.ncsu.edu/umisra/csc510-project/commit/ab46fba77e4cdcadfc120f2711bf126904b64133), [8](https://github.ncsu.edu/umisra/csc510-project/commit/6dc7c97808ef44033f3a49c368c792d3723ee7a2), [9](https://github.ncsu.edu/umisra/csc510-project/commit/dc170a1c15c96cfdbb4c3d1e52b32d8cdf2c7efa)|
+| Use Case 2 | Choose a Metric | |
+| Subflow | 1 | Task - [8](https://github.ncsu.edu/umisra/csc510-project/projects/3#card-10123)<br>Commit - [10](https://github.ncsu.edu/umisra/csc510-project/commit/b6ab9bfd376e18aeab9895b7e2df16613fd24c53)|
+| Use Case 3 |  Evaluate Complexity of the Code | |
+| Subflow | 3 | Task - [9](https://github.ncsu.edu/umisra/csc510-project/projects/3#card-10124)<br>Commit - [11](https://github.ncsu.edu/umisra/csc510-project/commit/ce4558cd9b9c1ad5acc2ba7db6350c7b970147f9)
+| Subflow | 3 |Task - [10](https://github.ncsu.edu/umisra/csc510-project/projects/3#card-10082)<br>Commit - [12](https://github.ncsu.edu/umisra/csc510-project/commit/56185ec5582d2a55bedc9e8a5927cf44f31932cf), [13](https://github.ncsu.edu/umisra/csc510-project/commit/d1b10172def185a62737337711e952319c89b005), [14](https://github.ncsu.edu/umisra/csc510-project/commit/415dfcb0f659a8a0284298186f9281bd70b3bdfe)
+| All Use Cases | Deployment | |
+| Subflow | All | Task - [11](https://github.ncsu.edu/umisra/csc510-project/projects/3#card-9905)<br>Commit - [15](https://github.ncsu.edu/umisra/csc510-project/commit/e82b4838e159be46ed3838c3e71a4930669b3f2f), [16](https://github.ncsu.edu/umisra/csc510-project/commit/a56b6dbcede92215d8e798129caec2ec34e168da)|
+
