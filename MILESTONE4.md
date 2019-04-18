@@ -155,7 +155,20 @@ To calculate cyclomatic complexity we used [lizard](https://github.com/terryyin/
 
 **2. Update:** Once the user enters a repository link for the first time our portal will scrape the repository every day to record the changes in data over time. In order to do this we call the functions that perform the scraping every day by using a BackgroundScheduler in python. This scheduler allows us to execute code at any custom time interval. 
 
-We have created a tableau private server and generated visualisations in order to visualise the data ingest/update.
+We have created a tableau private server and generated visualisations in order to visualise the data ingest/update. The free trial version of Tableau online doesn't allow automatic updates to the data. Hence, the user has to click the refresh button on the 3rd (Visualizations) page for each dashboard inorder to update the data. Except for clicking the Refresh button, all other parts of the process is automated and the dashboard works on live data. However, since we are using the free version of Tableau online, the user will have to login to Tableau online in order to see the visualizations on our website. In case the user can't access Tableau online, we will share our Tableau Online credentials for evaluation purposes.
+
+```
+Email: umisra@ncsu.edu
+Password: csc510project
+```
+
+We could have hosted the dashboard to Tableau Public so that the user won't have to login to view. But Tableau Public doesn't work on live data - only on extract of the data, so the data update part won't work. Hence, we have chosen the Tableau Online option.
+
+## 3. Task Tracking
+[Worksheet](https://github.ncsu.edu/umisra/csc510-project/blob/master/WORKSHEET.md)
+
+
+## 4. SCREENCAST
 
 
  
