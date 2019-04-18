@@ -1,5 +1,9 @@
-## Steps to Deploy Our Application on Digital Ocean
-* Steps adopted from [this](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uswgi-and-nginx-on-ubuntu-18-04) tutorial 
+
+# MILESTONE 4
+
+## 1. Steps to Deploy Our Application on Digital Ocean
+** Steps adopted from [this](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uswgi-and-nginx-on-ubuntu-18-04) tutorial 
+
 #### Creating Droplet on DigitalOcean
 1. Create an account on Digital Ocean and buy an Ubuntu 18.04 droplet
 2. Add the necessary SSH keys to access the droplet remotely via terminal
@@ -133,3 +137,6 @@ sudo ufw allow 'Nginx Full'
 ```
 cat ~/log/CodeQualityPortal.log
 ```
+
+## 2. Data Ingest/ Update
+The data ingest occurs when the user enters the GitHub Url with access token. The code is run to parse all code files in the repository. All the metrics are evaluated and added to the MySQL database
