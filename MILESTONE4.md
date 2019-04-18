@@ -168,7 +168,11 @@ We could have hosted the dashboard to Tableau Public so that the user won't have
 [Worksheet](https://github.ncsu.edu/umisra/csc510-project/blob/master/WORKSHEET.md)
 
 
-## 4. SCREENCAST
+## 4. Screencast
+
+[Project ScreenCast - GitHub Link](https://github.ncsu.edu/umisra/csc510-project/blob/master/screencast2.mp4)
+</br>OR</br>
+[Project ScreenCast - Google Drive Link](https://drive.google.com/file/d/1pffZ40t8k5bTkDbwipd1G0ttnYKuPbLw/view?usp=sharing)
 
 
  
