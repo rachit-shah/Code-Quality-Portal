@@ -214,16 +214,14 @@ def parse_file_content(content, file_name, class_objects):
 
 def calculate_coupling_and_collaborators(class_objects, token, owner, repo_name, repo_root_url):
     # Coupling Between Objects
-    os.system("java -jar ck.jar temp")
-    #subprocess.call(['java', '-jar', 'ck.jar', 'temp'],shell=True)
-    exists = os.path.isfile('class.csv')
-    if exists:
-        df = pd.read_csv("class.csv", usecols=['class', 'cbo'], index_col=False)
-        df["class"] = df["class"].map(lambda x: strip_generalize_class(x.split(".")[-1]))
+    #os.system("java -jar ck.jar temp")
+    subprocess.call(['/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java', '-jar', 'ck.jar', 'temp'])
+    df = pd.read_csv("class.csv", usecols=['class', 'cbo'], index_col=False)
+    df["class"] = df["class"].map(lambda x: strip_generalize_class(x.split(".")[-1]))
 
-        for _, row in df.iterrows():
-            if row['class'] in class_objects:
-                class_objects[row['class']].coupling = int(row['cbo'])
+    for _, row in df.iterrows():
+        if row['class'] in class_objects:
+            class_objects[row['class']].coupling = int(row['cbo'])
 
     header = {
             "content-type": "application/json",
