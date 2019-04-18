@@ -2,7 +2,7 @@
 # MILESTONE 4
 
 ## 1. Steps to Deploy Our Application on Digital Ocean
-** Steps adopted from [this](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uswgi-and-nginx-on-ubuntu-18-04) tutorial 
+**Steps adopted from [this](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uswgi-and-nginx-on-ubuntu-18-04) tutorial** 
 
 #### Creating Droplet on DigitalOcean
 1. Create an account on Digital Ocean and buy an Ubuntu 18.04 droplet
@@ -138,5 +138,31 @@ sudo ufw allow 'Nginx Full'
 cat ~/log/CodeQualityPortal.log
 ```
 
-## 2. Data Ingest/ Update
-The data ingest occurs when the user enters the GitHub Url with access token. The code is run to parse all code files in the repository. All the metrics are evaluated and added to the MySQL database
+## 2. Data Ingest/Update
+
+**1. Ingest:** After being provided with a valid repository url, we use GithubAPI to parse through the entire repo and scrape the content of the java files. Then we parse through each java file and calculate the following metrics:
+-   Number of Methods per Class
+-   Class Hierarchy Level
+-   Number of Comment Lines per Class
+-   Lines of Code
+-   Number of Collaborators for Repository
+-   Cyclomatic Complexity per Class
+-   Coupling between Objects
+
+To calculate the first five metrics we have designed and implemented our own python code. While parsing through the code we utilised characters such as /, *, { and } as well as regex to aid us in calculating the metrics.
+
+To calculate cyclomatic complexity we used [lizard](https://github.com/terryyin/lizard) and for coupling between objects we used [this project.](https://github.com/mauricioaniche/ck).
+
+**2. Update:** Once the user enters a repository link for the first time our portal will scrape the repository every day to record the changes in data over time. In order to do this we call the functions that perform the scraping every day by using a BackgroundScheduler in python. This scheduler allows us to execute code at any custom time interval. 
+
+We have created a tableau private server and generated visualisations in order to visualise the data ingest/update.
+
+
+ 
+     
+     
+     
+   
+     
+    
+
