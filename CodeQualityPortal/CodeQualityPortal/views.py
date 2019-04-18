@@ -215,13 +215,13 @@ def parse_file_content(content, file_name, class_objects):
 def calculate_coupling_and_collaborators(class_objects, token, owner, repo_name, repo_root_url):
     # Coupling Between Objects
     #os.system("java -jar ck.jar temp")
-    subprocess.call(['/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java', '-jar', 'ck.jar', 'temp'])
-    df = pd.read_csv("class.csv", usecols=['class', 'cbo'], index_col=False)
-    df["class"] = df["class"].map(lambda x: strip_generalize_class(x.split(".")[-1]))
-
-    for _, row in df.iterrows():
-        if row['class'] in class_objects:
-            class_objects[row['class']].coupling = int(row['cbo'])
+    # subprocess.call(['/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java', '-jar', 'ck.jar', 'temp'])
+    # df = pd.read_csv("class.csv", usecols=['class', 'cbo'], index_col=False)
+    # df["class"] = df["class"].map(lambda x: strip_generalize_class(x.split(".")[-1]))
+    #
+    # for _, row in df.iterrows():
+    #     if row['class'] in class_objects:
+    #         class_objects[row['class']].coupling = int(row['cbo'])
 
     header = {
             "content-type": "application/json",
@@ -357,6 +357,7 @@ def progress(repo_name, owner, token):
 def choose_metric():
     """Renders the contact page."""
     form = ChooseMetricsForm()
+    repo_name = request.args.get('repo_name')
     if request.method == "POST":
         if form.validate_on_submit():
             metrics = []
@@ -375,11 +376,12 @@ def choose_metric():
             if 'coupling_between_objects' in request.form:
                 metrics.append('Coupling Between Objects')
 
-            return redirect(url_for('visualisations', metrics=metrics))
+            return redirect(url_for('visualisations', metrics=metrics, repo_name=repo_name))
 
     return render_template(
         'choose-metric.html',
-        form=form
+        form=form,
+        repo_name=repo_name
     )
 
 
@@ -387,9 +389,12 @@ def choose_metric():
 def visualisations():
     """Renders the about page."""
     metrics = request.args.getlist('metrics')
+    repo_name = request.args.get('repo_name')
+    print(repo_name)
     return render_template(
         'visualisations.html',
-        metrics=metrics
+        metrics=metrics,
+        repo_name=repo_name
     )
 
 

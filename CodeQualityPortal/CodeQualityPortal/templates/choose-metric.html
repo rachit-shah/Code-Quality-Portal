@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="col-md-offset-3 col-md-6 form-div">
-        <form action="{{ url_for('choose_metric') }}" class="repo-form" style="width: 75%" method="post" novalidate>
+        <form action="{{ url_for('choose_metric') }}?repo_name={{repo_name}}" class="repo-form" style="width: 75%" method="post" novalidate>
             {{ form.hidden_tag() }}
         <h3 style="width: 100%; text-align: center; margin-bottom: 20px;">Choose the metrics:</h3>
             {% for error in form.submit.errors %}

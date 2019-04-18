@@ -7,6 +7,13 @@
 
     var source = new EventSource("/progress/{{repo_name}}/{{owner}}/{{token}}");
 
+    function progress() {
+        console.log("THIS HAPPENED");
+        $("#repo-form-div").hide();
+        $(".files").show();
+        $("#spinner").show();
+    }
+
     source.onmessage = function(event) {
 
         $("#repo-form-div").hide();
@@ -22,9 +29,11 @@
         }
         if(event.data === "100"){
             source.close();
-            window.location.replace("{{ url_for('choose_metric') }}");
+            $('.progress-bar-label').text("Completed!");
+            window.location.replace("{{ url_for('choose_metric') }}?repo_name={{repo_name}}");
         }
-        $('.progress-bar-label').text(event.data+'');
+        if(event.data !== 100)
+            $('.progress-bar-label').text(event.data+'');
 
     }
 
@@ -64,7 +73,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-md-offset-3 col-md-6" style="margin-top: 25px;">
-                  {{ form.submit(class_="btn btn-info", style="display:block; width:100%") }}
+                  {{ form.submit(class_="btn btn-info", style="display:block; width:100%", onsubmit="return progress();") }}
                 </div>
             </div>
         </form>

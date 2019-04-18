@@ -1,12 +1,16 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<div>
     <div>
+        <p style="color: white; clear: both">*Please click the refresh button at the bottom of all the visualisations.</p>
+    </div>
+    <div style="width:100%; margin:0 auto;">
         {% for metric in metrics %}
 
             {% if metric == "Comments or Documentation" %}
                 <div class='tableauPlaceholder'  id="viz1552011782386" style='width: 1000px; height: 827px;'>
-                    <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;commentD&#47;umisra@ncsu.edu&#47;comments' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /></object></div>
+                    <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;commentD&#47;umisra@ncsu.edu&#47;comments' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /><param name='filter' value='Repo%20Name={{repo_name}}'/></object></div>
             <script type='text/javascript'>
             var divElement = document.getElementById('viz1552011782386');
             var vizElement = divElement.getElementsByTagName('object')[0];
@@ -21,7 +25,7 @@
 
             {% if metric == "No. of Methods per Class" %}
             <div class='tableauPlaceholder' id="viz1552011782387" style='width: 1000px; height: 827px;'>
-                <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;methodsD&#47;umisra@ncsu.edu&#47;Methods' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /></object></div>
+                <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;methodsD&#47;umisra@ncsu.edu&#47;Methods' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /><param name='filter' value='Repo%20Name={{repo_name}}'/></object></div>
 
             <script type='text/javascript'>
             var divElement = document.getElementById('viz1552011782387');
@@ -37,7 +41,7 @@
 
             {% if metric == "Cyclomatic Complexity" %}
             <div class='tableauPlaceholder' id="viz1552011782388" style='width: 1000px; height: 827px;'>
-                <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;cycloD&#47;umisra@ncsu.edu&#47;cyclo' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /></object></div>
+                <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;cycloD&#47;umisra@ncsu.edu&#47;cyclo' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /><param name='filter' value='Repo%20Name={{repo_name}}'/></object></div>
             <script type='text/javascript'>
                 var divElement = document.getElementById('viz1552011782388');
             var vizElement = divElement.getElementsByTagName('object')[0];
@@ -51,7 +55,7 @@
 
             {% if metric == "No. of Collaborators per File" %}
             <div class='tableauPlaceholder' id="viz1552011782389" style='width: 1000px; height: 827px;'>
-                <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;collabD&#47;umisra@ncsu.edu&#47;Collab' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /></object></div>
+                <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;collabD&#47;umisra@ncsu.edu&#47;Collab' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /><param name='filter' value='Repo%20Name={{repo_name}}'/></object></div>
             <script type='text/javascript'>
                 var divElement = document.getElementById('viz1552011782389');
             var vizElement = divElement.getElementsByTagName('object')[0];
@@ -66,7 +70,7 @@
             {% if metric == "Lines of Code" %}
 
             <div class='tableauPlaceholder' id="viz15520117823860" style='width: 1000px; height: 827px;'>
-                    <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;linesD&#47;umisra@ncsu.edu&#47;LOC' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /></object></div>
+                    <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;linesD&#47;umisra@ncsu.edu&#47;LOC' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /><param name='filter' value='Repo%20Name={{repo_name}}'/></object></div>
             <script type='text/javascript'>
             var divElement = document.getElementById('viz15520117823860');
             var vizElement = divElement.getElementsByTagName('object')[0];
@@ -80,7 +84,7 @@
 
             {% if metric == "Class Hierarchy Level" %}
             <div class='tableauPlaceholder' id="viz15520117823861" style='width: 1000px; height: 827px;'>
-                <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;heirarchyD&#47;umisra@ncsu.edu&#47;Class' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /></object></div>
+                <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;heirarchyD&#47;umisra@ncsu.edu&#47;Class' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /><param name='filter' value='Repo%20Name={{repo_name}}'/></object></div>
             <script type='text/javascript'>
                 var divElement = document.getElementById('viz15520117823861');
                 var vizElement = divElement.getElementsByTagName('object')[0];
@@ -95,7 +99,7 @@
 
             {% if metric == "Coupling Between Objects" %}
             <div class='tableauPlaceholder' id="viz15520117823862" style='width: 1000px; height: 827px;'>
-            <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;couplingD&#47;umisra@ncsu.edu&#47;coupling' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /></object></div>
+            <object class='tableauViz' width='1000' height='827' style='display:none;'><param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;codequality' /><param name='name' value='Visualizations3&#47;couplingD&#47;umisra@ncsu.edu&#47;coupling' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /><param name='filter' value='iframeSizedToWindow=true' /><param name='filter' value='Repo%20Name={{repo_name}}'/></object></div>
             <script type='text/javascript'>
                 var divElement = document.getElementById('viz15520117823862');
                 var vizElement = divElement.getElementsByTagName('object')[0];
@@ -109,6 +113,8 @@
 
         {% endfor %}
     </div>
+</div>
+
 
 {% endblock %}
 
