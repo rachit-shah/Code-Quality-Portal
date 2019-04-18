@@ -14,6 +14,7 @@ Team 6 Members:
 
 [Milestone 3: Services](https://github.ncsu.edu/umisra/csc510-project/blob/master/MILESTONE3.md)
 
+[Milestone 4: Deployment](https://github.ncsu.edu/umisra/csc510-project/blob/master/MILESTONE4.md)
 
 #### * Working code is in "deploy" branch
 
