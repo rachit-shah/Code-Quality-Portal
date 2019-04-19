@@ -151,11 +151,12 @@ cat ~/log/CodeQualityPortal.log
 
 To calculate the first five metrics we have designed and implemented our own python code. While parsing through the code we utilised characters such as /, *, { and } as well as regex to aid us in calculating the metrics.
 
-To calculate cyclomatic complexity we used [lizard](https://github.com/terryyin/lizard) and for coupling between objects we used [this project.](https://github.com/mauricioaniche/ck).
+To calculate cyclomatic complexity we used [lizard](https://github.com/terryyin/lizard) and for coupling between objects we used [this project](https://github.com/mauricioaniche/ck).
 
-**2. Update:** Once the user enters a repository link for the first time our portal will scrape the repository every day to record the changes in data over time. In order to do this we call the functions that perform the scraping every day by using a BackgroundScheduler in python. This scheduler allows us to execute code at any custom time interval. 
+**2. Update:** When the user enters a repository link for the first time our portal will scrape the repository and generate the metrics at that moment. After that it will scrape the same repository every day to record the changes in data over time. The next time a user enters the same repository link then the portal will show the pre-eveluated data. In order to evaluate metrics over time we call the functions that scrape the repositories every day by using a BackgroundScheduler in python. This scheduler allows us to execute code at any custom time interval. 
 
-We have created a tableau private server and generated visualisations in order to visualise the data ingest/update. The free trial version of Tableau online doesn't allow automatic updates to the data. Hence, the user has to click the refresh button on the 3rd (Visualizations) page for each dashboard inorder to update the data. Except for clicking the Refresh button, all other parts of the process is automated and the dashboard works on live data. However, since we are using the free version of Tableau online, the user will have to login to Tableau online in order to see the visualizations on our website. In case the user can't access Tableau online, we will share our Tableau Online credentials for evaluation purposes.
+
+We have created a tableau private server and generated visualisations in order to visualise the data ingest/update. The free trial version of Tableau online doesn't allow automatic updates to the data. Hence, the user has to click the refresh button on the 3rd (Visualizations) page for each dashboard inorder to update the data. Except for clicking the Refresh button, all other parts of the process is automated and the dashboard works on live data. However, since we are using the free trial version of Tableau online, the user will have to login to Tableau online in order to see the visualizations on our website. In case the user can't access Tableau online, we will share our Tableau Online credentials for evaluation purposes.
 
 ```
 Email: umisra@ncsu.edu
