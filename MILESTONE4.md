@@ -170,9 +170,9 @@ We could have hosted the dashboard to Tableau Public so that the user won't have
 
 ## 4. Screencast
 
-[Project ScreenCast - GitHub Link](https://github.ncsu.edu/umisra/csc510-project/blob/master/screencast2.mp4)
+[Project ScreenCast - GitHub Link](https://github.ncsu.edu/umisra/csc510-project/blob/master/Screencast%20-%20Milestone4.mp4)
 </br>OR</br>
-[Project ScreenCast - Google Drive Link](https://drive.google.com/file/d/1pffZ40t8k5bTkDbwipd1G0ttnYKuPbLw/view?usp=sharing)
+[Project ScreenCast - Google Drive Link](https://drive.google.com/file/d/12w6R3emzcX8scEt6BVkTMrpeO_WK4sWU/view?usp=sharing)
 
 
  
