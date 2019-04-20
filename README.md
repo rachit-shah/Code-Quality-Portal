@@ -16,6 +16,8 @@ Team 6 Members:
 
 [Milestone 4: Deployment](https://github.ncsu.edu/umisra/csc510-project/blob/master/MILESTONE4.md)
 
+[Final Report](https://github.ncsu.edu/umisra/csc510-project/blob/master/REPORT.md)
+
 #### * Working code is in "deploy" branch
 
 
