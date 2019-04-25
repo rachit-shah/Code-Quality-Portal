@@ -1,58 +1,59 @@
-## Problem
+# Screencast
 
-## Features
+[Project ScreenCast - GitHub Link](https://github.ncsu.edu/umisra/csc510-project/blob/master/final-final-screencast.mp4)
+</br>OR</br>
+[Project ScreenCast - Google Drive Link](https://drive.google.com/file/d/18UWsL8mPyEsceKI31FQtKaldBlhfmSkB/view?usp=sharing)
 
-Our project mainly evaluates Java Code that is available in github repository. As shown in the image, below are all the available metrics that are project visualizes :-
+
+# Problem
+
+For any software development project including a team of developers, if the complexity and quality of the project aren’t regularly maintained the team can face losses in terms of productivity of the developers and their ability to collaborate with each other. In large projects there are a number of developers, sometimes in different locations, working on the same codebase. This makes the system highly complex and it becomes difficult to monitor code complexity and quality. It’s also challenging to get a high-level view of the entire codebase and understand its structure. 
+
+In order to solve these issues a manager may wish to oversee all the files involved in the project and monitor their complexity. Additionally, a new member of the team would like to view the hierarchy of the classes and object dependencies. Also, managers may wish to ensure that code is properly commented or documented, and that it is kept short and modular so that it is readable. Thus, we created an analytical portal visualizing these metrics so that team managers and members can easily analyze the code through easy to understand and interactive visualizations.
+
+# Features
+
+Our project evaluates Java code that is available in github repositories. The following metrics are visualised by our project:
 
 <img src="/images/Features.png" alt="drawing" width="750"/>
 
-The first metric shown below is the Total number of comments in every file. So seeing this you can have a good view on how much documentation is done by class.
+First we have the 'Total Number of Comments' in every file. This can show you the extent to which each class is documented.
 
 <img src="/images/Comments.png" alt="drawing" width="750"/>
 
-The next metric shown below is total number of methods per class per file. Here you can easily visualize on how modular the file is in the project.
+Then we have the 'Total Number of Methods' per class per file. Here you can visualize the size of each class and the modularity of each file in the project.
 
 <img src="/images/Methods.png" alt="drawing" width="750"/>
 
-The next metric shown below is Cyclomatic Complexity per class. More the cyclomatic complexity, worse it is. So after seeing the visualizations you could work on thode specific classes to decrease this metric.
+Then we have the 'Cyclomatic Complexity' per class. A cyclomatic complexity value above 10 is considered inefficient. So after seeing the visualizations you could work on your code to decrease this metric.
 
 <img src="/images/Cyclomatic.png" alt="drawing" width="750"/>
 
-The below graph is the total collaborators for the project. And the name on the point in the graph is the name of the major collaborator at that particular time.
+Then we have the 'Total Collaborators' for the project at any given time. The x-axis represents time and the y-axis shows the number of collaborators. The name on the point in the graph is the name of the major collaborator at that particular time.
 
 <img src="/images/Collaborators.png" alt="drawing" width="750"/>
 
-The next graph is the total number of lines per class. It will give you a good view on how much large each class is in the project.
+Then we have the 'Total Number of Lines of Code' per class. It givea a good view on the size of each class within the project.
 
 <img src="/images/Lines.png" alt="drawing" width="750"/>
 
-The next image shows the hierarchy diagram of all the classes with there parent class.
+Then we have the 'Class Hierarchy' of all the classes. Parent classes are in the first coloumn and their corresponding child classes are in the second column.
 
 <img src="/images/Hierarchy.png" alt="drawing" width="750"/>
 
-The last metric is the coupling among the classes. High coupling is a negative sign with respect to the complexity of the code.
+Finally we have the 'Coupling of Objects' of the classes. High coupling is a negative sign with respect to the complexity of the code.
 
 <img src="/images/Coupling.png" alt="drawing" width="750"/>
 
 
 
-## Reflection
+# Reflection
 
-## Limitations
+# Limitations
 
-Our project only evaluates the metrics for Java projects only. This project can also be extended for other languages to study majorly all the repositories available in the github. 
+Currently our project only evaluates Metrics for Java code in github repositories. In the future it can be expanded to include more programming languages to gain the ability to study a larger range of projects on github. 
 
-Some more metrics can also be added to get a much more overview of the quality of the code like 
-
-Duplicate Code<br/> 
-Dead Code<br/>
-Unneccessary Conditional Statements in the code <br/>
-Unneccessary variables and methods used, etc.
-## Screencast
-
-[Project ScreenCast - GitHub Link](https://github.ncsu.edu/umisra/csc510-project/blob/master/final-final-screencast.mp4)
-</br>OR</br>
-[Project ScreenCast - Google Drive Link](https://drive.google.com/file/d/18UWsL8mPyEsceKI31FQtKaldBlhfmSkB/view?usp=sharing)
+In the future, we could also add more metrics like Duplicate Code, Dead Code, Unneccessary Conditional Statements, Unneccessary Variables and Methods etc. to get a better overview of the quality of the code.
 
 
  
