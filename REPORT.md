@@ -48,6 +48,9 @@ Finally we have the 'Coupling of Objects' of the classes. High coupling is a neg
 
 
 # Reflection
+In retrospect, out of the 8 code metrics which we were going to implement, we couldn't implement "Average No. of Faults Detected Over Time" as we needed to implement automated builds of projects which is an another project in itself. We also had to change the scope of the metric "Number of Collaborators" from a per-file basis to a per-project basis. We had to do this as the GitHub REST Api doesn't provide details about who touched a specific file and the history of it. It only provides information about the collaborators on a project wide basis. Looking back, I think we could implement this metric on a per-file basis if we analyze each of the commits for each user but we didn't get time to implement it later down the stage. Also, while working on "Cyclomatic Complexity" metric we came across a library called "lizard" which not only could analyze the cyclomatic complexity but also the no. of comments, lines of code, methods, etc. for which we had already implemented our own logic. We could have saved time implementing this and could have used the saved time to work on the number of collaborators on per-file basis or any other additional metric. 
+
+We also started out the database with MongoDB, then realized that we needed a paid version of it if we wanted it to sync with Tableau. So we switched to a MySQL server. During deployment, we first considered heroku as it was short and simple to do. However, for deployment on heroku we realized we should have used Flask's internal sqlite database. Hence, we had to deploy on DigitalOcean which had a very painstaking process to deploy with multiple steps. If we had started out the database with Flask's internal DB, we could have deployed it on heroku in a short and simple way.
 
 # Limitations
 
