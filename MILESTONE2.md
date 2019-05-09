@@ -86,6 +86,6 @@ In order to visualise the quality metrics that we have assessed from the code, w
 
 # Screencast
 
-[Project ScreenCast - GitHub Link](https://github.ncsu.edu/umisra/csc510-project/blob/master/screencast.mp4)
+[Project ScreenCast - GitHub Link](https://github.ncsu.edu/umisra/csc510-project/blob/master/Screencast%20-%20Milestone%202.mp4)
 </br>OR</br>
 [Project ScreenCast - Google Drive Link](https://drive.google.com/file/d/14GGw0kaulehem9Zq_Z-SG6WvORE2AU8f/view?usp=sharing)
