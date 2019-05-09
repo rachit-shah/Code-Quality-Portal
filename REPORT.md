@@ -1,6 +1,6 @@
 # Screencast
 
-[Project ScreenCast - GitHub Link](https://github.ncsu.edu/umisra/csc510-project/blob/master/final-final-screencast.mp4)
+[Project ScreenCast - GitHub Link](https://github.ncsu.edu/umisra/csc510-project/blob/master/Final%20Screencast.mp4)
 </br>OR</br>
 [Project ScreenCast - Google Drive Link](https://drive.google.com/file/d/18UWsL8mPyEsceKI31FQtKaldBlhfmSkB/view?usp=sharing)
 
