@@ -70,6 +70,6 @@ Our third use case is a specific type of second use case. In this we are specifi
 
 # Screencast
 
-[Project ScreenCast - GitHub Link](https://github.ncsu.edu/umisra/csc510-project/blob/master/screencast2.mp4)
+[Project ScreenCast - GitHub Link](https://github.ncsu.edu/umisra/csc510-project/blob/master/Screencast%20-%20Milestone%203.mp4)
 </br>OR</br>
 [Project ScreenCast - Google Drive Link](https://drive.google.com/file/d/1pffZ40t8k5bTkDbwipd1G0ttnYKuPbLw/view?usp=sharing)
