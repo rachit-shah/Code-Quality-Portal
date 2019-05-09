@@ -18,9 +18,6 @@ Team 6 Members:
 
 [Final Report](https://github.ncsu.edu/umisra/csc510-project/blob/master/REPORT.md)
 
-#### * Working code is in "deploy" branch
-
-
 ## Steps to Deploy Our Application on Digital Ocean
 * Steps adopted from [this](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uswgi-and-nginx-on-ubuntu-18-04) tutorial 
 #### Creating Droplet on DigitalOcean
