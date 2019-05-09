@@ -1,0 +1,114 @@
+@font-face {
+    font-family: Ikaros;
+    src: url('/static/fonts/ikaros.otf');
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color:  #2d5986;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: medium;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.btn.btn-info{
+    color: #ffffff;
+    background-color: #3973ac;
+    border-color: #264d73;
+}
+.btn.btn-info:hover,
+.btn.btn-info:focus,
+.btn.btn-info:active,
+.btn.btn-info.active {
+  color: #ffffff;
+  background-color: #2d5986;
+  border-color: #264d73;
+}
+
+.portal-title {
+    font-family: Ikaros, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: 60px;
+    color: white;
+    margin-bottom: 50px;
+}
+
+.form-div {
+    background-color: white;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.repo-form {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.graph-image {
+    width: 100%;
+    height: 500px;
+    border: 2px black;
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #19334d; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.files{
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+}
